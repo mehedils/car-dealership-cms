@@ -190,18 +190,17 @@
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Filter Price</h6>
                                 <div class="box-collapse scrollFilter">
                                     <div class="price-range-slider">
+                                        <div class="price-range-track-active"></div>
                                         <input type="range" min="{{ $priceBoundMin }}" max="{{ $priceBoundMax }}" step="10" value="{{ $priceMin }}" data-role="min" name="price_min">
                                         <input type="range" min="{{ $priceBoundMin }}" max="{{ $priceBoundMax }}" step="10" value="{{ $priceMax }}" data-role="max" name="price_max">
                                     </div>
-                                    <div>
-                                        <span>$<span class="price-min-value">{{ $priceMin }}</span></span> - <span>$<span class="price-max-value">{{ $priceMax }}</span></span>
+                                    <div class="box-price-value d-flex align-items-center justify-content-between pt-2">
+                                        <span class="text-md-bold neutral-1000">$<span class="price-min-value">{{ $priceMin }}</span></span>
+                                        <span class="text-sm-medium neutral-500">to</span>
+                                        <span class="text-md-bold neutral-1000">$<span class="price-max-value">{{ $priceMax }}</span></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Car type</h6>
                                 <div class="box-collapse scrollFilter">
@@ -219,10 +218,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Amenities</h6>
                                 <div class="box-collapse scrollFilter">
@@ -240,10 +235,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Fuel Type</h6>
                                 <div class="box-collapse scrollFilter">
@@ -261,10 +252,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Review Score</h6>
                                 <div class="box-collapse scrollFilter">
@@ -288,10 +275,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Booking Location</h6>
                                 <div class="box-collapse scrollFilter">

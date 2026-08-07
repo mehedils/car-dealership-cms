@@ -249,10 +249,12 @@ function initQuantity() {
 function initPriceRange() {
     $('.price-range-slider').each(function () {
         const $slider = $(this);
+        const $container = $slider.closest('.block-filter, .box-collapse, .box-filters-sidebar');
         const $min = $slider.find('input[data-role="min"]');
         const $max = $slider.find('input[data-role="max"]');
-        const $minLabel = $slider.find('.price-min-value');
-        const $maxLabel = $slider.find('.price-max-value');
+        const $minLabel = $container.find('.price-min-value');
+        const $maxLabel = $container.find('.price-max-value');
+        const $trackActive = $slider.find('.price-range-track-active');
         const $form = $slider.closest('form');
         const step = parseInt($min.attr('step') || 10, 10);
         const hardMin = parseInt($min.attr('min') || 0, 10);
@@ -267,6 +269,15 @@ function initPriceRange() {
             $max.val(maxVal);
             $minLabel.text(minVal);
             $maxLabel.text(maxVal);
+
+            if ($trackActive.length && hardMax > hardMin) {
+                const pMin = Math.max(0, Math.min(100, ((minVal - hardMin) / (hardMax - hardMin)) * 100));
+                const pMax = Math.max(0, Math.min(100, ((maxVal - hardMin) / (hardMax - hardMin)) * 100));
+                $trackActive.css({
+                    left: pMin + '%',
+                    width: (pMax - pMin) + '%'
+                });
+            }
         };
 
         $min.on('input', () => {

@@ -330,34 +330,18 @@
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Filter Price</h6>
                                 <div class="box-collapse scrollFilter">
-                                    <div class="pt-20">
-                                        <div class="box-slider-range">
-                                            <div id="slider-range"></div>
-                                            <div class="box-value-price"><span class="text-md-medium neutral-1000">$0</span><span class="text-md-medium neutral-1000">$500</span></div>
-                                            <input class="value-money" type="hidden">
-                                        </div>
+                                    <div class="price-range-slider">
+                                        <div class="price-range-track-active"></div>
+                                        <input type="range" min="0" max="500" step="10" value="0" data-role="min" name="price_min">
+                                        <input type="range" min="0" max="500" step="10" value="500" data-role="max" name="price_max">
+                                    </div>
+                                    <div class="box-price-value d-flex align-items-center justify-content-between pt-2">
+                                        <span class="text-md-bold neutral-1000">$<span class="price-min-value">0</span></span>
+                                        <span class="text-sm-medium neutral-500">to</span>
+                                        <span class="text-md-bold neutral-1000">$<span class="price-max-value">500</span></span>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between pt-20 border-top">
-                                    <a href="#" class="d-flex align-items-center">
-                                        <div class="background-100 icon-shape p-1 rounded-1 me-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
-                                                <line x1="1.20074" y1="1.5141" x2="7.59837" y2="7.91174" stroke="black" stroke-width="0.904762" />
-                                                <line x1="1.01337" y1="7.91156" x2="7.411" y2="1.51393" stroke="black" stroke-width="0.904762" />
-                                            </svg>
-                                        </div>
-                                        <span class="text-sm-medium neutral-1000">Clear</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary px-3 py-2">
-                                        <img src="/assets/imgs/template/icons/user.svg" alt="Carento">
-                                        Apply
-                                    </a>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Car type</h6>
                                 <div class="box-collapse scrollFilter">
@@ -384,20 +368,8 @@
                                             <label class="cb-container"> <input type="checkbox"><span class="text-sm-medium">Trucks</span><span class="checkmark"></span> </label><span class="number-item">76</span>
                                         </li>
                                     </ul>
-                                    <div class="box-see-more mt-20 mb-25">
-                                        <a class="link-see-more" href="#">
-                                            See more
-                                            <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M7.89553 1.02367C7.75114 0.870518 7.50961 0.864815 7.35723 1.00881L3.9998 4.18946L0.642774 1.00883C0.490387 0.86444 0.249236 0.870534 0.104474 1.02369C-0.0402885 1.17645 -0.0338199 1.4176 0.118958 1.56236L3.73809 4.99102C3.81123 5.06036 3.90571 5.0954 3.9998 5.0954C4.0939 5.0954 4.18875 5.06036 4.26191 4.99102L7.88104 1.56236C8.03382 1.41758 8.04029 1.17645 7.89553 1.02367Z" fill="#101010" />
-                                            </svg>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Car Amenities</h6>
                                 <div class="box-collapse scrollFilter">
@@ -424,20 +396,8 @@
                                             <label class="cb-container"> <input type="checkbox"><span class="text-sm-medium">Adaptive cruise control</span><span class="checkmark"></span> </label><span class="number-item">76</span>
                                         </li>
                                     </ul>
-                                    <div class="box-see-more mt-20 mb-25">
-                                        <a class="link-see-more" href="#">
-                                            See more
-                                            <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M7.89553 1.02367C7.75114 0.870518 7.50961 0.864815 7.35723 1.00881L3.9998 4.18946L0.642774 1.00883C0.490387 0.86444 0.249236 0.870534 0.104474 1.02369C-0.0402885 1.17645 -0.0338199 1.4176 0.118958 1.56236L3.73809 4.99102C3.81123 5.06036 3.90571 5.0954 3.9998 5.0954C4.0939 5.0954 4.18875 5.06036 4.26191 4.99102L7.88104 1.56236C8.03382 1.41758 8.04029 1.17645 7.89553 1.02367Z" fill="#101010" />
-                                            </svg>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Fuel Type</h6>
                                 <div class="box-collapse scrollFilter">
@@ -466,10 +426,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-left border-1 background-body">
-                        <div class="box-filters-sidebar">
                             <div class="block-filter border-1">
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Review Score</h6>
                                 <div class="box-collapse scrollFilter">
