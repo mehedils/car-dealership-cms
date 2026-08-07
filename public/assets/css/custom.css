@@ -1,0 +1,81 @@
+:root {
+    --urbanist: "Urbanist", sans-serif;
+}
+
+/* --- header top bar socials --- */
+.top-bar-2 .box-socials-header a.icon-socials {
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    margin-right: 4px;
+}
+.top-bar-2 .box-socials-header a.icon-socials svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* --- brand marquee (replaces react-fast-marquee) --- */
+.carouselTicker {
+    overflow: hidden;
+}
+.carouselTicker__list {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding-left: 0;
+    animation: carouselTicker 45s linear infinite;
+    will-change: transform;
+}
+.carouselTicker:hover .carouselTicker__list {
+    animation-play-state: paused;
+}
+@keyframes carouselTicker {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* --- dual price range --- */
+.price-range-slider {
+    position: relative;
+    height: 32px;
+    margin-bottom: 12px;
+}
+.price-range-slider input[type="range"] {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    background: transparent;
+    pointer-events: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.price-range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #f15d44;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+.price-range-slider input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #f15d44;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+.price-range-slider input[type="range"]::-webkit-slider-runnable-track {
+    background: transparent;
+}
