@@ -1,0 +1,6 @@
+{
+  "allowScripts": {
+    "allow": [],
+    "deny": ["npm:core-js@3.49.0", "npm:sharp@0.34.5", "npm:unrs-resolver@1.12.2"]
+  }
+}

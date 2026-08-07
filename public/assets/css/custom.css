@@ -79,3 +79,36 @@
 .price-range-slider input[type="range"]::-webkit-slider-runnable-track {
     background: transparent;
 }
+
+/* --- header navigation centering --- */
+.header .main-header .header-left {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.header .main-header .header-left .header-logo {
+    flex: 1 1 0%;
+    min-width: 0;
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header .main-header .header-left .header-nav {
+    flex: 0 0 auto;
+    width: auto;
+    text-align: center;
+}
+
+.header .main-header .header-left .header-right,
+.header .main-header .header-right {
+    flex: 1 1 0%;
+    min-width: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+

@@ -79,6 +79,9 @@
                                     <li><a href="/dealer-details">Dealer Details</a></li>
                                 </ul>
                             </li>
+                            <li>
+                                <a class="color-white" href="/contact">Contact</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

@@ -20,3 +20,8 @@ Route::get('/dealer-listing', function () {
 Route::get('/dealer-details', function () {
     return view('dealer-details');
 });
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
