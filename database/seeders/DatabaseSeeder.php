@@ -29,20 +29,35 @@ class DatabaseSeeder extends Seeder
         $faker = Faker::create();
 
         $this->command->info('Creating Superadmin...');
-        \App\Models\User::create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('password'),
-        ]);
+        \App\Models\User::firstOrCreate(
+            ['email' => 'admin@admin.com'],
+            [
+                'name' => 'admin',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         $this->command->info('Seeding Taxonomies...');
 
         // Brands
-        $brandFiles = File::glob(public_path('assets/imgs/brand/*.*'));
+        $brandData = [
+            'Toyota' => 'assets/imgs/page/homepage2/toyota.png',
+            'BMW' => 'assets/imgs/page/homepage2/bmw.png',
+            'Mercedes' => 'assets/imgs/page/homepage2/mer.png',
+            'Lexus' => 'assets/imgs/page/homepage2/lexus.png',
+            'Honda' => 'assets/imgs/page/homepage2/honda.png',
+            'Chevrolet' => 'assets/imgs/page/homepage2/chevrolet.png',
+            'Jaguar' => 'assets/imgs/page/homepage2/jaguar.png',
+            'Acura' => 'assets/imgs/page/homepage2/acura.png',
+            'Bugatti' => 'assets/imgs/page/homepage2/bugatti.png',
+        ];
         $brands = [];
-        foreach (['Toyota', 'Ford', 'BMW', 'Audi', 'Mercedes', 'Honda', 'Nissan'] as $i => $name) {
-            $logo = isset($brandFiles[$i]) ? 'assets/imgs/brand/' . basename($brandFiles[$i]) : null;
-            $brands[] = Brand::create(['name' => $name, 'slug' => Str::slug($name), 'logo' => $logo]);
+        foreach ($brandData as $name => $logo) {
+            $brands[] = Brand::create([
+                'name' => $name,
+                'slug' => Str::slug($name),
+                'logo' => $logo,
+            ]);
         }
 
         // Car Types
@@ -84,7 +99,6 @@ class DatabaseSeeder extends Seeder
                 'name' => $faker->company . ' ' . $faker->word,
                 'slug' => $faker->unique()->slug,
                 'price' => $faker->randomElement([25000, 35000, 45000, 55000, 65000]),
-                'duration' => 'per day',
                 'rating' => $faker->randomFloat(1, 4, 5),
                 'is_featured' => $faker->boolean(30),
                 'mileage' => $faker->numberBetween(10, 50) . 'k',

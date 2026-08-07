@@ -1,33 +1,47 @@
 <div class="card-journey-small background-card hover-up">
     <div class="card-image">
-        <a href="/cars-details-3">
-            <img src="/assets/imgs/cars-listing/cars-listing-6/{{ $car['image'] }}" alt="Carento">
+        <a href="{{ url('/cars-details-3') }}">
+            @if(is_object($car) && method_exists($car, 'getFirstMediaUrl') && $car->getFirstMediaUrl('gallery'))
+                <img src="{{ $car->getFirstMediaUrl('gallery') }}" alt="{{ $car->name }}" style="height: 220px; object-fit: cover; width: 100%;">
+            @else
+                <img src="{{ asset('assets/imgs/cars-details/car-1.jpg') }}" alt="{{ is_object($car) ? $car->name : ($car['name'] ?? 'Car') }}" style="height: 220px; object-fit: cover; width: 100%;">
+            @endif
         </a>
     </div>
     <div class="card-info p-4 pt-30">
         <div class="card-rating">
             <div class="card-left"></div>
             <div class="card-right">
-                <span class="rating text-xs-medium rounded-pill">{{ $car['rating'] }} <span class="text-xs-medium neutral-500">(672 reviews)</span></span>
+                <span class="rating text-xs-medium rounded-pill">
+                    {{ is_object($car) ? $car->rating : ($car['rating'] ?? '5.0') }}
+                    <span class="text-xs-medium neutral-500">({{ is_object($car) ? $car->reviews_count ?? 5 : 5 }} reviews)</span>
+                </span>
             </div>
         </div>
-        <div class="card-title"><a class="text-lg-bold neutral-1000 text-nowrap" href="/cars-details-3">{{ $car['name'] }}</a></div>
+        <div class="card-title">
+            <a class="text-lg-bold neutral-1000 text-truncate d-block" href="{{ url('/cars-details-3') }}">
+                {{ is_object($car) ? $car->name : ($car['name'] ?? '') }}
+            </a>
+        </div>
         <div class="card-program">
             <div class="card-location">
-                <p class="text-location text-sm-medium neutral-500">{{ $car['location'] }}</p>
+                <p class="text-location text-sm-medium neutral-500">
+                    {{ is_object($car) ? ($car->location?->name ?? 'New York') : ($car['location'] ?? '') }}
+                </p>
             </div>
             <div class="card-facitlities">
-                <p class="card-miles text-md-medium">25,100 miles</p>
-                <p class="card-gear text-md-medium">Automatic</p>
-                <p class="card-fuel text-md-medium">{{ $car['fuelType'] }}</p>
-                <p class="card-seat text-md-medium">7 seats</p>
+                <p class="card-miles text-md-medium">{{ is_object($car) ? ($car->mileage ?? '20k') : '20k' }}</p>
+                <p class="card-gear text-md-medium">{{ is_object($car) ? ($car->transmission ?? 'Auto') : 'Auto' }}</p>
+                <p class="card-fuel text-md-medium">{{ is_object($car) ? ($car->fuelType?->name ?? 'Petrol') : ($car['fuelType'] ?? '') }}</p>
+                <p class="card-seat text-md-medium">{{ is_object($car) ? ($car->seats ?? 5) : 5 }} seats</p>
             </div>
             <div class="endtime">
                 <div class="card-price">
-                    <h6 class="text-lg-bold neutral-1000">${{ $car['price'] }}</h6>
-                    <p class="text-md-medium neutral-500">/ day</p>
+                    <h6 class="text-lg-bold neutral-1000">${{ is_object($car) ? number_format($car->price) : ($car['price'] ?? '0') }}</h6>
                 </div>
-                <div class="card-button"><a class="btn btn-gray" href="/cars-details-3">Book Now</a></div>
+                <div class="card-button">
+                    <a class="btn btn-primary btn-sm px-3" href="{{ url('/cars-details-3') }}">View</a>
+                </div>
             </div>
         </div>
     </div>

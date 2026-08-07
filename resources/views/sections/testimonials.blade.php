@@ -3,9 +3,6 @@
         <div class="row align-items-end">
             <div class="col-md-9 col-sm-9 wow fadeInUp">
                 <div class="box-author-testimonials">
-                    <img src="/assets/imgs/page/homepage1/testimonial.png" alt="Carento">
-                    <img src="/assets/imgs/page/homepage1/testimonial2.png" alt="Carento">
-                    <img src="/assets/imgs/page/homepage1/testimonial3.png" alt="Carento">
                     Testimonials
                 </div>
                 <h3 class="mt-8 mb-15 neutral-1000">What they say about us?</h3>
@@ -18,214 +15,36 @@
                 <div class="box-swiper mt-30">
                     <div class="swiper-container swiper-group-animate swiper-group-journey">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Fast and Easy to Use</p>
-                                        <p class="text-md-regular neutral-500">I’ve used many car rental platforms before, but Carento’s booking system is hands down the best! The process is so smooth and straightforward.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-1.png" alt="Carento">
-                                            </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Sophia Moore</p>
-                                                <p class="text-md-regular neutral-1000">New York</p>
-                                            </div>
+                            @foreach($testimonials as $item)
+                                <div class="swiper-slide">
+                                    <div class="card-testimonial background-card">
+                                        <div class="card-info">
+                                            <p class="text-xl-bold card-title neutral-1000">Customer Review</p>
+                                            <p class="text-md-regular neutral-500">{{ $item->content }}</p>
                                         </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Super Convenient</p>
-                                        <p class="text-md-regular neutral-500">The booking system on this site is top-notch. Everything is laid out clearly, and there are multiple payment options, which makes things super convenient.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-2.png" alt="Carento">
+                                        <div class="card-top pt-40 border-0 mb-0">
+                                            <div class="card-author">
+                                                <div class="card-image">
+                                                    @if($item->author_avatar)
+                                                        <img src="{{ asset($item->author_avatar) }}" alt="{{ $item->author_name }}" style="border-radius: 50%;">
+                                                    @else
+                                                        <img src="{{ asset('assets/imgs/testimonials/testimonials-1/author-1.png') }}" alt="{{ $item->author_name }}" style="border-radius: 50%;">
+                                                    @endif
+                                                </div>
+                                                <div class="card-info">
+                                                    <p class="text-lg-bold neutral-1000">{{ $item->author_name }}</p>
+                                                    <p class="text-md-regular neutral-500">{{ $item->author_role }}</p>
+                                                </div>
                                             </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Atend John</p>
-                                                <p class="text-md-regular neutral-1000">Tokyo</p>
+                                            <div class="card-rate">
+                                                @for($s = 0; $s < ($item->rating ?? 5); $s++)
+                                                    <img class="background-brand-2 p-1" src="{{ asset('assets/imgs/template/icons/star-black.svg') }}" alt="star">
+                                                @endfor
                                             </div>
-                                        </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Great Features and Process</p>
-                                        <p class="text-md-regular neutral-500">I was impressed by the range of features available when booking. The calendar tool for selecting dates was especially useful, and I appreciated the live availability feature.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-3.png" alt="Carento">
-                                            </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Sara Mohamed</p>
-                                                <p class="text-md-regular neutral-1000">Jakatar</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Easy to Understand</p>
-                                        <p class="text-md-regular neutral-500">The attention to detail in the booking process made our trip stress-free, allowing us to focus on creating lasting memories together.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-1.png" alt="Carento">
-                                            </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Sara Mohamed</p>
-                                                <p class="text-md-regular neutral-1000">Jakatar</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Fast and Easy to Use</p>
-                                        <p class="text-md-regular neutral-500">I’ve used many car rental platforms before, but Carento’s booking system is hands down the best! The process is so smooth and straightforward.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-1.png" alt="Carento">
-                                            </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Sophia Moore</p>
-                                                <p class="text-md-regular neutral-1000">New York</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Super Convenient</p>
-                                        <p class="text-md-regular neutral-500">The booking system on this site is top-notch. Everything is laid out clearly, and there are multiple payment options, which makes things super convenient.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-2.png" alt="Carento">
-                                            </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Atend John</p>
-                                                <p class="text-md-regular neutral-1000">Tokyo</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Great Features and Process</p>
-                                        <p class="text-md-regular neutral-500">I was impressed by the range of features available when booking. The calendar tool for selecting dates was especially useful, and I appreciated the live availability feature.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-3.png" alt="Carento">
-                                            </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Sara Mohamed</p>
-                                                <p class="text-md-regular neutral-1000">Jakatar</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card-testimonial background-card">
-                                    <div class="card-info">
-                                        <p class="text-xl-bold card-title neutral-1000">Easy to Understand</p>
-                                        <p class="text-md-regular neutral-500">The attention to detail in the booking process made our trip stress-free, allowing us to focus on creating lasting memories together.</p>
-                                    </div>
-                                    <div class="card-top pt-40 border-0 mb-0">
-                                        <div class="card-author">
-                                            <div class="card-image">
-                                                <img src="/assets/imgs/testimonials/testimonials-1/author-1.png" alt="Carento">
-                                            </div>
-                                            <div class="card-info">
-                                                <p class="text-lg-bold neutral-1000">Sara Mohamed</p>
-                                                <p class="text-md-regular neutral-1000">Jakatar</p>
-                                            </div>
-                                        </div>
-                                        <div class="card-rate">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                            <img class="background-brand-2 p-1" src="/assets/imgs/template/icons/star-black.svg" alt="Carento">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

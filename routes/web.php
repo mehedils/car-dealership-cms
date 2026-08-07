@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\CarsListController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', HomeController::class);
 
 Route::get('/cars-list-1', CarsListController::class);
 

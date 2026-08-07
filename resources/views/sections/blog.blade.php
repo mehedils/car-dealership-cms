@@ -2,181 +2,49 @@
     <div class="container">
         <div class="row align-items-end">
             <div class="col-md-9 mb-30 wow fadeInUp">
-                <h3 class="title-svg neutral-1000 mb-15">Upcoming Cars &amp; Events</h3>
-                <p class="text-lg-medium text-bold neutral-500">Stay ahead with the latest car releases and
-                    upcoming events</p>
+                <h3 class="title-svg neutral-1000 mb-15">Latest News &amp; Articles</h3>
+                <p class="text-lg-medium text-bold neutral-500">Stay updated with our latest stories and automotive insights</p>
             </div>
-            <div class="col-md-3 position-relative mb-30 wow fadeInUp">
-                <div class="box-button-slider box-button-slider-team justify-content-end">
-                    <div class="swiper-button-prev swiper-button-prev-style-1 swiper-button-prev-2" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-f147def6ba09c37a">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M7.99992 3.33325L3.33325 7.99992M3.33325 7.99992L7.99992 12.6666M3.33325 7.99992H12.6666" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="swiper-button-next swiper-button-next-style-1 swiper-button-next-2" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-f147def6ba09c37a">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M7.99992 12.6666L12.6666 7.99992L7.99992 3.33325M12.6666 7.99992L3.33325 7.99992" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </div>
+            <div class="col-md-3 position-relative mb-30 wow fadeInUp text-end">
+                <a href="{{ url('/blog') }}" class="btn btn-brand-2">View All Posts</a>
             </div>
         </div>
         <div class="box-list-news wow fadeInUp mt-5">
-            <div class="box-swiper">
-                <div class="swiper-container swiper-group-3">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide pt-2">
-                            <div class="card-news background-card hover-up">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img src="/assets/imgs/blog/blog-1/img-1.png" alt="Carento">
-                                    </a>
-                                </div>
-                                <div class="card-info">
-                                    <a class="bg-2 rounded-12 position-absolute top-0 end-0 translate-middle-y px-3 py-2 me-4 text-sm-bold" href="#">News</a>
-                                    <div class="card-meta"><span class="post-date neutral-1000">18 Sep
-                                            2024</span><span class="post-time neutral-1000">6 mins</span><span class="post-comment neutral-1000">38 comments</span></div>
-                                    <div class="card-title"><a class="text-xl-bold neutral-1000" href="#">2025 Cadillac Escalade costs more money
-                                        </a></div>
-                                    <div class="card-program">
-                                        <div class="endtime">
-                                            <div class="card-author">
-                                                <img src="/assets/imgs/blog/blog-1/avatar-1.png" alt="Carento">
-                                                <p class="text-sm-bold neutral-1000">Jimmy Dave</p>
-                                            </div>
-                                            <div class="card-button"><a class="btn btn-gray" href="#">Keep Reading</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="row">
+                @foreach($blogPosts as $post)
+                    <div class="col-lg-4 col-md-6 mb-30">
+                        <div class="card-news background-card hover-up">
+                            <div class="card-image">
+                                <a href="{{ url('/blog') }}">
+                                    @if($post->image)
+                                        <img src="{{ asset($post->image) }}" alt="{{ $post->title }}" style="height: 220px; object-fit: cover; width: 100%;">
+                                    @else
+                                        <img src="{{ asset('assets/imgs/blog/blog-1/img-1.png') }}" alt="{{ $post->title }}" style="height: 220px; object-fit: cover; width: 100%;">
+                                    @endif
+                                </a>
                             </div>
-                        </div>
-                        <div class="swiper-slide pt-2">
-                            <div class="card-news background-card hover-up">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img src="/assets/imgs/blog/blog-1/img-2.png" alt="Carento">
-                                    </a>
+                            <div class="card-info p-4">
+                                <div class="card-meta">
+                                    <span class="post-date neutral-500">{{ $post->published_at ? $post->published_at->format('d M Y') : now()->format('d M Y') }}</span>
                                 </div>
-                                <div class="card-info">
-                                    <a class="bg-2 rounded-12 position-absolute top-0 end-0 translate-middle-y px-3 py-2 me-4 text-sm-bold" href="#">Trend</a>
-                                    <div class="card-meta"><span class="post-date neutral-1000">18 Sep
-                                            2024</span><span class="post-time neutral-1000">6 mins</span><span class="post-comment neutral-1000">38 comments</span></div>
-                                    <div class="card-title"><a class="text-xl-bold neutral-1000" href="#">2025 BMW 5 Series Review: A balanced luxury
-                                            sedan</a></div>
-                                    <div class="card-program">
-                                        <div class="endtime">
-                                            <div class="card-author">
-                                                <img src="/assets/imgs/blog/blog-1/avatar-2.png" alt="Carento">
-                                                <p class="text-sm-bold neutral-1000">Steven Job</p>
-                                            </div>
-                                            <div class="card-button"><a class="btn btn-gray" href="#">Keep Reading</a></div>
+                                <div class="card-title my-2">
+                                    <a class="text-xl-bold neutral-1000" href="{{ url('/blog') }}">{{ $post->title }}</a>
+                                </div>
+                                <p class="text-sm neutral-500 mb-3">{{ Str::limit($post->excerpt, 90) }}</p>
+                                <div class="card-program">
+                                    <div class="endtime d-flex justify-content-between align-items-center">
+                                        <div class="card-author d-flex align-items-center">
+                                            <span class="text-sm-bold neutral-1000">By {{ $post->author_name ?? 'Admin' }}</span>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pt-2">
-                            <div class="card-news background-card hover-up">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img src="/assets/imgs/blog/blog-1/img-3.png" alt="Carento">
-                                    </a>
-                                </div>
-                                <div class="card-info">
-                                    <a class="bg-2 rounded-12 position-absolute top-0 end-0 translate-middle-y px-3 py-2 me-4 text-sm-bold" href="#">Discovery</a>
-                                    <div class="card-meta"><span class="post-date neutral-1000">18 Sep
-                                            2024</span><span class="post-time neutral-1000">6 mins</span><span class="post-comment neutral-1000">38 comments</span></div>
-                                    <div class="card-title"><a class="text-xl-bold neutral-1000" href="#">2025 Ruf Rodeo is ready to wrangle some
-                                            rough roads</a></div>
-                                    <div class="card-program">
-                                        <div class="endtime">
-                                            <div class="card-author">
-                                                <img src="/assets/imgs/blog/blog-1/avatar-3.png" alt="Carento">
-                                                <p class="text-sm-bold neutral-1000">David Jame</p>
-                                            </div>
-                                            <div class="card-button"><a class="btn btn-gray" href="#">Keep Reading</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pt-2">
-                            <div class="card-news background-card hover-up">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img src="/assets/imgs/blog/blog-1/img-1.png" alt="Carento">
-                                    </a>
-                                </div>
-                                <div class="card-info">
-                                    <a class="bg-2 rounded-12 position-absolute top-0 end-0 translate-middle-y px-3 py-2 me-4 text-sm-bold" href="#">News</a>
-                                    <div class="card-meta"><span class="post-date neutral-1000">18 Sep
-                                            2024</span><span class="post-time neutral-1000">6 mins</span><span class="post-comment neutral-1000">38 comments</span></div>
-                                    <div class="card-title"><a class="text-xl-bold neutral-1000" href="#">2025 Cadillac Escalade costs more money
-                                        </a></div>
-                                    <div class="card-program">
-                                        <div class="endtime">
-                                            <div class="card-author">
-                                                <img src="/assets/imgs/blog/blog-1/avatar-1.png" alt="Carento">
-                                                <p class="text-sm-bold neutral-1000">Jimmy Dave</p>
-                                            </div>
-                                            <div class="card-button"><a class="btn btn-gray" href="#">Keep Reading</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pt-2">
-                            <div class="card-news background-card hover-up">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img src="/assets/imgs/blog/blog-1/img-2.png" alt="Carento">
-                                    </a>
-                                </div>
-                                <div class="card-info">
-                                    <a class="bg-2 rounded-12 position-absolute top-0 end-0 translate-middle-y px-3 py-2 me-4 text-sm-bold" href="#">Trend</a>
-                                    <div class="card-meta"><span class="post-date neutral-1000">18 Sep
-                                            2024</span><span class="post-time neutral-1000">6 mins</span><span class="post-comment neutral-1000">38 comments</span></div>
-                                    <div class="card-title"><a class="text-xl-bold neutral-1000" href="#">2025 BMW 5 Series Review: A balanced luxury
-                                            sedan</a></div>
-                                    <div class="card-program">
-                                        <div class="endtime">
-                                            <div class="card-author">
-                                                <img src="/assets/imgs/blog/blog-1/avatar-2.png" alt="Carento">
-                                                <p class="text-sm-bold neutral-1000">Steven Job</p>
-                                            </div>
-                                            <div class="card-button"><a class="btn btn-gray" href="#">Keep Reading</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide pt-2">
-                            <div class="card-news background-card hover-up">
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img src="/assets/imgs/blog/blog-1/img-3.png" alt="Carento">
-                                    </a>
-                                </div>
-                                <div class="card-info">
-                                    <a class="bg-2 rounded-12 position-absolute top-0 end-0 translate-middle-y px-3 py-2 me-4 text-sm-bold" href="#">Discovery</a>
-                                    <div class="card-meta"><span class="post-date neutral-1000">18 Sep
-                                            2024</span><span class="post-time neutral-1000">6 mins</span><span class="post-comment neutral-1000">38 comments</span></div>
-                                    <div class="card-title"><a class="text-xl-bold neutral-1000" href="#">2025 Ruf Rodeo is ready to wrangle some
-                                            rough roads</a></div>
-                                    <div class="card-program">
-                                        <div class="endtime">
-                                            <div class="card-author">
-                                                <img src="/assets/imgs/blog/blog-1/avatar-3.png" alt="Carento">
-                                                <p class="text-sm-bold neutral-1000">David Jame</p>
-                                            </div>
-                                            <div class="card-button"><a class="btn btn-gray" href="#">Keep Reading</a></div>
+                                        <div class="card-button">
+                                            <a class="btn btn-gray" href="{{ url('/blog') }}">Read More</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
