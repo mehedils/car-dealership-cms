@@ -30,7 +30,8 @@ class WhyUsFeatureResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('icon'),
+                \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                    ->required(),
                 Forms\Components\TextInput::make('sort_order')
                     ->required()
                     ->numeric()

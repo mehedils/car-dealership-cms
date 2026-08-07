@@ -31,9 +31,10 @@ class ServiceResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('icon'),
                 Forms\Components\FileUpload::make('image')
                     ->image(),
+                \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                    ->required(),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
             ]);

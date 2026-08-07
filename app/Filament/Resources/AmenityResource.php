@@ -27,7 +27,8 @@ class AmenityResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\TextInput::make('icon'),
+                \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                    ->required(),
             ]);
     }
 
