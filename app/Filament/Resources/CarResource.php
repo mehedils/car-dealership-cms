@@ -30,7 +30,9 @@ class CarResource extends Resource
                         Forms\Components\Tabs\Tab::make('Basic Info')
                             ->schema([
                                 Forms\Components\TextInput::make('name')
-                                    ->required(),
+                                    ->required()
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn (\Filament\Forms\Set $set, ?string $state) => $set('slug', \Illuminate\Support\Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
                                     ->required(),
                                 Forms\Components\Select::make('brand_id')
@@ -109,8 +111,6 @@ class CarResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
                     ->money()
