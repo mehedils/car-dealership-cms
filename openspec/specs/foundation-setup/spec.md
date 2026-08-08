@@ -1,3 +1,8 @@
+# foundation-setup Specification
+
+## Purpose
+Defines foundation package dependencies including Filament V3 admin framework and Spatie Media Library integration.
+
 ## Requirements
 
 ### Requirement: Foundation Packages Setup

@@ -22,7 +22,7 @@
                     </span>
                 </li>
                 <li>
-                    <span class="text-breadcrumb">Hyundai Accent 2025 </span>
+                    <span class="text-breadcrumb">{{ $car->name }} </span>
                 </li>
             </ul>
         </div>
@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="tour-title-main">
-                            <h4 class="neutral-1000">Hyundai Accent 2015 - Modern compact sedan in blue color on beautiful dark wheels</h4>
+                            <h4 class="neutral-1000">{{ $car->name }}</h4>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                             <svg class="invert" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M7.99967 0C4.80452 0 2.20508 2.59944 2.20508 5.79456C2.20508 9.75981 7.39067 15.581 7.61145 15.8269C7.81883 16.0579 8.18089 16.0575 8.38789 15.8269C8.60867 15.581 13.7943 9.75981 13.7943 5.79456C13.7942 2.59944 11.1948 0 7.99967 0ZM7.99967 8.70997C6.39211 8.70997 5.0843 7.40212 5.0843 5.79456C5.0843 4.187 6.39214 2.87919 7.99967 2.87919C9.6072 2.87919 10.915 4.18703 10.915 5.79459C10.915 7.40216 9.6072 8.70997 7.99967 8.70997Z" fill="#101010"></path>
                             </svg>
-                            Las Vegas, USA
+                            {{ $car->location?->name ?? 'Las Vegas, USA' }}
                         </p>
                         <a class="text-md-medium neutral-1000 mr-30" href="#">
                             Show on map
@@ -88,21 +88,19 @@
                     <div class="container-banner-activities">
                         <div class="box-banner-activities">
                             <div class="banner-activities-detail">
-                                <div class="banner-slide-activity">
-                                    <img src="/assets/imgs/cars-details/banner.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide-activity">
-                                    <img src="/assets/imgs/cars-details/banner2.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide-activity">
-                                    <img src="/assets/imgs/cars-details/banner3.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide-activity">
-                                    <img src="/assets/imgs/cars-details/banner4.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide-activity">
-                                    <img src="/assets/imgs/cars-details/banner5.png" alt="Carento">
-                                </div>
+                                @php $gallery = $car->getMedia('gallery'); @endphp
+                                @forelse($gallery as $media)
+                                    <div class="banner-slide-activity">
+                                        <img src="{{ $media->getUrl() }}" alt="{{ $car->name }}">
+                                    </div>
+                                @empty
+                                    <div class="banner-slide-activity">
+                                        <img src="/assets/imgs/cars-details/banner.png" alt="{{ $car->name }}">
+                                    </div>
+                                    <div class="banner-slide-activity">
+                                        <img src="/assets/imgs/cars-details/banner2.png" alt="{{ $car->name }}">
+                                    </div>
+                                @endforelse
                             </div>
                             <div class="box-button-abs">
                                 <a class="btn btn-primary rounded-pill" href="#">
@@ -123,30 +121,15 @@
                         </div>
                         <div class="slider-thumnail-activities">
                             <div class="slider-nav-thumbnails-activities-detail">
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn2.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn3.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn4.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn5.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn6.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn.png" alt="Carento">
-                                </div>
-                                <div class="banner-slide">
-                                    <img src="/assets/imgs/page/car/banner-thumn3.png" alt="Carento">
-                                </div>
+                                @forelse($gallery as $media)
+                                    <div class="banner-slide">
+                                        <img src="{{ $media->getUrl() }}" alt="{{ $car->name }}">
+                                    </div>
+                                @empty
+                                    <div class="banner-slide">
+                                        <img src="/assets/imgs/page/car/banner-thumn.png" alt="{{ $car->name }}">
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -158,7 +141,7 @@
                                         <img src="/assets/imgs/page/car/km.svg" alt="Carento">
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">56,500</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->mileage ?? '56,500' }} mi</p>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +151,7 @@
                                         <img src="/assets/imgs/page/car/diesel.svg" alt="Carento">
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">Diesel</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->fuelType?->name ?? 'Diesel' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +161,7 @@
                                         <img src="/assets/imgs/page/car/auto.svg" alt="Carento">
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">Automatic</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->transmission ?? 'Automatic' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +171,7 @@
                                         <img src="/assets/imgs/page/car/seat.svg" alt="Carento">
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">7 seats</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->seats ?? 7 }} seats</p>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +191,7 @@
                                         <img src="/assets/imgs/page/car/suv.svg" alt="Carento">
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">SUVs</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->carType?->name ?? 'SUVs' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -218,7 +201,7 @@
                                         <img src="/assets/imgs/page/car/door.svg" alt="Carento">
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">4 Doors</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->doors ?? 4 }} Doors</p>
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +211,7 @@
                                         <img src="/assets/imgs/page/car/lit.svg" alt="Carento">
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">2.5L</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->engine_capacity ?? '2.5L' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -244,14 +227,13 @@
                             </button>
                             <div class="collapse show" id="collapseOverview">
                                 <div class="card card-body">
-                                    <p>Elevate your Las Vegas experience to new heights with a journey aboard The High Roller at The LINQ. As the tallest observation wheel in the world, standing at an impressive 550 feet tall, The High Roller offers a bird's-eye perspective of the iconic Las Vegas Strip and its surrounding desert landscape. From the moment you step into one of the spacious cabins, you'll be transported on a mesmerizing adventure, where every turn offers a new and breathtaking vista of the vibrant city below.</p>
-                                    <p>Whether you're a first-time visitor or a seasoned Las Vegas aficionado, The High Roller promises an unparalleled experience that will leave you in awe. With its climate-controlled cabins and immersive audio commentary, this attraction provides a unique opportunity to see Las Vegas from a whole new perspective, while learning about its rich history and famous landmarks along the way.</p>
+                                    <p>{{ $car->description ?? 'No detailed description available for this vehicle.' }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="group-collapse-expand">
                             <button class="btn btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#collapseItinerary" aria-expanded="false" aria-controls="collapseItinerary">
-                                <h6>Included in the price</h6>
+                                <h6>Features & Amenities</h6>
                                 <svg width="12" height="7" viewBox="0 0 12 7" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 1L6 6L11 1" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
                                 </svg>
@@ -259,10 +241,14 @@
                             <div class="collapse" id="collapseItinerary">
                                 <div class="card card-body">
                                     <ul class="list-checked-green">
-                                        <li>Free cancellation up to 48 hours before pick-up</li>
-                                        <li>Collision Damage Waiver with $700 deductible</li>
-                                        <li>Theft Protection with ₫66,926,626 excess</li>
-                                        <li>Unlimited mileage</li>
+                                        @forelse($car->amenities as $amenity)
+                                            <li>{{ $amenity->name }}</li>
+                                        @empty
+                                            <li>Bluetooth Connectivity</li>
+                                            <li>Rear View Camera</li>
+                                            <li>Leather Seats</li>
+                                            <li>Navigation System</li>
+                                        @endforelse
                                     </ul>
                                 </div>
                             </div>
@@ -686,138 +672,40 @@
                     </div>
                     <div class="booking-form">
                         <div class="head-booking-form">
-                            <p class="text-xl-bold neutral-1000">Rent This Vehicle</p>
+                            <p class="text-xl-bold neutral-1000">Inquire About This Car</p>
                         </div>
                         <div class="content-booking-form">
-                            <div class="item-line-booking border-bottom-0 pb-0">
-                                <strong class="text-md-bold neutral-1000">Pick-Up</strong>
-                                <div class="input-calendar">
-                                    <input type="text" class="form-control calendar-date datepicker-input" autocomplete="off" placeholder="dd/mm/yyyy">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M14.5312 1.3828H13.8595V0.703125C13.8595 0.314789 13.5448 0 13.1564 0C12.7681 0 12.4533 0.314789 12.4533 0.703125V1.3828H5.55469V0.703125C5.55469 0.314789 5.2399 0 4.85156 0C4.46323 0 4.14844 0.314789 4.14844 0.703125V1.3828H3.47678C1.55967 1.3828 0 2.94247 0 4.85954V14.5232C0 16.4403 1.55967 18 3.47678 18H14.5313C16.4483 18 18.008 16.4403 18.008 14.5232V4.85954C18.008 2.94247 16.4483 1.3828 14.5312 1.3828ZM3.47678 2.78905H4.14844V4.16014C4.14844 4.54848 4.46323 4.86327 4.85156 4.86327C5.2399 4.86327 5.55469 4.54848 5.55469 4.16014V2.78905H12.4533V4.16014C12.4533 4.54848 12.7681 4.86327 13.1565 4.86327C13.5448 4.86327 13.8596 4.54848 13.8596 4.16014V2.78905H14.5313C15.6729 2.78905 16.6018 3.71788 16.6018 4.85954V5.53124H1.40625V4.85954C1.40625 3.71788 2.33508 2.78905 3.47678 2.78905ZM14.5312 16.5938H3.47678C2.33508 16.5938 1.40625 15.6649 1.40625 14.5232V6.93749H16.6018V14.5232C16.6018 15.6649 15.6729 16.5938 14.5312 16.5938ZM6.24611 9.70312C6.24611 10.0915 5.93132 10.4062 5.54298 10.4062H4.16018C3.77184 10.4062 3.45705 10.0915 3.45705 9.70312C3.45705 9.31479 3.77184 9 4.16018 9H5.54298C5.93128 9 6.24611 9.31479 6.24611 9.70312ZM14.551 9.70312C14.551 10.0915 14.2362 10.4062 13.8479 10.4062H12.4651C12.0767 10.4062 11.7619 10.0915 11.7619 9.70312C11.7619 9.31479 12.0767 9 12.4651 9H13.8479C14.2362 9 14.551 9.31479 14.551 9.70312ZM10.3945 9.70312C10.3945 10.0915 10.0798 10.4062 9.69142 10.4062H8.30862C7.92028 10.4062 7.60549 10.0915 7.60549 9.70312C7.60549 9.31479 7.92028 9 8.30862 9H9.69142C10.0797 9 10.3945 9.31479 10.3945 9.70312ZM6.24611 13.8516C6.24611 14.2399 5.93132 14.5547 5.54298 14.5547H4.16018C3.77184 14.5547 3.45705 14.2399 3.45705 13.8516C3.45705 13.4632 3.77184 13.1484 4.16018 13.1484H5.54298C5.93128 13.1484 6.24611 13.4632 6.24611 13.8516ZM14.551 13.8516C14.551 14.2399 14.2362 14.5547 13.8479 14.5547H12.4651C12.0767 14.5547 11.7619 14.2399 11.7619 13.8516C11.7619 13.4632 12.0767 13.1484 12.4651 13.1484H13.8479C14.2362 13.1484 14.551 13.4632 14.551 13.8516ZM10.3945 13.8516C10.3945 14.2399 10.0798 14.5547 9.69142 14.5547H8.30862C7.92028 14.5547 7.60549 14.2399 7.60549 13.8516C7.60549 13.4632 7.92028 13.1484 8.30862 13.1484H9.69142C10.0797 13.1484 10.3945 13.4632 10.3945 13.8516Z" fill="currentColor"></path>
-                                    </svg>
+                            @if(session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            <form action="{{ route('inquiries.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="car_id" value="{{ $car->id }}">
+                                <div class="mb-3">
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Your Name</label>
+                                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
                                 </div>
-                            </div>
-                            <div class="item-line-booking">
-                                <strong class="text-md-bold neutral-1000">Drop-Off</strong>
-                                <div class="input-calendar">
-                                    <input type="text" class="form-control calendar-date datepicker-input" autocomplete="off" placeholder="dd/mm/yyyy">
-                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M14.5312 1.3828H13.8595V0.703125C13.8595 0.314789 13.5448 0 13.1564 0C12.7681 0 12.4533 0.314789 12.4533 0.703125V1.3828H5.55469V0.703125C5.55469 0.314789 5.2399 0 4.85156 0C4.46323 0 4.14844 0.314789 4.14844 0.703125V1.3828H3.47678C1.55967 1.3828 0 2.94247 0 4.85954V14.5232C0 16.4403 1.55967 18 3.47678 18H14.5313C16.4483 18 18.008 16.4403 18.008 14.5232V4.85954C18.008 2.94247 16.4483 1.3828 14.5312 1.3828ZM3.47678 2.78905H4.14844V4.16014C4.14844 4.54848 4.46323 4.86327 4.85156 4.86327C5.2399 4.86327 5.55469 4.54848 5.55469 4.16014V2.78905H12.4533V4.16014C12.4533 4.54848 12.7681 4.86327 13.1565 4.86327C13.5448 4.86327 13.8596 4.54848 13.8596 4.16014V2.78905H14.5313C15.6729 2.78905 16.6018 3.71788 16.6018 4.85954V5.53124H1.40625V4.85954C1.40625 3.71788 2.33508 2.78905 3.47678 2.78905ZM14.5312 16.5938H3.47678C2.33508 16.5938 1.40625 15.6649 1.40625 14.5232V6.93749H16.6018V14.5232C16.6018 15.6649 15.6729 16.5938 14.5312 16.5938ZM6.24611 9.70312C6.24611 10.0915 5.93132 10.4062 5.54298 10.4062H4.16018C3.77184 10.4062 3.45705 10.0915 3.45705 9.70312C3.45705 9.31479 3.77184 9 4.16018 9H5.54298C5.93128 9 6.24611 9.31479 6.24611 9.70312ZM14.551 9.70312C14.551 10.0915 14.2362 10.4062 13.8479 10.4062H12.4651C12.0767 10.4062 11.7619 10.0915 11.7619 9.70312C11.7619 9.31479 12.0767 9 12.4651 9H13.8479C14.2362 9 14.551 9.31479 14.551 9.70312ZM10.3945 9.70312C10.3945 10.0915 10.0798 10.4062 9.69142 10.4062H8.30862C7.92028 10.4062 7.60549 10.0915 7.60549 9.70312C7.60549 9.31479 7.92028 9 8.30862 9H9.69142C10.0797 9 10.3945 9.31479 10.3945 9.70312ZM6.24611 13.8516C6.24611 14.2399 5.93132 14.5547 5.54298 14.5547H4.16018C3.77184 14.5547 3.45705 14.2399 3.45705 13.8516C3.45705 13.4632 3.77184 13.1484 4.16018 13.1484H5.54298C5.93128 13.1484 6.24611 13.4632 6.24611 13.8516ZM14.551 13.8516C14.551 14.2399 14.2362 14.5547 13.8479 14.5547H12.4651C12.0767 14.5547 11.7619 14.2399 11.7619 13.8516C11.7619 13.4632 12.0767 13.1484 12.4651 13.1484H13.8479C14.2362 13.1484 14.551 13.4632 14.551 13.8516ZM10.3945 13.8516C10.3945 14.2399 10.0798 14.5547 9.69142 14.5547H8.30862C7.92028 14.5547 7.60549 14.2399 7.60549 13.8516C7.60549 13.4632 7.92028 13.1484 8.30862 13.1484H9.69142C10.0797 13.1484 10.3945 13.4632 10.3945 13.8516Z" fill="currentColor"></path>
-                                    </svg>
+                                <div class="mb-3">
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Your Email</label>
+                                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
                                 </div>
-                            </div>
-                            <div class="item-line-booking">
-                                <div class="box-tickets">
-                                    <strong class="text-md-bold neutral-1000">Add Extra:</strong>
-                                    <div class="line-booking-tickets">
-                                        <div class="item-ticket">
-                                            <ul class="list-filter-checkbox">
-                                                <li>
-                                                    <label class="cb-container">
-                                                        
-                                                        <input type="checkbox">
-                                                        <span class="text-md-medium">GPS Navigation System </span>
-                                                        <span class="checkmark"></span>
-                                                        
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="include-price">
-                                            <p class="text-md-bold neutral-1000">$25.00</p>
-                                        </div>
-                                    </div>
-                                    <div class="line-booking-tickets">
-                                        <div class="item-ticket">
-                                            <ul class="list-filter-checkbox">
-                                                <li>
-                                                    <label class="cb-container">
-                                                        
-                                                        <input type="checkbox">
-                                                        <span class="text-md-medium">Child Seat </span>
-                                                        <span class="checkmark"></span>
-                                                        
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="include-price">
-                                            <p class="text-md-bold neutral-1000">$32.00</p>
-                                        </div>
-                                    </div>
-                                    <div class="line-booking-tickets">
-                                        <div class="item-ticket">
-                                            <ul class="list-filter-checkbox">
-                                                <li>
-                                                    <label class="cb-container">
-                                                        
-                                                        <input type="checkbox">
-                                                        <span class="text-md-medium">Additional Driver </span>
-                                                        <span class="checkmark"></span>
-                                                        
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="include-price">
-                                            <p class="text-md-bold neutral-1000">$25.00</p>
-                                        </div>
-                                    </div>
-                                    <div class="line-booking-tickets">
-                                        <div class="item-ticket">
-                                            <ul class="list-filter-checkbox">
-                                                <li>
-                                                    <label class="cb-container">
-                                                        
-                                                        <input type="checkbox">
-                                                        <span class="text-md-medium">Insurance Coverage </span>
-                                                        <span class="checkmark"></span>
-                                                        
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="include-price">
-                                            <p class="text-md-bold neutral-1000">$52.00</p>
-                                        </div>
-                                    </div>
+                                <div class="mb-3">
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Phone Number</label>
+                                    <input type="text" name="phone" class="form-control" placeholder="+1 234 567 890" required>
                                 </div>
-                            </div>
-                            <div class="item-line-booking last-item pb-0">
-                                <strong class="text-md-medium neutral-1000">Subtotal</strong>
-                                <div class="line-booking-right">
-                                    <p class="text-xl-bold neutral-1000">$124.00</p>
+                                <div class="mb-3">
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Message</label>
+                                    <textarea name="message" class="form-control" rows="4" placeholder="I'm interested in this car..." required></textarea>
                                 </div>
-                            </div>
-                            <div class="item-line-booking last-item pb-0">
-                                <strong class="text-md-medium neutral-1000">Sale discount</strong>
-                                <div class="line-booking-right">
-                                    <p class="text-xl-bold neutral-1000">$124.00</p>
+                                <div class="box-button-book mt-4">
+                                    <button type="submit" class="btn btn-book border-0 w-100">
+                                        Send Inquiry
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="item-line-booking last-item">
-                                <strong class="text-md-bold neutral-1000">Total Payable</strong>
-                                <div class="line-booking-right">
-                                    <p class="text-xl-bold neutral-1000">$124.00</p>
-                                </div>
-                            </div>
-                            <div class="box-button-book">
-                                <a class="btn btn-book" href="#">
-                                    Book Now
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="box-need-help">
-                                <a href="#">
-                                    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2.83366 3.66667C2.83366 1.92067 4.25433 0.5 6.00033 0.5C7.74633 0.5 9.16699 1.92067 9.16699 3.66667C9.16699 5.41267 7.74633 6.83333 6.00033 6.83333C4.25433 6.83333 2.83366 5.41267 2.83366 3.66667ZM8.00033 7.83333H4.00033C1.88699 7.83333 0.166992 9.55333 0.166992 11.6667C0.166992 12.678 0.988992 13.5 2.00033 13.5H10.0003C11.0117 13.5 11.8337 12.678 11.8337 11.6667C11.8337 9.55333 10.1137 7.83333 8.00033 7.83333Z" fill="currentColor"></path>
-                                    </svg>
-                                    Need some help?
-                                </a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="sidebar-left border-1 background-card">
@@ -861,6 +749,18 @@
                 </div>
             </div>
         </div>
+        @if(isset($relatedCars) && $relatedCars->isNotEmpty())
+        <div class="container mt-5">
+            <h3 class="text-xl-bold neutral-1000 mb-4">Related Cars</h3>
+            <div class="row">
+                @foreach($relatedCars as $relatedCar)
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        @include('partials.car-card', ['car' => $relatedCar])
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
         <div class="background-100 pt-55 pb-55 mt-100">
             <div class="container">
                 <div class="carouselTicker carouselTicker-left box-list-brand-car justify-content-center  wow fadeIn">

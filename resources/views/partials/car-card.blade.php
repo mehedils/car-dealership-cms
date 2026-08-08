@@ -1,6 +1,6 @@
 <div class="card-journey-small background-card hover-up">
     <div class="card-image">
-        <a href="{{ url('/cars-details-3') }}">
+        <a href="{{ is_object($car) && isset($car->slug) ? route('cars.show', $car->slug) : url('/cars/' . ($car['slug'] ?? '')) }}">
             @if(is_object($car) && method_exists($car, 'getFirstMediaUrl') && $car->getFirstMediaUrl('gallery'))
                 <img src="{{ $car->getFirstMediaUrl('gallery') }}" alt="{{ $car->name }}" style="height: 220px; object-fit: cover; width: 100%;">
             @else
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="card-title">
-            <a class="text-lg-bold neutral-1000 text-truncate d-block" href="{{ url('/cars-details-3') }}">
+            <a class="text-lg-bold neutral-1000 text-truncate d-block" href="{{ is_object($car) && isset($car->slug) ? route('cars.show', $car->slug) : url('/cars/' . ($car['slug'] ?? '')) }}">
                 {{ is_object($car) ? $car->name : ($car['name'] ?? '') }}
             </a>
         </div>
@@ -40,7 +40,7 @@
                     <h6 class="text-lg-bold neutral-1000">${{ is_object($car) ? number_format($car->price) : ($car['price'] ?? '0') }}</h6>
                 </div>
                 <div class="card-button">
-                    <a class="btn btn-primary btn-sm px-3" href="{{ url('/cars-details-3') }}">View</a>
+                    <a class="btn btn-primary btn-sm px-3" href="{{ is_object($car) && isset($car->slug) ? route('cars.show', $car->slug) : url('/cars/' . ($car['slug'] ?? '')) }}">View</a>
                 </div>
             </div>
         </div>
