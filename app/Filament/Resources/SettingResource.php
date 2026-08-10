@@ -3,31 +3,70 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SettingResource\Pages;
-use App\Filament\Resources\SettingResource\RelationManagers;
 use App\Models\Setting;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Model;
 
 class SettingResource extends Resource
 {
     protected static ?string $model = Setting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
     protected static ?string $navigationGroup = 'Settings';
+
+    protected static ?string $navigationLabel = 'Raw Key-Value Settings';
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return false;
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('key')
+                    ->label('Setting Key (Fixed)')
+                    ->disabled()
+                    ->degraded()
                     ->required(),
-                Forms\Components\Textarea::make('value')
+                Forms\Components\Group::make()
+                    ->schema(function (Forms\Get $get, ?Model $record) {
+                        $key = $record?->key ?? $get('key');
+                        if (str_ends_with((string) $key, '_color')) {
+                            return [
+                                Forms\Components\ColorPicker::make('value')
+                                    ->label('Value')
+                                    ->required(),
+                            ];
+                        }
+                        if (in_array($key, ['contact_address', 'google_map_embed', 'site_slogan'])) {
+                            return [
+                                Forms\Components\Textarea::make('value')
+                                    ->label('Value')
+                                    ->rows(3),
+                            ];
+                        }
+                        return [
+                            Forms\Components\TextInput::make('value')
+                                ->label('Value'),
+                        ];
+                    })
                     ->columnSpanFull(),
             ]);
     }
@@ -37,15 +76,16 @@ class SettingResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('key')
+                    ->label('Setting Key')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('value')
+                    ->label('Value')
+                    ->limit(50)
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -53,25 +93,18 @@ class SettingResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->bulkActions([]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListSettings::route('/'),
-            'create' => Pages\CreateSetting::route('/create'),
             'edit' => Pages\EditSetting::route('/{record}/edit'),
         ];
     }

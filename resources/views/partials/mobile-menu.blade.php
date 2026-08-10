@@ -1,7 +1,7 @@
 <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar button-bg-2">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-logo">
-            <a class="d-flex" href="/"><img class="light-mode" alt="Carento" src="/assets/imgs/template/logo-d.svg"></a>
+            <a class="d-flex" href="/"><img class="light-mode" alt="{{ setting('site_name', 'Carento') }}" src="{{ setting('site_logo_dark', '/assets/imgs/template/logo-d.svg') }}"></a>
             <div class="burger-icon burger-icon-white" id="btn-mobile-menu-close">
                 <span class="burger-icon-top"></span>
                 <span class="burger-icon-mid"> </span>

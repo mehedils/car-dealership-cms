@@ -3,7 +3,7 @@
         <div class="sidebar-canvas-head">
             <div class="sidebar-canvas-logo">
                 <a class="d-flex" href="/">
-                    <img class="light-mode" alt="Carento" src="/assets/imgs/template/logo-d.svg">
+                    <img class="light-mode" alt="{{ setting('site_name', 'Carento') }}" src="{{ setting('site_logo_dark', '/assets/imgs/template/logo-d.svg') }}">
                 </a>
             </div>
             <div class="sidebar-canvas-lang">

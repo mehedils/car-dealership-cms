@@ -47,7 +47,7 @@
                                             <path d="M9 3.3125C8.33249 3.3125 7.67997 3.51044 7.12495 3.88129C6.56994 4.25214 6.13735 4.77924 5.88191 5.39594C5.62646 6.01264 5.55963 6.69124 5.68985 7.34593C5.82008 8.00062 6.14151 8.60198 6.61352 9.07399C7.08552 9.54599 7.68689 9.86743 8.34157 9.99765C8.99626 10.1279 9.67486 10.061 10.2916 9.80559C10.9083 9.55015 11.4354 9.11757 11.8062 8.56255C12.1771 8.00753 12.375 7.35501 12.375 6.6875C12.375 5.79239 12.0194 4.93395 11.3865 4.30101C10.7536 3.66808 9.89511 3.3125 9 3.3125ZM9 8.9375C8.55499 8.9375 8.11998 8.80554 7.74997 8.55831C7.37996 8.31107 7.09157 7.95967 6.92127 7.54854C6.75098 7.1374 6.70642 6.685 6.79323 6.24855C6.88005 5.81209 7.09434 5.41118 7.40901 5.09651C7.72368 4.78184 8.12459 4.56755 8.56105 4.48073C8.99751 4.39392 9.4499 4.43847 9.86104 4.60877C10.2722 4.77907 10.6236 5.06746 10.8708 5.43747C11.118 5.80748 11.25 6.24249 11.25 6.6875C11.25 7.28424 11.0129 7.85653 10.591 8.27849C10.169 8.70045 9.59674 8.9375 9 8.9375Z" fill="#101010" />
                                         </svg>
                                     </div>
-                                    <a class="location text-md-medium ms-2" href="#">750 7th Avenue, Manhattan, New York, NY 10019, USA</a>
+                                    <a class="location text-md-medium ms-2" href="#">{{ setting('contact_address', '750 7th Avenue, Manhattan, New York, NY 10019, USA') }}</a>
                                 </div>
                                 <div class="d-flex align-items-start mb-2">
                                     <div class="icon">
@@ -55,7 +55,7 @@
                                             <path d="M3.92512 7.77453C5.22103 11.9687 8.53091 15.2786 12.7251 16.5745C14.8357 17.2266 16.6663 15.3757 16.6663 13.1666C16.6663 12.6143 16.2171 12.1729 15.6687 12.1075C14.9545 12.0223 14.268 11.8467 13.621 11.5926L12.355 12.8587C10.2958 11.8732 8.62635 10.2038 7.64091 8.14464L8.90698 6.87857C8.65286 6.23159 8.47732 5.54513 8.39211 4.83093C8.32669 4.28253 7.88529 3.83325 7.33301 3.83325C5.12387 3.83325 3.27296 5.66384 3.92512 7.77453Z" stroke="#101010" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </div>
-                                    <a class="phone text-md-medium ms-2" href="tel:+12125550146">+1 212 555 0146</a>
+                                    <a class="phone text-md-medium ms-2" href="tel:{{ preg_replace('/[^0-9+]/', '', setting('contact_phone', '+1 212 555 0146')) }}">{{ setting('contact_phone', '+1 212 555 0146') }}</a>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="icon">
@@ -63,7 +63,7 @@
                                             <path d="M14.5938 0.875H1.40625C0.629281 0.875 0 1.50819 0 2.28125V10.7188C0 11.4964 0.633906 12.125 1.40625 12.125H14.5938C15.3642 12.125 16 11.4991 16 10.7188V2.28125C16 1.50956 15.3732 0.875 14.5938 0.875ZM14.3968 1.8125C14.1095 2.09828 9.16509 7.01666 8.99438 7.18647C8.72875 7.45209 8.37563 7.59834 8 7.59834C7.62437 7.59834 7.27125 7.45206 7.00475 7.18559C6.88994 7.07137 2.00009 2.20731 1.60319 1.8125H14.3968ZM0.9375 10.5279V2.47266L4.98869 6.5025L0.9375 10.5279ZM1.60378 11.1875L5.65338 7.16366L6.34272 7.84937C6.78541 8.29206 7.37397 8.53584 8 8.53584C8.62603 8.53584 9.21459 8.29206 9.65641 7.85025L10.3466 7.16366L14.3962 11.1875H1.60378ZM15.0625 10.5279L11.0113 6.5025L15.0625 2.47266V10.5279Z" fill="#101010" />
                                         </svg>
                                     </div>
-                                    <a class="email text-md-medium ms-2" href="mailto:newyork@carento.com">newyork@carento.com</a>
+                                    <a class="email text-md-medium ms-2" href="mailto:{{ setting('contact_email', 'sale@carento.com') }}">{{ setting('contact_email', 'sale@carento.com') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -276,8 +276,8 @@
                 <div class="col-lg-6 mb-30">
                     <div class="ps-lg-5">
                         <h4 class="neutral-1000">Our location</h4>
-                        <p class="neutral-500 mb-30">12560 Rental Rd, Memphis, TN 38118, United States</p>
-                        <iframe class="h-520 rounded-3" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d283661.3575233618!2d2.2296777857951824!3d47.16509219592609!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1712486491620!5m2!1svi!2s" width="100%" height="650" style="border: 0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        <p class="neutral-500 mb-30">{{ setting('contact_address', '750 7th Avenue, Manhattan, New York, NY 10019, USA') }}</p>
+                        <iframe class="h-520 rounded-3" src="{{ setting('google_map_embed', 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d283661.3575233618!2d2.2296777857951824!3d47.16509219592609!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1712486491620!5m2!1svi!2s') }}" width="100%" height="650" style="border: 0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>

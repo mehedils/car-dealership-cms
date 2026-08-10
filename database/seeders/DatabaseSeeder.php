@@ -223,9 +223,42 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->command->info('Seeding Settings...');
-        Setting::create(['key' => 'site_name', 'value' => 'Carento']);
-        Setting::create(['key' => 'contact_email', 'value' => 'hello@carento.com']);
-        Setting::create(['key' => 'contact_phone', 'value' => '+1 234 567 8900']);
+        $defaultSettings = [
+            // General
+            'site_name' => 'Carento',
+            'site_slogan' => 'More than 800+ special collection cars in this summer',
+            'currency_symbol' => '$',
+
+            // Contact
+            'contact_email' => 'sale@carento.com',
+            'contact_phone' => '+1 222-555-33-99',
+            'contact_address' => '750 7th Avenue, Manhattan, New York, NY 10019, USA',
+            'google_map_embed' => 'https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d283661.3575233618!2d2.2296777857951824!3d47.16509219592609!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1712486491620!5m2!1svi!2s',
+
+            // Socials
+            'social_facebook' => 'https://facebook.com',
+            'social_twitter' => 'https://twitter.com',
+            'social_instagram' => 'https://instagram.com',
+            'social_behance' => 'https://behance.net',
+
+            // Theme Colors
+            'primary_color' => '#70f46d',
+            'primary_hover_color' => '#5edd5b',
+            'secondary_color' => '#8acfff',
+            'accent_color' => '#f15d44',
+            'button_text_color' => '#101010',
+            'button_hover_text_color' => '#000000',
+            'header_bg_color' => '#101010',
+            'footer_bg_color' => '#101010',
+            'heading_color' => '#000000',
+
+            // Footer
+            'footer_copyright' => '© 2026 Carento. All rights reserved.',
+        ];
+
+        foreach ($defaultSettings as $key => $val) {
+            Setting::updateOrCreate(['key' => $key], ['value' => $val]);
+        }
 
         $this->command->info('Database Seeding Completed!');
     }
