@@ -36,11 +36,11 @@
                                                     <p class="text-md-regular neutral-500">{{ $item->author_role }}</p>
                                                 </div>
                                             </div>
-                                            <div class="card-rate">
-                                                @for($s = 0; $s < ($item->rating ?? 5); $s++)
-                                                    <img class="background-brand-2 p-1" src="{{ asset('assets/imgs/template/icons/star-black.svg') }}" alt="star">
-                                                @endfor
-                                            </div>
+                                             <div class="card-rate">
+                                                 @for($s = 0; $s < ($item->rating ?? 5); $s++)
+                                                     <i class="fi fi-rr-star text-dark background-brand-2 p-1 rounded-circle fs-6 me-1"></i>
+                                                 @endfor
+                                             </div>
                                         </div>
                                     </div>
                                 </div>

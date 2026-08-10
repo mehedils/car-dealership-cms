@@ -112,9 +112,8 @@
                                     </svg>
                                     See All Photos
                                 </a>
-                                <a class="btn btn-white-md popup-youtube" href="https://www.youtube.com/watch?v=AOg61RB75Ho">
-                                    
-                                    <img src="/assets/imgs/page/activities/video.svg" alt="Carento">
+                                 <a class="btn btn-white-md popup-youtube" href="https://www.youtube.com/watch?v=AOg61RB75Ho">
+                                    <i class="fi fi-rr-play-alt text-primary fs-5 me-1"></i>
                                     Video Clips
                                 </a>
                             </div>
@@ -138,7 +137,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/km.svg" alt="Carento">
+                                        <i class="fi fi-rr-dashboard fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->mileage ?? '56,500' }} mi</p>
@@ -148,7 +147,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/diesel.svg" alt="Carento">
+                                        <i class="fi fi-rr-gas-pump fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->fuelType?->name ?? 'Diesel' }}</p>
@@ -158,7 +157,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/auto.svg" alt="Carento">
+                                        <i class="fi fi-rr-settings-sliders fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->transmission ?? 'Automatic' }}</p>
@@ -168,7 +167,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/seat.svg" alt="Carento">
+                                        <i class="fi fi-rr-user fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->seats ?? 7 }} seats</p>
@@ -178,7 +177,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/bag.svg" alt="Carento">
+                                        <i class="fi fi-rr-box fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">3 Large bags</p>
@@ -188,7 +187,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/suv.svg" alt="Carento">
+                                        <i class="fi fi-rr-car fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->carType?->name ?? 'SUVs' }}</p>
@@ -198,7 +197,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/door.svg" alt="Carento">
+                                        <i class="fi fi-rr-door-closed fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->doors ?? 4 }} Doors</p>
@@ -208,7 +207,7 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <img src="/assets/imgs/page/car/lit.svg" alt="Carento">
+                                        <i class="fi fi-rr-engine fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->engine_capacity ?? '2.5L' }}</p>

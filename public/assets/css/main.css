@@ -991,59 +991,51 @@ p {
 }
 
 .form-group input.username {
-    background-image: url(../imgs/template/popup/username.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
     padding-left: 45px;
+    background-image: none;
+    -webkit-mask: url(../imgs/template/popup/username.svg) no-repeat 18px center;
+    mask: url(../imgs/template/popup/username.svg) no-repeat 18px center;
+    background-color: var(--bs-neutral-500);
 }
 
 .form-group input.username:focus {
-    background-image: url(../imgs/template/popup/username.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
-    padding-left: 45px;
+    background-color: var(--bs-primary);
 }
 
 .form-group input.email {
-    background-image: url(../imgs/template/popup/email.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
     padding-left: 45px;
+    background-image: none;
+    -webkit-mask: url(../imgs/template/popup/email.svg) no-repeat 18px center;
+    mask: url(../imgs/template/popup/email.svg) no-repeat 18px center;
+    background-color: var(--bs-neutral-500);
 }
 
 .form-group input.email:focus {
-    background-image: url(../imgs/template/popup/email.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
-    padding-left: 45px;
+    background-color: var(--bs-primary);
 }
 
 .form-group input.phone {
-    background-image: url(../imgs/template/popup/phone.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
     padding-left: 45px;
+    background-image: none;
+    -webkit-mask: url(../imgs/template/popup/phone.svg) no-repeat 18px center;
+    mask: url(../imgs/template/popup/phone.svg) no-repeat 18px center;
+    background-color: var(--bs-neutral-500);
 }
 
 .form-group input.phone:focus {
-    background-image: url(../imgs/template/popup/phone.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
-    padding-left: 45px;
+    background-color: var(--bs-primary);
 }
 
 .form-group input.password {
-    background-image: url(../imgs/template/popup/pass.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
     padding-left: 45px;
+    background-image: none;
+    -webkit-mask: url(../imgs/template/popup/pass.svg) no-repeat 18px center;
+    mask: url(../imgs/template/popup/pass.svg) no-repeat 18px center;
+    background-color: var(--bs-neutral-500);
 }
 
 .form-group input.password:focus {
-    background-image: url(../imgs/template/popup/pass.svg);
-    background-position: left 18px center;
-    background-repeat: no-repeat;
-    padding-left: 45px;
+    background-color: var(--bs-primary);
 }
 
 .box-remember-forgot {
@@ -2405,16 +2397,25 @@ input:checked + .slider:before {
     height: 22px;
     width: 22px;
     background-color: transparent;
-    background-image: url(../imgs/template/icons/check.svg);
-    background-position: center;
-    background-repeat: no-repeat;
+    border: 1.5px solid var(--bs-neutral-300, #d1d5db);
     border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
 }
 
 .cb-container input:checked ~ .checkmark {
-    background-image: url(../imgs/template/icons/checked.svg);
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.cb-container input:checked ~ .checkmark::after {
+    font-family: 'uicons-regular-rounded' !important;
+    content: "\f143";
+    font-size: 12px;
+    color: var(--bs-button-text, #ffffff);
+    line-height: 1;
 }
 
 .cb-container .text-small {
@@ -5468,7 +5469,6 @@ label {
 
 .top-bar-2 .text-header .text-unlock {
     color: var(--bs-neutral-0);
-    background-image: url(../imgs/template/icons/car-front-fill-1.svg);
 }
 
 .top-bar-2 .text-header .link-secondary {
@@ -9649,7 +9649,10 @@ a.icon-socials:hover svg path {
 }
 
 .card-property.card-flight.card-hotel .card-facilities .item-facilities p.pet {
-    background-image: url(../imgs/template/icons/car.svg);
+    background-image: none;
+    -webkit-mask: url(../imgs/template/icons/car.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/car.svg) no-repeat left center;
+    background-color: var(--bs-primary);
 }
 
 .card-method-contact2 a {

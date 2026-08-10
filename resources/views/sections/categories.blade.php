@@ -9,9 +9,7 @@
 				<div class="d-flex justify-content-md-end mt-md-0 mt-4">
 					<a class="btn btn-primary wow fadeInUp" href="{{ url('/cars-list-1') }}">
 						View All
-						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-						</svg>
+						<i class="fi fi-rr-arrow-right ms-2"></i>
 					</a>
 				</div>
 			</div>
@@ -38,9 +36,7 @@
 									</div>
 									<div class="card-button">
 										<a href="{{ url('/cars-list-1?car_type_id='.$type->id) }}">
-											<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M5.00011 9.08347L9.08347 5.00011L5.00011 0.916748M9.08347 5.00011L0.916748 5.00011" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-											</svg>
+											<i class="fi fi-rr-arrow-right"></i>
 										</a>
 									</div>
 								</div>

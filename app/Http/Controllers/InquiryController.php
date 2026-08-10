@@ -12,10 +12,14 @@ class InquiryController extends Controller
         $validated = $request->validate([
             'car_id'  => ['nullable', 'exists:cars,id'],
             'name'    => ['required', 'string', 'max:255'],
-            'email'   => ['required', 'email', 'max:255'],
-            'phone'   => ['nullable', 'string', 'max:50'],
-            'message' => ['required', 'string', 'max:2000'],
+            'email'   => ['nullable', 'email', 'max:255'],
+            'phone'   => ['required', 'string', 'max:50'],
+            'message' => ['nullable', 'string', 'max:2000'],
         ]);
+
+        if (empty($validated['message'])) {
+            $validated['message'] = 'Callback / Test Drive Request from Hero Section';
+        }
 
         Inquiry::create($validated);
 

@@ -9,9 +9,7 @@
                 <div class="d-flex justify-content-center justify-content-md-end">
                     <a class="btn btn-primary" href="/cars-list-1">
                         View More
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+                        <i class="fi fi-rr-arrow-right ms-2"></i>
                     </a>
                 </div>
             </div>

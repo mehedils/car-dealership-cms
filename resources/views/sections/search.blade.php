@@ -1,49 +1,112 @@
+<style>
+	.hero-search-card .item-search::before {
+		display: none !important;
+	}
+	.hero-input-field {
+		height: 52px !important;
+		border: 1px solid #E2E8F0 !important;
+		border-radius: 10px !important;
+		font-size: 14px !important;
+		background-color: #FFFFFF !important;
+		padding: 0 16px !important;
+		color: #0F172A !important;
+	}
+	.hero-input-field:focus {
+		border-color: #FF002E !important;
+		box-shadow: 0 0 0 3px rgba(255, 0, 46, 0.1) !important;
+	}
+	.hero-submit-btn {
+		height: 52px !important;
+		border-radius: 10px !important;
+		font-size: 15px !important;
+		font-weight: 700 !important;
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+</style>
+
 <section class="box-section box-search-advance-home10 background-100">
 	<div class="container">
 		<div class="box-search-advance background-card wow fadeIn">
-			<form action="{{ url('/cars-list-1') }}" method="GET">
-				<div class="box-top-search">
-					<div class="left-top-search">
-						<a class="category-link text-sm-bold btn-click active" href="#">All cars</a>
-					</div>
-					<div class="right-top-search d-none d-md-flex">
-						<a class="text-sm-medium need-some-help" href="#">Need help?</a>
-					</div>
+			@if(session('success'))
+				<div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+					{{ session('success') }}
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
-				<div class="box-bottom-search background-card">
-					<div class="item-search">
-						<label class="text-sm-bold neutral-500">Location</label>
-						<select name="location_id" class="form-control border-0 bg-transparent text-sm-bold">
-							<option value="">Select Location</option>
-							@foreach($locations as $loc)
-								<option value="{{ $loc->id }}">{{ $loc->name }}</option>
-							@endforeach
-						</select>
+			@endif
+
+			@if($errors->any())
+				<div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+					<ul class="mb-0">
+						@foreach($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			@endif
+
+			<form action="{{ route('inquiries.store') }}" method="POST">
+				@csrf
+
+				<div class="box-bottom-search background-card hero-search-card align-items-end gap-3 p-3">
+					<!-- Searchable Vehicle Dropdown -->
+					<div class="item-search position-relative flex-grow-1 p-0 m-0">
+						<label class="text-sm-bold neutral-500 mb-1.5 d-block">Select Vehicle</label>
+						<input type="hidden" name="car_id" id="hero_car_id_input" value="{{ old('car_id') }}">
+						<div class="dropdown">
+							<button type="button" class="btn hero-input-field w-100 text-start text-sm-bold text-truncate d-flex align-items-center justify-content-between" data-bs-toggle="dropdown" id="heroCarDropdownBtn" aria-expanded="false">
+								<span id="heroCarSelectedText">
+									@if(old('car_id') && isset($cars))
+										{{ optional($cars->firstWhere('id', old('car_id')))->name ?? 'Select Vehicle' }}
+									@else
+										Select Vehicle
+									@endif
+								</span>
+								<i class="fi fi-rr-angle-small-down ms-2 fs-6"></i>
+							</button>
+							<div class="dropdown-menu p-2 shadow-lg" style="min-width: 260px; max-height: 300px; overflow-y: auto; border-radius: 10px;">
+								<div class="sticky-top bg-white pb-2">
+									<input type="text" class="form-control form-control-sm border" id="heroCarSearchInput" placeholder="🔍 Type model name..." autocomplete="off">
+								</div>
+								<ul class="list-unstyled mb-0" id="heroCarList">
+									<li>
+										<a href="#" class="dropdown-item car-select-item text-sm-medium rounded py-1.5 px-2" data-id="" data-name="General Inquiry / Any Vehicle">
+											<em>General Inquiry / Any Vehicle</em>
+										</a>
+									</li>
+									@if(isset($cars) && $cars->count() > 0)
+										@foreach($cars as $car)
+											<li>
+												<a href="#" class="dropdown-item car-select-item text-sm-medium rounded py-1.5 px-2" data-id="{{ $car->id }}" data-name="{{ $car->name }}">
+													{{ $car->name }} @if($car->brand) <span class="text-muted text-xs">({{ $car->brand->name }})</span> @endif
+												</a>
+											</li>
+										@endforeach
+									@endif
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div class="item-search item-search-2">
-						<label class="text-sm-bold neutral-500">Brand</label>
-						<select name="brand_id" class="form-control border-0 bg-transparent text-sm-bold">
-							<option value="">Select Brand</option>
-							@foreach($brands as $brand)
-								<option value="{{ $brand->id }}">{{ $brand->name }}</option>
-							@endforeach
-						</select>
+
+					<!-- Full Name Input -->
+					<div class="item-search item-search-2 flex-grow-1 p-0 m-0">
+						<label class="text-sm-bold neutral-500 mb-1.5 d-block">Your Name</label>
+						<input type="text" name="name" value="{{ old('name') }}" class="form-control hero-input-field text-sm-bold" placeholder="Enter your name" required>
 					</div>
-					<div class="item-search item-search-3">
-						<label class="text-sm-bold neutral-500">Car Type</label>
-						<select name="car_type_id" class="form-control border-0 bg-transparent text-sm-bold">
-							<option value="">Select Body Type</option>
-							@foreach($carTypes as $type)
-								<option value="{{ $type->id }}">{{ $type->name }}</option>
-							@endforeach
-						</select>
+
+					<!-- Phone / WhatsApp Input -->
+					<div class="item-search item-search-3 flex-grow-1 p-0 m-0">
+						<label class="text-sm-bold neutral-500 mb-1.5 d-block">Phone / WhatsApp</label>
+						<input type="tel" name="phone" value="{{ old('phone') }}" class="form-control hero-input-field text-sm-bold" placeholder="+1 (555) 000-0000" required>
 					</div>
-					<div class="item-search bd-none d-flex justify-content-end">
-						<button type="submit" class="btn btn-brand-2 text-nowrap">
-							<svg class="me-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M19 19L14.6569 14.6569M14.6569 14.6569C16.1046 13.2091 17 11.2091 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17C11.2091 17 13.2091 16.1046 14.6569 14.6569Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-							</svg>
-							Find a Vehicle
+
+					<!-- Submit Button -->
+					<div class="item-search bd-none p-0 m-0">
+						<button type="submit" class="btn btn-brand-2 hero-submit-btn text-nowrap px-4">
+							<i class="fi fi-rr-phone-call me-2"></i>
+							Request Callback
 						</button>
 					</div>
 				</div>
@@ -51,3 +114,56 @@
 		</div>
 	</div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	const searchInput = document.getElementById('heroCarSearchInput');
+	const carList = document.getElementById('heroCarList');
+	const hiddenInput = document.getElementById('hero_car_id_input');
+	const selectedText = document.getElementById('heroCarSelectedText');
+	const dropdownBtn = document.getElementById('heroCarDropdownBtn');
+
+	if (searchInput && carList) {
+		// Live search keyup filter
+		searchInput.addEventListener('input', function() {
+			const filter = searchInput.value.toLowerCase().trim();
+			const items = carList.getElementsByClassName('car-select-item');
+			Array.from(items).forEach(function(item) {
+				const text = item.textContent.toLowerCase();
+				if (text.includes(filter)) {
+					item.parentElement.style.display = '';
+				} else {
+					item.parentElement.style.display = 'none';
+				}
+			});
+		});
+
+		// Prevent dropdown from hiding when clicking search input field
+		searchInput.addEventListener('click', function(e) {
+			e.stopPropagation();
+		});
+
+		// Select option handling
+		carList.addEventListener('click', function(e) {
+			const itemLink = e.target.closest('.car-select-item');
+			if (itemLink) {
+				e.preventDefault();
+				const carId = itemLink.getAttribute('data-id') || '';
+				const carName = itemLink.getAttribute('data-name') || itemLink.textContent.trim();
+				hiddenInput.value = carId;
+				if (selectedText) {
+					selectedText.textContent = carName;
+				}
+
+				// Toggle bootstrap dropdown
+				if (window.bootstrap && bootstrap.Dropdown) {
+					const bsDropdown = bootstrap.Dropdown.getInstance(dropdownBtn);
+					if (bsDropdown) {
+						bsDropdown.hide();
+					}
+				}
+			}
+		});
+	}
+});
+</script>

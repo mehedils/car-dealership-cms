@@ -53,9 +53,7 @@
 										<div class="col-lg-12">
 											<button class="btn btn-book">
 												Apply for a loan
-												<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M8.5 15L15.5 8L8.5 1M15.5 8L1.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-												</svg>
+												<i class="fi fi-rr-arrow-right ms-2"></i>
 											</button>
 										</div>
 									</div>
@@ -114,10 +112,7 @@
 								<div class="authors-partner-left">
 									<img src="/assets/imgs/page/homepage5/author.png" alt="Carento"><img src="/assets/imgs/page/homepage5/author2.png" alt="Carento"><img src="/assets/imgs/page/homepage5/author3.png" alt="Carento">
 									<span class="item-author">
-										<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<rect x="0.5" y="7.448" width="17" height="2.31818" fill="black"></rect>
-											<rect x="7.84082" y="17.1072" width="17" height="2.31818" transform="rotate(-90 7.84082 17.1072)" fill="black"></rect>
-										</svg>
+										<i class="fi fi-rr-plus text-dark"></i>
 									</span>
 								</div>
 								<div class="authors-partner-right">

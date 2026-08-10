@@ -18,6 +18,7 @@ class HomeController extends Controller
     public function __invoke()
     {
         return view('home', [
+            'cars'          => Car::with('brand')->orderBy('name')->get(),
             'brands'        => Brand::all(),
             'carTypes'      => CarType::withCount('cars')->get(),
             'locations'     => Location::all(),

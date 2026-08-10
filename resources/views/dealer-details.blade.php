@@ -16,7 +16,7 @@
             <div class="background-body position-absolute z-1 top-100 start-50 translate-middle px-3 py-2 rounded-12 border d-flex gap-3 d-none">
                 <a href="/" class="neutral-700 text-md-medium">Home</a>
                 <span>
-                    <img src="/assets/imgs/template/icons/arrow-right.svg" alt="Carento">
+                    <i class="fi fi-rr-arrow-right"></i>
                 </span>
                 <a href="#" class="neutral-1000 text-md-bold"></a>
             </div>
@@ -430,31 +430,31 @@
                                 <h6 class="text-lg-bold item-collapse neutral-1000">Review Score</h6>
                                 <div class="box-collapse scrollFilter">
                                     <ul class="list-filter-checkbox">
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-sm-medium"> <img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"></span><span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-sm-medium"> <img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"></span><span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-sm-medium"> <img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"></span><span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-sm-medium"> <img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"></span><span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="cb-container">
-                                                <input type="checkbox"><span class="text-sm-medium"> <img src="/assets/imgs/template/icons/star-yellow.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"><img src="/assets/imgs/template/icons/star-grey.svg" alt="Carento"></span><span class="checkmark"></span>
-                                            </label>
-                                        </li>
+                                         <li>
+                                             <label class="cb-container">
+                                                 <input type="checkbox"><span class="text-sm-medium text-warning"> <i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i></span><span class="checkmark"></span>
+                                             </label>
+                                         </li>
+                                         <li>
+                                             <label class="cb-container">
+                                                 <input type="checkbox"><span class="text-sm-medium text-warning"> <i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i></span><span class="text-sm-medium text-neutral-400"><i class="fi fi-rr-star"></i></span><span class="checkmark"></span>
+                                             </label>
+                                         </li>
+                                         <li>
+                                             <label class="cb-container">
+                                                 <input type="checkbox"><span class="text-sm-medium text-warning"> <i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i></span><span class="text-sm-medium text-neutral-400"><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i></span><span class="checkmark"></span>
+                                             </label>
+                                         </li>
+                                         <li>
+                                             <label class="cb-container">
+                                                 <input type="checkbox"><span class="text-sm-medium text-warning"> <i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i></span><span class="text-sm-medium text-neutral-400"><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i></span><span class="checkmark"></span>
+                                             </label>
+                                         </li>
+                                         <li>
+                                             <label class="cb-container">
+                                                 <input type="checkbox"><span class="text-sm-medium text-warning"> <i class="fi fi-rr-star"></i></span><span class="text-sm-medium text-neutral-400"><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i><i class="fi fi-rr-star"></i></span><span class="checkmark"></span>
+                                             </label>
+                                         </li>
                                     </ul>
                                 </div>
                             </div>

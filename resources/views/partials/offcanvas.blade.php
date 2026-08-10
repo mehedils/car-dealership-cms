@@ -8,7 +8,7 @@
             </div>
             <div class="sidebar-canvas-lang">
                 <a class="close-canvas">
-                    <img alt="Carento" src="/assets/imgs/template/icons/close.png">
+                    <i class="fi fi-rr-cross fs-5"></i>
                 </a>
             </div>
         </div>
