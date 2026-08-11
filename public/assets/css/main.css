@@ -2922,13 +2922,9 @@ label {
 }
 
 .card-journey-small .card-info .card-program .card-location .text-location {
-    -webkit-mask: url(../imgs/template/icons/location.svg) no-repeat left center;
-    mask: url(../imgs/template/icons/location.svg) no-repeat left center;
-    -webkit-mask-size: 14px 14px;
-    mask-size: 14px 14px;
-    background-color: currentColor;
-    padding-left: 20px;
-    display: inline-block;
+    padding-left: 0px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .card-journey-small .card-info .card-program .card-location .text-star img {
@@ -2950,41 +2946,9 @@ label {
 .card-journey-small .card-info .card-program .card-facitlities .card-fuel,
 .card-journey-small .card-info .card-program .card-facitlities .card-seat {
     width: 50%;
-    padding: 0px 0px 0px 30px;
+    padding: 0;
     margin-bottom: 13px;
     color: var(--bs-neutral-1000);
-}
-
-.card-journey-small .card-info .card-program .card-facitlities .card-miles {
-    -webkit-mask: url(../imgs/template/icons/mile.svg) no-repeat left center;
-    mask: url(../imgs/template/icons/mile.svg) no-repeat left center;
-    -webkit-mask-size: 18px 18px;
-    mask-size: 18px 18px;
-    background-color: var(--bs-primary);
-}
-
-.card-journey-small .card-info .card-program .card-facitlities .card-gear {
-    -webkit-mask: url(../imgs/template/icons/automatic.svg) no-repeat left center;
-    mask: url(../imgs/template/icons/automatic.svg) no-repeat left center;
-    -webkit-mask-size: 18px 18px;
-    mask-size: 18px 18px;
-    background-color: var(--bs-primary);
-}
-
-.card-journey-small .card-info .card-program .card-facitlities .card-fuel {
-    -webkit-mask: url(../imgs/template/icons/fuel.svg) no-repeat left center;
-    mask: url(../imgs/template/icons/fuel.svg) no-repeat left center;
-    -webkit-mask-size: 18px 18px;
-    mask-size: 18px 18px;
-    background-color: var(--bs-primary);
-}
-
-.card-journey-small .card-info .card-program .card-facitlities .card-seat {
-    -webkit-mask: url(../imgs/template/icons/seat.svg) no-repeat left center;
-    mask: url(../imgs/template/icons/seat.svg) no-repeat left center;
-    -webkit-mask-size: 18px 18px;
-    mask-size: 18px 18px;
-    background-color: var(--bs-primary);
 }
 
 .card-journey-small .card-info .card-program .duration {
@@ -3008,20 +2972,12 @@ label {
 
 .card-journey-small .card-info .card-program .icon-duration {
     padding: 0px 20px 0px 22px;
-    -webkit-mask: url(../imgs/template/icons/duration.svg) no-repeat left center;
-    mask: url(../imgs/template/icons/duration.svg) no-repeat left center;
-    -webkit-mask-size: 16px 16px;
-    mask-size: 16px 16px;
-    background-color: var(--bs-primary);
+    background: url(../imgs/template/icons/duration.svg) no-repeat left center;
 }
 
 .card-journey-small .card-info .card-program .icon-guest {
     padding: 0px 0px 0px 22px;
-    -webkit-mask: url(../imgs/template/icons/guest.svg) no-repeat left center;
-    mask: url(../imgs/template/icons/guest.svg) no-repeat left center;
-    -webkit-mask-size: 16px 16px;
-    mask-size: 16px 16px;
-    background-color: var(--bs-primary);
+    background: url(../imgs/template/icons/guest.svg) no-repeat left center;
 }
 
 .card-journey-small .card-info .card-program .endtime {
