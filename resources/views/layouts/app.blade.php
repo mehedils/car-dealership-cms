@@ -48,6 +48,52 @@
         .btn-brand-2:hover svg path, .btn-primary:hover svg path, .btn-book:hover svg path {
             fill: {{ setting('button_hover_text_color', '#000000') }} !important;
         }
+
+        a.icon-socials {
+            transition: transform 0.25s ease, background-color 0.25s ease;
+        }
+
+        a.icon-socials svg path {
+            fill: #ffffff !important;
+            transition: fill 0.25s ease-in-out;
+        }
+
+        a.icon-socials:hover {
+            transform: translateY(-3px);
+        }
+
+        a.icon-socials:hover svg path {
+            fill: var(--bs-primary, #70f46d) !important;
+        }
+
+        .top-bar-2 .container-fluid {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .top-bar-2 .text-header-info {
+            flex: 1 1 0%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .top-bar-2 .text-header {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .top-bar-2 .top-right-header {
+            flex: 1 1 0%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
     </style>
     <script src="/assets/js/vendors/jquery.min.js"></script>
     <script src="/assets/js/vendors/bootstrap.bundle.min.js"></script>

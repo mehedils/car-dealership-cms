@@ -27,6 +27,12 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
     public function mount(): void
     {
         $settings = Setting::all()->pluck('value', 'key')->toArray();
+        if (isset($settings['topbar_announcements']) && is_string($settings['topbar_announcements'])) {
+            $decoded = json_decode($settings['topbar_announcements'], true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                $settings['topbar_announcements'] = $decoded;
+            }
+        }
         $this->form->fill($settings);
     }
 
@@ -71,11 +77,35 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
                                     ->label('Site Name')
                                     ->required(),
                                 Forms\Components\TextInput::make('site_slogan')
-                                    ->label('Site Slogan'),
+                                    ->label('Default Site Slogan / Fallback Announcement'),
                                 Forms\Components\TextInput::make('currency_symbol')
                                     ->label('Currency Symbol')
                                     ->default('$')
                                     ->required(),
+                            ]),
+                        Forms\Components\Tabs\Tab::make('Topbar Announcements')
+                            ->icon('heroicon-o-megaphone')
+                            ->schema([
+                                Forms\Components\Repeater::make('topbar_announcements')
+                                    ->label('Announcement Messages')
+                                    ->helperText('Add multiple promotional messages, discounts, or announcements to rotate in the header topbar.')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('text')
+                                            ->label('Announcement Text')
+                                            ->placeholder('e.g. More than 800+ special collection cars in this summer')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('button_text')
+                                            ->label('Button Text')
+                                            ->placeholder('e.g. Access Now'),
+                                        Forms\Components\TextInput::make('button_url')
+                                            ->label('Button Link URL')
+                                            ->placeholder('e.g. /cars-list-1'),
+                                    ])
+                                    ->columns(3)
+                                    ->defaultItems(0)
+                                    ->reorderable()
+                                    ->collapsible()
+                                    ->itemLabel(fn (array $state): ?string => $state['text'] ?? null),
                             ]),
                         Forms\Components\Tabs\Tab::make('Contact Info')
                             ->icon('heroicon-o-envelope')
@@ -161,9 +191,10 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
         $data = $this->form->getState();
 
         foreach ($data as $key => $value) {
+            $valToSave = is_array($value) ? json_encode($value) : $value;
             Setting::updateOrCreate(
                 ['key' => $key],
-                ['value' => $value]
+                ['value' => $valToSave]
             );
         }
 
