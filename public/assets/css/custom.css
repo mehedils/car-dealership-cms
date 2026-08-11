@@ -364,13 +364,20 @@ a.icon-socials:hover svg path {
     background-image: var(--hero-bg-url, url(../imgs/hero/hero-1/banner.png)) !important;
 }
 
-/* --- Swiper Navigation Buttons Styling --- */
+/* --- Swiper Navigation Buttons Clean SVG Styling --- */
+.swiper-button-prev::after,
+.swiper-button-next::after,
+.swiper-button-prev-1::after,
+.swiper-button-next-1::after,
+.swiper-button-prev-2::after,
+.swiper-button-next-2::after,
 .swiper-button-prev-style-1::after,
 .swiper-button-next-style-1::after,
-.swiper-button-prev::after,
-.swiper-button-next::after {
+.swiper-button-prev::before,
+.swiper-button-next::before {
     display: none !important;
-    content: "" !important;
+    content: none !important;
+    font-size: 0 !important;
 }
 
 .swiper-button-prev-style-1,
@@ -384,7 +391,20 @@ a.icon-socials:hover svg path {
     background-color: var(--bs-neutral-200, #f0f0f0) !important;
     color: var(--bs-neutral-1000, #101010) !important;
     transition: all 0.3s ease !important;
-    font-size: 16px !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 0 4px !important;
+}
+
+.swiper-button-prev-style-1 svg,
+.swiper-button-next-style-1 svg {
+    width: 16px !important;
+    height: 16px !important;
+    color: var(--bs-neutral-1000, #101010) !important;
+    transition: color 0.3s ease !important;
+    display: block !important;
 }
 
 .swiper-button-prev-style-1:hover,
@@ -392,6 +412,11 @@ a.icon-socials:hover svg path {
     background-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
     color: #101010 !important;
     transform: scale(1.08);
+}
+
+.swiper-button-prev-style-1:hover svg,
+.swiper-button-next-style-1:hover svg {
+    color: #101010 !important;
 }
 
 /* --- Car Card View Button Hover Micro-animations & Theme Text Color --- */
