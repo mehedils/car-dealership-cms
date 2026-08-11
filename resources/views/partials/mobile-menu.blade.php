@@ -10,37 +10,32 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="perfect-scroll">
-                <div class="mobile-menu-wrap mobile-header-border">
+                <div class="mobile-menu-wrap mobile-header-border mb-30">
                     <nav>
                         <ul class="mobile-menu font-heading">
                             <li>
                                 <a href="/">Home</a>
                             </li>
-                            <li class="has-children">
-                                <span class="menu-expand">
-                                    <i class="arrow-small-down"></i>
-                                </span>
-                                <a href="#">Cars</a>
-                                <ul class="sub-menu" style="display: none">
-                                    <li><a href="/cars-list-1">Cars List</a></li>
-                                    <li><a href="/cars-details-3">Car Details</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-children">
-                                <span class="menu-expand">
-                                    <i class="arrow-small-down"></i>
-                                </span>
-                                <a href="#">Dealers</a>
-                                <ul class="sub-menu" style="display: none">
-                                    <li><a href="/dealer-listing">Dealer Listing</a></li>
-                                    <li><a href="/dealer-details">Dealer Details</a></li>
-                                </ul>
+                            <li>
+                                <a href="/cars">Cars</a>
                             </li>
                             <li>
-                                <a href="/contact">Contact</a>
+                                <a href="/services">Services</a>
+                            </li>
+                            <li>
+                                <a href="/about">About Us</a>
+                            </li>
+                            <li>
+                                <a href="/contact">Contact Us</a>
                             </li>
                         </ul>
                     </nav>
+                </div>
+                <div class="mobile-account p-3">
+                    <button class="btn btn-brand-2 btn-header-lead text-dark w-100 shadow-sm" data-bs-toggle="modal" data-bs-target="#leadModal">
+                        <i class="fi fi-rr-envelope"></i>
+                        <span>Inquire Now</span>
+                    </button>
                 </div>
             </div>
         </div>

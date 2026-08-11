@@ -250,3 +250,64 @@ a.icon-socials:hover svg path {
     height: auto !important;
     object-fit: contain;
 }
+
+/* --- Header Lead CTA Button Pixel-Perfect Alignment --- */
+.btn-header-lead {
+    height: 46px !important;
+    padding: 0 22px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    border-radius: 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    border: 1px solid var(--bs-brand-2-darken) !important;
+}
+
+.btn-header-lead i[class^="fi-"],
+.btn-header-lead i[class*=" fi-"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    height: 16px !important;
+    width: 16px !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    top: 0 !important;
+}
+
+.btn-header-lead span {
+    display: inline-block !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* --- Fix Navbar Sticky / Hover Background Color --- */
+.header.header-fixed.sticky-bar.stick,
+.header.sticky-bar.stick,
+.header.header-home-2.sticky-bar.stick {
+    background-color: var(--bs-header-bg, #101010) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+/* --- Dynamic Tick List Bullet Formatting --- */
+.list-ticks-green li {
+    background-image: none !important;
+    padding-left: 0 !important;
+    padding-right: 25px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+/* --- Dynamic Hero Section Background Image --- */
+.block-banner-home1 .bg-shape::before {
+    background-image: var(--hero-bg-url, url(../imgs/hero/hero-1/banner.png)) !important;
+}

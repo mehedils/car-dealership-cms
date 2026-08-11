@@ -130,7 +130,17 @@
     <div id="top"></div>
     @include('partials.header' . (trim($__env->yieldContent('headerStyle')) === '1' ? '-hero' : ''))
     @include('partials.mobile-menu')
-    @include('partials.offcanvas')
+    @include('partials.lead-modal')
+
+    @if(session('success'))
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+            <div class="alert alert-success alert-dismissible fade show shadow-lg rounded-12 d-flex align-items-center" role="alert">
+                <i class="fi fi-rr-check-circle fs-4 me-2"></i>
+                <div>{{ session('success') }}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
 
     <main class="main">
         @yield('content')

@@ -37,10 +37,10 @@
                 <h6 class="text-linear-3">Company</h6>
                 <ul class="menu-footer">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/cars-list-1">Cars List</a></li>
-                    <li><a href="/cars-details-3">Car Details</a></li>
-                    <li><a href="/dealer-listing">Dealer Listing</a></li>
-                    <li><a href="/dealer-details">Dealer Details</a></li>
+                    <li><a href="/cars">Inventory</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-md-2 col-xs-6 footer-2">

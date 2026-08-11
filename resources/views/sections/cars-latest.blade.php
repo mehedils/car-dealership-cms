@@ -2,11 +2,11 @@
 	<div class="container">
 		<div class="row align-items-end mb-30">
 			<div class="col-md-9 wow fadeInUp">
-				<h3 class="title-svg neutral-1000 mb-5">Latest Arrivals</h3>
-				<p class="text-lg-medium text-bold neutral-500">Check out the newest additions to our inventory</p>
+				<h3 class="title-svg neutral-1000 mb-5">{{ setting('home_latest_title', 'Latest Arrivals') }}</h3>
+				<p class="text-lg-medium text-bold neutral-500">{{ setting('home_latest_subtitle', 'Check out the newest additions to our inventory') }}</p>
 			</div>
 			<div class="col-md-3 text-end wow fadeInUp">
-				<a href="{{ url('/cars-list-1') }}" class="btn btn-brand-2">View All Inventory</a>
+				<a href="{{ url('/cars') }}" class="btn btn-brand-2">View All Inventory</a>
 			</div>
 		</div>
 		<div class="row">

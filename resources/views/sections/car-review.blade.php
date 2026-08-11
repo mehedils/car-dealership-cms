@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-3 mb-30 wow fadeInUp">
                 <div class="d-flex justify-content-center justify-content-md-end">
-                    <a class="btn btn-primary" href="/cars-list-1">
+                    <a class="btn btn-primary" href="/cars">
                         View More
                         <i class="fi fi-rr-arrow-right ms-2"></i>
                     </a>

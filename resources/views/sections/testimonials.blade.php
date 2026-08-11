@@ -3,9 +3,9 @@
         <div class="row align-items-end">
             <div class="col-md-9 col-sm-9 wow fadeInUp">
                 <div class="box-author-testimonials">
-                    Testimonials
+                    {{ setting('home_testimonials_subtitle', 'Testimonials') }}
                 </div>
-                <h3 class="mt-8 mb-15 neutral-1000">What they say about us?</h3>
+                <h3 class="mt-8 mb-15 neutral-1000">{{ setting('home_testimonials_title', 'What they say about us?') }}</h3>
             </div>
         </div>
     </div>

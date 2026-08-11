@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row align-items-end">
             <div class="col-md-9 mb-30 wow fadeInUp">
-                <h3 class="title-svg neutral-1000 mb-15">Latest News &amp; Articles</h3>
-                <p class="text-lg-medium text-bold neutral-500">Stay updated with our latest stories and automotive insights</p>
+                <h3 class="title-svg neutral-1000 mb-15">{{ setting('home_blog_title', 'Latest News & Articles') }}</h3>
+                <p class="text-lg-medium text-bold neutral-500">{{ setting('home_blog_subtitle', 'Stay updated with our latest stories and automotive insights') }}</p>
             </div>
             <div class="col-md-3 position-relative mb-30 wow fadeInUp text-end">
-                <a href="{{ url('/blog') }}" class="btn btn-brand-2">View All Posts</a>
+                <a href="{{ url('/blog') }}" class="btn btn-brand-2">{{ setting('home_blog_button_text', 'View All Posts') }}</a>
             </div>
         </div>
         <div class="box-list-news wow fadeInUp mt-5">

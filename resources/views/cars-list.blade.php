@@ -22,9 +22,9 @@
             <div class="box-search-advance background-card wow fadeIn">
                 <div class="box-top-search">
                     <div class="left-top-search">
-                        <a class="category-link text-sm-bold btn-click active" href="/cars-list-1">All cars</a>
-                        <a class="category-link text-sm-bold btn-click" href="/cars-list-1">New cars</a>
-                        <a class="category-link text-sm-bold btn-click" href="/cars-list-1">Used cars</a>
+                        <a class="category-link text-sm-bold btn-click active" href="/cars">All cars</a>
+                        <a class="category-link text-sm-bold btn-click" href="/cars">New cars</a>
+                        <a class="category-link text-sm-bold btn-click" href="/cars">Used cars</a>
                     </div>
                     <div class="right-top-search d-none d-md-flex">
                         <a class="text-sm-medium need-some-help" href="#">Need help?</a>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="item-search bd-none d-flex justify-content-end">
-                        <a class="btn btn-brand-2 text-nowrap" href="/cars-list-1">
+                        <a class="btn btn-brand-2 text-nowrap" href="/cars">
                             <i class="fi fi-rr-search me-2"></i>
                             Find a Vehicle
                         </a>
@@ -89,16 +89,16 @@
 
     <section class="box-section block-content-tourlist background-body">
         <div class="container">
-            <form method="GET" action="/cars-list-1" data-auto-submit class="box-content-main pt-20">
+            <form method="GET" action="/cars" data-auto-submit class="box-content-main pt-20">
                 <div class="content-right">
                     <div class="box-filters mb-25 pb-5 border-bottom border-1">
                         <div class="row align-items-center">
                             <div class="col-xl-4 col-md-4 mb-10 text-lg-start text-center">
                                 <div class="box-view-type">
-                                    <a class="display-type display-grid active" href="/cars-list-1">
+                                    <a class="display-type display-grid active" href="/cars">
                                         <i class="fi fi-rr-apps fs-5"></i>
                                     </a>
-                                    <a class="display-type display-list" href="/cars-list-1">
+                                    <a class="display-type display-list" href="/cars">
                                         <i class="fi fi-rr-list fs-5"></i>
                                     </a>
                                     <span class="text-sm-bold neutral-500 number-found">{{ ($page - 1) * $perPage + 1 }} - {{ min($page * $perPage, $total) }} of {{ $total }} tours found</span>
@@ -106,7 +106,7 @@
                             </div>
                             <div class="col-xl-8 col-md-8 mb-10 text-lg-end text-center">
                                 <div class="box-item-sort">
-                                    <a class="btn btn-clear text-xs-medium" href="/cars-list-1">Clear Filters</a>
+                                    <a class="btn btn-clear text-xs-medium" href="/cars">Clear Filters</a>
                                     <div class="item-sort border-1">
                                         <span class="text-xs-medium neutral-500 mr-5">Show</span>
                                         <select name="per_page">
@@ -139,7 +139,7 @@
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="{{ url('/cars-list-1') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => max(1, $page - 1)])) }}">
+                                <a class="page-link" href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => max(1, $page - 1)])) }}">
                                     <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M6.00016 1.33325L1.3335 5.99992M1.3335 5.99992L6.00016 10.6666M1.3335 5.99992H10.6668" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
@@ -147,11 +147,11 @@
                             </li>
                             @for ($i = 1; $i <= $totalPages; $i++)
                                 <li class="page-item">
-                                    <a class="page-link @if ($i === $page) active @endif" href="{{ url('/cars-list-1') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => $i])) }}">{{ $i }}</a>
+                                    <a class="page-link @if ($i === $page) active @endif" href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => $i])) }}">{{ $i }}</a>
                                 </li>
                             @endfor
                             <li class="page-item">
-                                <a class="page-link" href="{{ url('/cars-list-1') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => min($totalPages, $page + 1)])) }}">
+                                <a class="page-link" href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => min($totalPages, $page + 1)])) }}">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5.99967 10.6666L10.6663 5.99992L5.99968 1.33325M10.6663 5.99992L1.33301 5.99992" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>

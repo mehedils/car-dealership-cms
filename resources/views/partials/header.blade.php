@@ -14,30 +14,26 @@
                             <li>
                                 <a href="/">Home</a>
                             </li>
-                            <li class="has-children">
-                                <a href="#">Cars</a>
-                                <ul class="sub-menu">
-                                    <li><a href="/cars-list-1">Cars List</a></li>
-                                    <li><a href="/cars-details-3">Car Details</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-children">
-                                <a href="#">Dealers</a>
-                                <ul class="sub-menu">
-                                    <li><a href="/dealer-listing">Dealer Listing</a></li>
-                                    <li><a href="/dealer-details">Dealer Details</a></li>
-                                </ul>
+                            <li>
+                                <a href="/cars">Cars</a>
                             </li>
                             <li>
-                                <a href="/contact">Contact</a>
+                                <a href="/services">Services</a>
+                            </li>
+                            <li>
+                                <a href="/about">About Us</a>
+                            </li>
+                            <li>
+                                <a href="/contact">Contact Us</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                <div class="header-right">
-                    <div class="burger-icon-2 burger-icon-white" id="btn-offcanvas">
-                        <i class="fi fi-rr-menu-burger fs-4 text-dark"></i>
-                    </div>
+                <div class="header-right d-flex align-items-center gap-3">
+                    <button class="btn btn-brand-2 btn-header-lead text-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#leadModal">
+                        <i class="fi fi-rr-envelope"></i>
+                        <span>Inquire Now</span>
+                    </button>
                     <div class="burger-icon burger-icon-white" id="btn-mobile-menu">
                         <span class="burger-icon-top"></span>
                         <span class="burger-icon-mid"> </span>

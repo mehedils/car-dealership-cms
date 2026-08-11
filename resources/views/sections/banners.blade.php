@@ -15,7 +15,7 @@
                             whether it's a road trip or business travel
                         </p>
                         <div class="banner-button pb-70 pt-3">
-                            <a class="btn btn-primary background-brand-2 wow fadeInUp" href="/cars-list-1">
+                            <a class="btn btn-primary background-brand-2 wow fadeInUp" href="/cars">
                                 Get Started Now
                                 <i class="fi fi-rr-arrow-right ms-2"></i>
                             </a>
@@ -37,7 +37,7 @@
                             rent or sell with confidence
                         </p>
                         <div class="banner-button pb-70 pt-3">
-                            <a class="btn btn-primary bg-white wow fadeInUp" href="/cars-list-1">
+                            <a class="btn btn-primary bg-white wow fadeInUp" href="/cars">
                                 Get Started Now
                                 <i class="fi fi-rr-arrow-right ms-2"></i>
                             </a>
