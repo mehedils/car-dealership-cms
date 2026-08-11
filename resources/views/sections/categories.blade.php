@@ -36,7 +36,9 @@
 									</div>
 									<div class="card-button">
 										<a href="{{ url('/cars?car_type_id='.$type->id) }}">
-											<i class="fi fi-rr-arrow-right"></i>
+											<svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M6 3.5L11.5 8L6 12.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
 										</a>
 									</div>
 								</div>

@@ -478,3 +478,38 @@ a.icon-socials:hover svg path {
     box-shadow: 0 12px 30px rgba(227, 43, 43, 0.45) !important;
     filter: brightness(1.1) !important;
 }
+
+/* --- Category Card Popular Arrow Button Styling --- */
+.card-popular .card-info .card-meta .card-button a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background-color: var(--bs-neutral-200, #f0f0f0) !important;
+    color: var(--bs-neutral-1000, #101010) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.card-popular .card-info .card-meta .card-button a svg {
+    color: var(--bs-neutral-1000, #101010) !important;
+    stroke: var(--bs-neutral-1000, #101010) !important;
+    transition: all 0.3s ease !important;
+}
+
+.card-popular:hover .card-info .card-meta .card-button a,
+.card-popular .card-info .card-meta .card-button a:hover {
+    background-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
+    color: #ffffff !important;
+    transform: scale(1.12) !important;
+    box-shadow: 0 4px 14px rgba(227, 43, 43, 0.35) !important;
+}
+
+.card-popular:hover .card-info .card-meta .card-button a svg,
+.card-popular .card-info .card-meta .card-button a:hover svg,
+.card-popular:hover .card-info .card-meta .card-button a svg path,
+.card-popular .card-info .card-meta .card-button a:hover svg path {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+}
