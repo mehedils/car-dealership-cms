@@ -454,3 +454,27 @@ a.icon-socials:hover svg path {
     filter: brightness(1.08) !important;
     color: var(--bs-button-hover-text, var(--bs-button-text, #ffffff)) !important;
 }
+
+/* --- Dynamic Play Button Component Micro-animations --- */
+.btn-play-trigger {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+.play-button-wrapper {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-play-trigger:hover .play-button-wrapper {
+    transform: scale(1.12) !important;
+}
+
+.play-button-icon {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn-play-trigger:hover .play-button-icon {
+    box-shadow: 0 12px 30px rgba(227, 43, 43, 0.45) !important;
+    filter: brightness(1.1) !important;
+}

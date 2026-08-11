@@ -4,7 +4,9 @@
             <div class="col-lg-6 pe-lg-5 wow fadeInUp">
                 <div class="card-video">
                     <div class="card-image">
-                        <a class="btn btn-play popup-youtube" href="{{ setting('home_cta_video_url', 'https://www.youtube.com/watch?v=AOg61RB75Ho') }}"></a>
+                        <a class="btn-play-trigger popup-youtube position-absolute top-50 start-50 translate-middle z-2" href="{{ setting('home_cta_video_url', 'https://www.youtube.com/watch?v=AOg61RB75Ho') }}">
+                            <x-play-button />
+                        </a>
                         @php
                             $ctaImg = setting('home_cta_image');
                             if ($ctaImg) {
