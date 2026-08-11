@@ -390,7 +390,7 @@ a.icon-socials:hover svg path {
     border-radius: 50% !important;
     background-color: var(--bs-neutral-200, #f0f0f0) !important;
     color: var(--bs-neutral-1000, #101010) !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     position: relative !important;
     top: auto !important;
     left: auto !important;
@@ -403,20 +403,26 @@ a.icon-socials:hover svg path {
     width: 16px !important;
     height: 16px !important;
     color: var(--bs-neutral-1000, #101010) !important;
-    transition: color 0.3s ease !important;
+    stroke: var(--bs-neutral-1000, #101010) !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     display: block !important;
 }
 
 .swiper-button-prev-style-1:hover,
 .swiper-button-next-style-1:hover {
     background-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
-    color: #101010 !important;
-    transform: scale(1.08);
+    color: var(--bs-button-hover-text, var(--bs-button-text, #ffffff)) !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 6px 16px rgba(227, 43, 43, 0.35) !important;
+    filter: brightness(1.08) !important;
 }
 
 .swiper-button-prev-style-1:hover svg,
-.swiper-button-next-style-1:hover svg {
-    color: #101010 !important;
+.swiper-button-next-style-1:hover svg,
+.swiper-button-prev-style-1:hover svg path,
+.swiper-button-next-style-1:hover svg path {
+    color: var(--bs-button-hover-text, var(--bs-button-text, #ffffff)) !important;
+    stroke: var(--bs-button-hover-text, var(--bs-button-text, #ffffff)) !important;
 }
 
 /* --- Car Card View Button Hover Micro-animations & Theme Text Color --- */
