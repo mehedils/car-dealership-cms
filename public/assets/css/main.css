@@ -2922,8 +2922,13 @@ label {
 }
 
 .card-journey-small .card-info .card-program .card-location .text-location {
-    background: url(../imgs/template/icons/location.svg) no-repeat left center;
+    -webkit-mask: url(../imgs/template/icons/location.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/location.svg) no-repeat left center;
+    -webkit-mask-size: 14px 14px;
+    mask-size: 14px 14px;
+    background-color: currentColor;
     padding-left: 20px;
+    display: inline-block;
 }
 
 .card-journey-small .card-info .card-program .card-location .text-star img {
@@ -2947,23 +2952,39 @@ label {
     width: 50%;
     padding: 0px 0px 0px 30px;
     margin-bottom: 13px;
-    color: #000000;
+    color: var(--bs-neutral-1000);
 }
 
 .card-journey-small .card-info .card-program .card-facitlities .card-miles {
-    background: url(../imgs/template/icons/mile.svg) no-repeat left center;
+    -webkit-mask: url(../imgs/template/icons/mile.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/mile.svg) no-repeat left center;
+    -webkit-mask-size: 18px 18px;
+    mask-size: 18px 18px;
+    background-color: var(--bs-primary);
 }
 
 .card-journey-small .card-info .card-program .card-facitlities .card-gear {
-    background: url(../imgs/template/icons/automatic.svg) no-repeat left center;
+    -webkit-mask: url(../imgs/template/icons/automatic.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/automatic.svg) no-repeat left center;
+    -webkit-mask-size: 18px 18px;
+    mask-size: 18px 18px;
+    background-color: var(--bs-primary);
 }
 
 .card-journey-small .card-info .card-program .card-facitlities .card-fuel {
-    background: url(../imgs/template/icons/fuel.svg) no-repeat left center;
+    -webkit-mask: url(../imgs/template/icons/fuel.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/fuel.svg) no-repeat left center;
+    -webkit-mask-size: 18px 18px;
+    mask-size: 18px 18px;
+    background-color: var(--bs-primary);
 }
 
 .card-journey-small .card-info .card-program .card-facitlities .card-seat {
-    background: url(../imgs/template/icons/seat.svg) no-repeat left center;
+    -webkit-mask: url(../imgs/template/icons/seat.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/seat.svg) no-repeat left center;
+    -webkit-mask-size: 18px 18px;
+    mask-size: 18px 18px;
+    background-color: var(--bs-primary);
 }
 
 .card-journey-small .card-info .card-program .duration {
@@ -2987,12 +3008,20 @@ label {
 
 .card-journey-small .card-info .card-program .icon-duration {
     padding: 0px 20px 0px 22px;
-    background: url(../imgs/template/icons/duration.svg) no-repeat left center;
+    -webkit-mask: url(../imgs/template/icons/duration.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/duration.svg) no-repeat left center;
+    -webkit-mask-size: 16px 16px;
+    mask-size: 16px 16px;
+    background-color: var(--bs-primary);
 }
 
 .card-journey-small .card-info .card-program .icon-guest {
     padding: 0px 0px 0px 22px;
-    background: url(../imgs/template/icons/guest.svg) no-repeat left center;
+    -webkit-mask: url(../imgs/template/icons/guest.svg) no-repeat left center;
+    mask: url(../imgs/template/icons/guest.svg) no-repeat left center;
+    -webkit-mask-size: 16px 16px;
+    mask-size: 16px 16px;
+    background-color: var(--bs-primary);
 }
 
 .card-journey-small .card-info .card-program .endtime {
@@ -6997,6 +7026,13 @@ a.icon-socials svg path {
     fill: var(--bs-neutral-0);
 }
 
+a.icon-socials i {
+    color: var(--bs-neutral-0);
+    font-size: 16px;
+    vertical-align: middle;
+    transition: color 0.2s ease;
+}
+
 a.icon-socials:last-child {
     margin-right: 0px;
 }
@@ -7007,7 +7043,11 @@ a.icon-socials:hover {
 }
 
 a.icon-socials:hover svg path {
-    fill: #70f46d;
+    fill: var(--bs-primary);
+}
+
+a.icon-socials:hover i {
+    color: var(--bs-primary);
 }
 
 .footer-1 {
