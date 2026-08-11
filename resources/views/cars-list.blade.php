@@ -140,7 +140,9 @@
                         <ul class="pagination">
                             <li class="page-item">
                                 <a class="page-link" href="{{ url('/cars-list-1') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => max(1, $page - 1)])) }}">
-                                    <i class="fi fi-rr-angle-small-left"></i>
+                                    <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.00016 1.33325L1.3335 5.99992M1.3335 5.99992L6.00016 10.6666M1.3335 5.99992H10.6668" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
                                 </a>
                             </li>
                             @for ($i = 1; $i <= $totalPages; $i++)
@@ -150,7 +152,9 @@
                             @endfor
                             <li class="page-item">
                                 <a class="page-link" href="{{ url('/cars-list-1') }}?{{ http_build_query(array_merge(request()->except(['page']), ['page' => min($totalPages, $page + 1)])) }}">
-                                    <i class="fi fi-rr-angle-small-right"></i>
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.99967 10.6666L10.6663 5.99992L5.99968 1.33325M10.6663 5.99992L1.33301 5.99992" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
                                 </a>
                             </li>
                         </ul>

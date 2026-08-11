@@ -33,7 +33,9 @@
                     <div class="d-flex justify-content-end mt-md-0 mt-4">
                         <a class="btn btn-primary rounded-3" href="/cars-list-1">
                             Become a renter
-                            <i class="fi fi-rr-arrow-right ms-2"></i>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -350,7 +352,9 @@
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
                             <span aria-hidden="true">
-                                <i class="fi fi-rr-angle-small-left"></i>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.00016 1.33325L1.3335 5.99992M1.3335 5.99992L6.00016 10.6666M1.3335 5.99992H10.6668" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </span>
                         </a>
                     </li>
@@ -363,7 +367,9 @@
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
                             <span aria-hidden="true">
-                                <i class="fi fi-rr-angle-small-right"></i>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.99967 10.6666L10.6663 5.99992L5.99968 1.33325M10.6663 5.99992L1.33301 5.99992" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </span>
                         </a>
                     </li>
@@ -390,7 +396,9 @@
                         </div>
                         <a class="btn btn-primary mt-2" href="#">
                             Get Started Now
-                            <i class="fi fi-rr-arrow-right ms-2"></i>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
                         </a>
                     </div>
                     <div class="col-lg-6 offset-lg-1 position-relative z-1 mt-lg-0 mt-4">

@@ -25,16 +25,15 @@
         </div>
         <div class="card-program">
             <div class="card-location">
-                <p class="text-location text-sm-medium neutral-500 d-flex align-items-center">
-                    <i class="fi fi-rr-marker text-primary me-1"></i>
+                <p class="text-location text-sm-medium neutral-500">
                     {{ is_object($car) ? ($car->location?->name ?? 'New York') : ($car['location'] ?? '') }}
                 </p>
             </div>
             <div class="card-facitlities">
-                <p class="card-miles text-md-medium d-flex align-items-center"><i class="fi fi-rr-dashboard text-primary me-1"></i>{{ is_object($car) ? ($car->mileage ?? '20k') : '20k' }}</p>
-                <p class="card-gear text-md-medium d-flex align-items-center"><i class="fi fi-rr-settings-sliders text-primary me-1"></i>{{ is_object($car) ? ($car->transmission ?? 'Auto') : 'Auto' }}</p>
-                <p class="card-fuel text-md-medium d-flex align-items-center"><i class="fi fi-rr-gas-pump text-primary me-1"></i>{{ is_object($car) ? ($car->fuelType?->name ?? 'Petrol') : ($car['fuelType'] ?? '') }}</p>
-                <p class="card-seat text-md-medium d-flex align-items-center"><i class="fi fi-rr-user text-primary me-1"></i>{{ is_object($car) ? ($car->seats ?? 5) : 5 }} seats</p>
+                <p class="card-miles text-md-medium">{{ is_object($car) ? ($car->mileage ?? '20k') : '20k' }}</p>
+                <p class="card-gear text-md-medium">{{ is_object($car) ? ($car->transmission ?? 'Auto') : 'Auto' }}</p>
+                <p class="card-fuel text-md-medium">{{ is_object($car) ? ($car->fuelType?->name ?? 'Petrol') : ($car['fuelType'] ?? '') }}</p>
+                <p class="card-seat text-md-medium">{{ is_object($car) ? ($car->seats ?? 5) : 5 }} seats</p>
             </div>
             <div class="endtime">
                 <div class="card-price">

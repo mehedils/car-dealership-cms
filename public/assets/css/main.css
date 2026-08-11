@@ -2922,9 +2922,8 @@ label {
 }
 
 .card-journey-small .card-info .card-program .card-location .text-location {
-    padding-left: 0px;
-    display: inline-flex;
-    align-items: center;
+    background: url(../imgs/template/icons/location.svg) no-repeat left center;
+    padding-left: 20px;
 }
 
 .card-journey-small .card-info .card-program .card-location .text-star img {
@@ -2946,9 +2945,25 @@ label {
 .card-journey-small .card-info .card-program .card-facitlities .card-fuel,
 .card-journey-small .card-info .card-program .card-facitlities .card-seat {
     width: 50%;
-    padding: 0;
+    padding: 0px 0px 0px 30px;
     margin-bottom: 13px;
-    color: var(--bs-neutral-1000);
+    color: #000000;
+}
+
+.card-journey-small .card-info .card-program .card-facitlities .card-miles {
+    background: url(../imgs/template/icons/mile.svg) no-repeat left center;
+}
+
+.card-journey-small .card-info .card-program .card-facitlities .card-gear {
+    background: url(../imgs/template/icons/automatic.svg) no-repeat left center;
+}
+
+.card-journey-small .card-info .card-program .card-facitlities .card-fuel {
+    background: url(../imgs/template/icons/fuel.svg) no-repeat left center;
+}
+
+.card-journey-small .card-info .card-program .card-facitlities .card-seat {
+    background: url(../imgs/template/icons/seat.svg) no-repeat left center;
 }
 
 .card-journey-small .card-info .card-program .duration {
@@ -6982,13 +6997,6 @@ a.icon-socials svg path {
     fill: var(--bs-neutral-0);
 }
 
-a.icon-socials i {
-    color: var(--bs-neutral-0);
-    font-size: 16px;
-    vertical-align: middle;
-    transition: color 0.2s ease;
-}
-
 a.icon-socials:last-child {
     margin-right: 0px;
 }
@@ -6999,11 +7007,7 @@ a.icon-socials:hover {
 }
 
 a.icon-socials:hover svg path {
-    fill: var(--bs-primary);
-}
-
-a.icon-socials:hover i {
-    color: var(--bs-primary);
+    fill: #70f46d;
 }
 
 .footer-1 {

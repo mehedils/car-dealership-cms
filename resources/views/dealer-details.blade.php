@@ -30,7 +30,9 @@
                         <div class="group-collapse-expand">
                             <button class="btn btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOverview" aria-expanded="false" aria-controls="collapseOverview">
                                 <h6>Overview</h6>
-                                <i class="fi fi-rr-angle-small-down fs-5"></i>
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </button>
                             <div class="collapse show" id="collapseOverview">
                                 <div class="card-contact border-0 border-bottom rounded-0 d-flex">
@@ -67,7 +69,9 @@
                         <div class="group-collapse-expand mb-0">
                             <button class="btn btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHighlight" aria-expanded="false" aria-controls="collapseHighlight">
                                 <h6>Services</h6>
-                                <i class="fi fi-rr-angle-small-down fs-5"></i>
+                                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </button>
                             <div class="collapse show" id="collapseHighlight">
                                 <div class="card card-body">
@@ -119,7 +123,9 @@
                                     <div class="col-lg-12">
                                         <button class="btn btn-book">
                                             Send message
-                                            <i class="fi fi-rr-arrow-right ms-2"></i>
+                                            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.5 15L15.5 8L8.5 1M15.5 8L1.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
                                         </button>
                                     </div>
                                 </div>
@@ -491,12 +497,14 @@
                                             <label class="cb-container"> <input type="checkbox"><span class="text-sm-medium">London Luxe</span><span class="checkmark"></span> </label><span class="number-item">76</span>
                                         </li>
                                     </ul>
-                                     <div class="box-see-more">
-                                         <a class="link-see-more" href="#">
-                                             See more
-                                             <i class="fi fi-rr-angle-small-down ms-1"></i>
-                                         </a>
-                                     </div></div>
+                                    <div class="box-see-more">
+                                        <a class="link-see-more" href="#">
+                                            See more
+                                            <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.89553 1.02367C7.75114 0.870518 7.50961 0.864815 7.35723 1.00881L3.9998 4.18946L0.642774 1.00883C0.490387 0.86444 0.249236 0.870534 0.104474 1.02369C-0.0402885 1.17645 -0.0338199 1.4176 0.118958 1.56236L3.73809 4.99102C3.81123 5.06036 3.90571 5.0954 3.9998 5.0954C4.0939 5.0954 4.18875 5.06036 4.26191 4.99102L7.88104 1.56236C8.03382 1.41758 8.04029 1.17645 7.89553 1.02367Z" fill="#101010" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
