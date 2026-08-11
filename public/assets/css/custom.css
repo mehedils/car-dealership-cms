@@ -87,6 +87,10 @@ a.icon-socials:hover svg path {
 /* --- brand marquee (replaces react-fast-marquee) --- */
 .carouselTicker {
     overflow: hidden;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    margin-top: -10px !important;
+    margin-bottom: -10px !important;
 }
 .carouselTicker__list {
     display: flex;
