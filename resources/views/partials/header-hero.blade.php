@@ -13,13 +13,13 @@
 <header class="header header-fixed sticky-bar">
     <div class="top-bar top-bar-2 top-bar-3 bg-transparent">
         <div class="container-fluid">
-            <div class="text-header-info">
-                <a class="phone-head text-white" href="tel:{{ preg_replace('/[^0-9+]/', '', setting('contact_phone', '+1 222-555-33-99')) }}">
-                    <i class="fi fi-rr-phone-call me-1"></i>
+            <div class="text-header-info d-flex align-items-center gap-3">
+                <a class="phone-head d-inline-flex align-items-center" href="tel:{{ preg_replace('/[^0-9+]/', '', setting('contact_phone', '+1 222-555-33-99')) }}">
+                    <i class="fi fi-rr-phone-call me-2"></i>
                     <span class="d-none d-lg-inline-block">{{ setting('contact_phone', '+1 222-555-33-99') }}</span>
                 </a>
-                <a class="email-head text-white" href="mailto:{{ setting('contact_email', 'sale@carento.com') }}">
-                    <i class="fi fi-rr-envelope me-1"></i>
+                <a class="email-head d-inline-flex align-items-center" href="mailto:{{ setting('contact_email', 'sale@carento.com') }}">
+                    <i class="fi fi-rr-envelope me-2"></i>
                     <span class="d-none d-lg-inline-block">{{ setting('contact_email', 'sale@carento.com') }}</span>
                 </a>
             </div>

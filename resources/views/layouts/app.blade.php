@@ -80,6 +80,29 @@
             justify-content: flex-start;
         }
 
+        .top-bar-2 .text-header-info a {
+            color: #ffffff !important;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.25s ease-in-out;
+            text-decoration: none;
+            margin-right: 0px !important;
+        }
+
+        .top-bar-2 .text-header-info a i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            transition: color 0.25s ease-in-out;
+        }
+
+        .top-bar-2 .text-header-info a:hover,
+        .top-bar-2 .text-header-info a:hover i,
+        .top-bar-2 .text-header-info a:hover span {
+            color: var(--bs-primary, #70f46d) !important;
+        }
+
         .top-bar-2 .text-header {
             flex: 0 0 auto;
             display: flex;
