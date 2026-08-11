@@ -15,9 +15,8 @@
             --bs-brand-2-darken: {{ setting('primary_hover_color', '#5edd5b') }};
             --bs-brand-1: {{ setting('secondary_color', '#8acfff') }};
             --bs-danger: {{ setting('accent_color', '#f15d44') }};
-            --bs-button-text: {{ setting('button_text_color', '#101010') }};
-            --bs-color-1000: {{ setting('button_text_color', '#101010') }};
-            --bs-color-black: {{ setting('button_text_color', '#101010') }};
+            --bs-button-text: {{ setting('button_text_color', '#FFFFFF') }};
+            --bs-button-hover-text: {{ setting('button_hover_text_color', '#FFFFFF') }};
             --bs-header-bg: {{ setting('header_bg_color', '#101010') }};
             --bs-footer-bg: {{ setting('footer_bg_color', '#101010') }};
             --bs-heading-color: {{ setting('heading_color', '#000000') }};

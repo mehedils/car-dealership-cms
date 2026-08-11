@@ -363,3 +363,63 @@ a.icon-socials:hover svg path {
 .block-banner-home1 .bg-shape::before {
     background-image: var(--hero-bg-url, url(../imgs/hero/hero-1/banner.png)) !important;
 }
+
+/* --- Swiper Navigation Buttons Styling --- */
+.swiper-button-prev-style-1::after,
+.swiper-button-next-style-1::after,
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    display: none !important;
+    content: "" !important;
+}
+
+.swiper-button-prev-style-1,
+.swiper-button-next-style-1 {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background-color: var(--bs-neutral-200, #f0f0f0) !important;
+    color: var(--bs-neutral-1000, #101010) !important;
+    transition: all 0.3s ease !important;
+    font-size: 16px !important;
+}
+
+.swiper-button-prev-style-1:hover,
+.swiper-button-next-style-1:hover {
+    background-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
+    color: #101010 !important;
+    transform: scale(1.08);
+}
+
+/* --- Car Card View Button Hover Micro-animations & Theme Text Color --- */
+.card-button .btn,
+.card-journey-small .btn-primary,
+.btn.btn-primary,
+.btn.btn-brand-2,
+.btn.btn-book {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    color: var(--bs-button-text, #ffffff) !important;
+}
+
+.btn.btn-primary *,
+.btn.btn-brand-2 *,
+.btn.btn-book *,
+.card-button .btn *,
+.card-journey-small .btn-primary * {
+    color: var(--bs-button-text, #ffffff) !important;
+}
+
+.card-button .btn:hover,
+.card-journey-small .btn-primary:hover,
+.btn.btn-primary:hover,
+.btn.btn-brand-2:hover,
+.btn.btn-book:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 6px 16px rgba(227, 43, 43, 0.35) !important;
+    filter: brightness(1.08) !important;
+    color: var(--bs-button-hover-text, var(--bs-button-text, #ffffff)) !important;
+}
