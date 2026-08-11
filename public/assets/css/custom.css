@@ -87,18 +87,25 @@ a.icon-socials:hover svg path {
 /* --- brand marquee (replaces react-fast-marquee) --- */
 .carouselTicker {
     overflow: hidden;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    margin-top: -10px !important;
-    margin-bottom: -10px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    margin-top: -12px !important;
+    margin-bottom: -12px !important;
 }
 .carouselTicker__list {
     display: flex;
     align-items: center;
     width: max-content;
     padding-left: 0;
+    overflow: visible !important;
     animation: carouselTicker 45s linear infinite;
     will-change: transform;
+}
+.carouselTicker__item {
+    margin: 0 !important;
+    float: none !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
 }
 .carouselTicker:hover .carouselTicker__list {
     animation-play-state: paused;
@@ -128,8 +135,8 @@ a.icon-socials:hover svg path {
 
 .box-list-brand-car .item-brand:hover {
     border-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
 .box-list-brand-car .item-brand img {
