@@ -119,6 +119,13 @@ a.icon-socials:hover svg path {
     border-radius: 12px !important;
     margin-right: 20px !important;
     margin-bottom: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.box-list-brand-car .item-brand:hover {
+    border-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 .box-list-brand-car .item-brand img {
@@ -127,6 +134,13 @@ a.icon-socials:hover svg path {
     max-width: 90px !important;
     width: auto !important;
     object-fit: contain !important;
+}
+
+.link-hover-primary {
+    transition: color 0.2s ease;
+}
+.link-hover-primary:hover {
+    color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
 }
 
 /* --- dual price range slider --- */
