@@ -100,12 +100,33 @@ a.icon-socials:hover svg path {
     animation-play-state: paused;
 }
 @keyframes carouselTicker {
-    from {
+    0% {
         transform: translateX(0);
     }
-    to {
-        transform: translateX(-50%);
+    100% {
+        transform: translateX(-33.33333%);
     }
+}
+
+/* --- brand marquee uniform dimensions --- */
+.box-list-brand-car .item-brand {
+    height: 72px !important;
+    min-width: 140px !important;
+    padding: 12px 24px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    margin-right: 20px !important;
+    margin-bottom: 0 !important;
+}
+
+.box-list-brand-car .item-brand img {
+    height: 32px !important;
+    max-height: 32px !important;
+    max-width: 90px !important;
+    width: auto !important;
+    object-fit: contain !important;
 }
 
 /* --- dual price range slider --- */

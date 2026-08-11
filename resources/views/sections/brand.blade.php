@@ -11,17 +11,19 @@
 			</div>
 			<div class="carouselTicker carouselTicker-left box-list-brand-car justify-content-center wow fadeIn">
 				<ul class="carouselTicker__list">
-					@foreach($brands as $brand)
-						<li class="carouselTicker__item">
-							<a href="{{ url('/cars?brand_id='.$brand->id) }}" class="item-brand title-sm-bold text-center">
-								@if($brand->logo)
-									<img src="{{ asset($brand->logo) }}" alt="{{ $brand->name }}" style="max-height: 40px; object-fit: contain;">
-								@else
-									<span>{{ $brand->name }}</span>
-								@endif
-							</a>
-						</li>
-					@endforeach
+					@for($i = 0; $i < 3; $i++)
+						@foreach($brands as $brand)
+							<li class="carouselTicker__item">
+								<a href="{{ url('/cars?brand_id='.$brand->id) }}" class="item-brand title-sm-bold text-center">
+									@if($brand->logo)
+										<img src="{{ asset($brand->logo) }}" alt="{{ $brand->name }}">
+									@else
+										<span class="text-sm-bold">{{ $brand->name }}</span>
+									@endif
+								</a>
+							</li>
+						@endforeach
+					@endfor
 				</ul>
 			</div>
 		</div>
