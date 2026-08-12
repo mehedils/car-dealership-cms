@@ -2,13 +2,13 @@
 	<div class="container">
 		<div class="row align-items-end mb-40">
 			<div class="col-md-8">
-				<h3 class="neutral-1000 wow fadeInUp">{{ setting('home_categories_title', 'Browse by Type') }}</h3>
-				<p class="text-xl-medium neutral-500 wow fadeInUp">{{ setting('home_categories_subtitle', 'Find the perfect ride for any occasion') }}</p>
+				<h3 class="neutral-1000 wow fadeInUp">{{ __(setting('home_categories_title', 'Browse by Type')) }}</h3>
+				<p class="text-xl-medium neutral-500 wow fadeInUp">{{ __(setting('home_categories_subtitle', 'Find the perfect ride for any occasion')) }}</p>
 			</div>
 			<div class="col-md-4">
 				<div class="d-flex justify-content-md-end mt-md-0 mt-4">
 					<a class="btn btn-primary wow fadeInUp" href="{{ url('/cars') }}">
-						View All
+						{{ __('View Details') }}
 						<i class="fi fi-rr-arrow-right ms-2"></i>
 					</a>
 				</div>
@@ -32,7 +32,7 @@
 								<a class="card-title" href="{{ url('/cars?car_type_id='.$type->id) }}">{{ $type->name }}</a>
 								<div class="card-meta">
 									<div class="meta-links">
-										<a href="{{ url('/cars?car_type_id='.$type->id) }}">{{ $type->cars_count }} Vehicles</a>
+										<a href="{{ url('/cars?car_type_id='.$type->id) }}">{{ $type->cars_count }} {{ __('Vehicles') }}</a>
 									</div>
 									<div class="card-button">
 										<a href="{{ url('/cars?car_type_id='.$type->id) }}">

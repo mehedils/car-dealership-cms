@@ -53,27 +53,27 @@
 				<div class="box-bottom-search background-card hero-search-card align-items-end gap-3 p-3">
 					<!-- Searchable Vehicle Dropdown -->
 					<div class="item-search position-relative flex-grow-1 p-0 m-0">
-						<label class="text-sm-bold neutral-500 mb-1.5 d-block">Select Vehicle</label>
+						<label class="text-sm-bold neutral-500 mb-1.5 d-block">{{ __('Select Vehicle') }}</label>
 						<input type="hidden" name="car_id" id="hero_car_id_input" value="{{ old('car_id') }}">
 						<div class="dropdown">
 							<button type="button" class="btn hero-input-field w-100 text-start text-sm-bold text-truncate d-flex align-items-center justify-content-between" data-bs-toggle="dropdown" id="heroCarDropdownBtn" aria-expanded="false">
 								<span id="heroCarSelectedText">
 									@if(old('car_id') && isset($cars))
-										{{ optional($cars->firstWhere('id', old('car_id')))->name ?? 'Select Vehicle' }}
+										{{ optional($cars->firstWhere('id', old('car_id')))->name ?? __('Select Vehicle') }}
 									@else
-										Select Vehicle
+										{{ __('Select Vehicle') }}
 									@endif
 								</span>
 								<i class="fi fi-rr-angle-small-down ms-2 fs-6"></i>
 							</button>
 							<div class="dropdown-menu p-2 shadow-lg" style="min-width: 260px; max-height: 300px; overflow-y: auto; border-radius: 10px;">
 								<div class="sticky-top bg-white pb-2">
-									<input type="text" class="form-control form-control-sm border" id="heroCarSearchInput" placeholder="🔍 Type model name..." autocomplete="off">
+									<input type="text" class="form-control form-control-sm border" id="heroCarSearchInput" placeholder="🔍 {{ __('Type model name...') }}" autocomplete="off">
 								</div>
 								<ul class="list-unstyled mb-0" id="heroCarList">
 									<li>
-										<a href="#" class="dropdown-item car-select-item text-sm-medium rounded py-1.5 px-2" data-id="" data-name="General Inquiry / Any Vehicle">
-											<em>General Inquiry / Any Vehicle</em>
+										<a href="#" class="dropdown-item car-select-item text-sm-medium rounded py-1.5 px-2" data-id="" data-name="{{ __('General Inquiry / Any Vehicle') }}">
+											<em>{{ __('General Inquiry / Any Vehicle') }}</em>
 										</a>
 									</li>
 									@if(isset($cars) && $cars->count() > 0)
@@ -92,21 +92,21 @@
 
 					<!-- Full Name Input -->
 					<div class="item-search item-search-2 flex-grow-1 p-0 m-0">
-						<label class="text-sm-bold neutral-500 mb-1.5 d-block">Your Name</label>
-						<input type="text" name="name" value="{{ old('name') }}" class="form-control hero-input-field text-sm-bold" placeholder="Enter your name" required>
+						<label class="text-sm-bold neutral-500 mb-1.5 d-block">{{ __('Your Name') }}</label>
+						<input type="text" name="name" value="{{ old('name') }}" class="form-control hero-input-field text-sm-bold" placeholder="{{ __('Enter your name') }}" required>
 					</div>
 
 					<!-- Phone / WhatsApp Input -->
 					<div class="item-search item-search-3 flex-grow-1 p-0 m-0">
-						<label class="text-sm-bold neutral-500 mb-1.5 d-block">Phone / WhatsApp</label>
-						<input type="tel" name="phone" value="{{ old('phone') }}" class="form-control hero-input-field text-sm-bold" placeholder="+1 (555) 000-0000" required>
+						<label class="text-sm-bold neutral-500 mb-1.5 d-block">{{ __('Phone / WhatsApp') }}</label>
+						<input type="tel" name="phone" value="{{ old('phone') }}" class="form-control hero-input-field text-sm-bold" placeholder="+52 (55) 0000-0000" required>
 					</div>
 
 					<!-- Submit Button -->
 					<div class="item-search bd-none p-0 m-0">
 						<button type="submit" class="btn btn-brand-2 hero-submit-btn text-nowrap px-4">
 							<i class="fi fi-rr-phone-call me-2"></i>
-							Request Callback
+							{{ __('Request Callback') }}
 						</button>
 					</div>
 				</div>

@@ -19,15 +19,30 @@ class FuelTypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-fire';
 
-    protected static ?string $navigationGroup = 'Inventory';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Inventory');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Fuel Type');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Fuel Types');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('Name'))
                     ->required(),
                 Forms\Components\TextInput::make('slug')
+                    ->label(__('Slug'))
                     ->required(),
             ]);
     }

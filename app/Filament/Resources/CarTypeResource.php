@@ -19,19 +19,35 @@ class CarTypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
-    protected static ?string $navigationGroup = 'Inventory';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Inventory');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Car Type');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Car Types');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('Name'))
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug')
+                    ->label(__('Slug'))
                     ->required(),
                 Forms\Components\FileUpload::make('image')
+                    ->label(__('Image'))
                     ->image(),
             ]);
     }

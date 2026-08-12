@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row align-items-end mb-40">
             <div class="col-md-8">
-                <h3 class="neutral-1000">{{ setting('home_services_title', 'Our Services') }}</h3>
-                <p class="text-lg-medium neutral-500">{{ setting('home_services_subtitle', 'Serving You with Quality, Comfort, and Convenience') }}</p>
+                <h3 class="neutral-1000">{{ __(setting('home_services_title', 'Our Services')) }}</h3>
+                <p class="text-lg-medium neutral-500">{{ __(setting('home_services_subtitle', 'Serving You with Quality, Comfort, and Convenience')) }}</p>
             </div>
             <div class="col-md-4 mt-md-0 mt-4">
                 <div class="d-flex justify-content-md-end justify-content-center">
                     <a class="btn btn-primary" href="{{ url('/services') }}">
-                        View All
+                        {{ __('View Details') }}
                         <i class="fi fi-rr-arrow-right ms-2"></i>
                     </a>
                 </div>

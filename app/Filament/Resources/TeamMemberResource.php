@@ -19,22 +19,42 @@ class TeamMemberResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationGroup = 'Website Content';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Team Member');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Team Members');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('Name'))
                     ->required(),
-                Forms\Components\TextInput::make('role'),
-                Forms\Components\TextInput::make('title'),
+                Forms\Components\TextInput::make('role')
+                    ->label(__('Role')),
+                Forms\Components\TextInput::make('title')
+                    ->label(__('Title')),
                 Forms\Components\TextInput::make('email')
+                    ->label(__('Email'))
                     ->email(),
                 Forms\Components\TextInput::make('phone')
+                    ->label(__('Phone'))
                     ->tel(),
-                Forms\Components\TextInput::make('photo_path'),
+                Forms\Components\TextInput::make('photo_path')
+                    ->label(__('Photo')),
                 Forms\Components\Textarea::make('bio')
+                    ->label(__('Description'))
                     ->columnSpanFull(),
             ]);
     }

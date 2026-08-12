@@ -17,9 +17,20 @@ class SettingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Settings');
+    }
 
-    protected static ?string $navigationLabel = 'Raw Key-Value Settings';
+    public static function getModelLabel(): string
+    {
+        return __('Setting');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Settings');
+    }
 
     public static function canCreate(): bool
     {

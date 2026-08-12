@@ -63,26 +63,38 @@ class DatabaseSeeder extends Seeder
         // Car Types
         $typeFiles = File::glob(public_path('assets/imgs/categories/*.*'));
         $carTypes = [];
-        foreach (['SUV', 'Sedan', 'Hatchback', 'Coupe', 'Convertible', 'Pickup'] as $i => $name) {
+        $typeNames = env('APP_LOCALE') === 'es' 
+            ? ['SUV', 'Sedán', 'Hatchback', 'Cupé', 'Convertible', 'Pick-up'] 
+            : ['SUV', 'Sedan', 'Hatchback', 'Coupe', 'Convertible', 'Pickup'];
+        foreach ($typeNames as $i => $name) {
             $image = isset($typeFiles[$i]) ? 'assets/imgs/categories/' . basename($typeFiles[$i]) : null;
             $carTypes[] = CarType::create(['name' => $name, 'slug' => Str::slug($name), 'image' => $image]);
         }
 
         // Fuel Types
         $fuelTypes = [];
-        foreach (['Petrol', 'Diesel', 'Electric', 'Hybrid'] as $name) {
+        $fuelNames = env('APP_LOCALE') === 'es'
+            ? ['Gasolina', 'Diésel', 'Eléctrico', 'Híbrido']
+            : ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
+        foreach ($fuelNames as $name) {
             $fuelTypes[] = FuelType::create(['name' => $name, 'slug' => Str::slug($name)]);
         }
 
         // Locations
         $locations = [];
-        foreach (['New York', 'Los Angeles', 'Chicago', 'Houston', 'Miami'] as $name) {
+        $locationNames = env('APP_LOCALE') === 'es'
+            ? ['Ciudad de México', 'Guadalajara', 'Monterrey', 'Cancún', 'Puebla']
+            : ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Miami'];
+        foreach ($locationNames as $name) {
             $locations[] = Location::create(['name' => $name, 'address' => $faker->address]);
         }
 
         // Amenities
         $amenities = [];
-        foreach (['Bluetooth', 'Backup Camera', 'Navigation', 'Leather Seats', 'Sunroof', 'Heated Seats', 'Apple CarPlay'] as $name) {
+        $amenityNames = env('APP_LOCALE') === 'es'
+            ? ['Bluetooth', 'Cámara de Reversa', 'Navegación GPS', 'Asientos de Piel', 'Quemacocos', 'Asientos Calefaccionados', 'Apple CarPlay']
+            : ['Bluetooth', 'Backup Camera', 'Navigation', 'Leather Seats', 'Sunroof', 'Heated Seats', 'Apple CarPlay'];
+        foreach ($amenityNames as $name) {
             $amenities[] = Amenity::create(['name' => $name, 'icon' => 'check-circle']);
         }
 
@@ -101,8 +113,8 @@ class DatabaseSeeder extends Seeder
                 'price' => $faker->randomElement([25000, 35000, 45000, 55000, 65000]),
                 'rating' => $faker->randomFloat(1, 4, 5),
                 'is_featured' => $faker->boolean(30),
-                'mileage' => $faker->numberBetween(10, 50) . 'k',
-                'transmission' => $faker->randomElement(['Automatic', 'Manual']),
+                'mileage' => $faker->numberBetween(10, 50) . 'k km',
+                'transmission' => $faker->randomElement(env('APP_LOCALE') === 'es' ? ['Automático', 'Manual'] : ['Automatic', 'Manual']),
                 'seats' => $faker->randomElement([2, 4, 5, 7]),
                 'doors' => $faker->randomElement([2, 4]),
                 'luggage' => $faker->randomElement(['2 Bags', '3 Bags', '4 Bags']),
@@ -253,7 +265,7 @@ class DatabaseSeeder extends Seeder
             'heading_color' => '#000000',
 
             // Footer
-            'footer_copyright' => '© 2026 Carento. All rights reserved.',
+            'footer_copyright' => env('APP_LOCALE') === 'es' ? '© ' . date('Y') . ' Carento. Todos los derechos reservados.' : '© ' . date('Y') . ' Carento. All rights reserved.',
         ];
 
         foreach ($defaultSettings as $key => $val) {

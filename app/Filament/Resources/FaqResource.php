@@ -19,18 +19,34 @@ class FaqResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
-    protected static ?string $navigationGroup = 'Website Content';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('FAQ');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('FAQs');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('question')
+                    ->label(__('Question'))
                     ->required(),
                 Forms\Components\Textarea::make('answer')
+                    ->label(__('Answer'))
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('sort_order')
+                    ->label(__('Sort Order'))
                     ->required()
                     ->numeric()
                     ->default(0),

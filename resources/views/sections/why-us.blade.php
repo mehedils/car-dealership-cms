@@ -1,9 +1,9 @@
 <section class="section-box box-why-book-22 background-body">
 	<div class="container">
 		<div class="text-center wow fadeInUp">
-			<p class="text-xl-medium neutral-500 wow fadeInUp">{{ setting('home_why_us_subtitle', 'WHY CHOOSE US') }}</p>
+			<p class="text-xl-medium neutral-500 wow fadeInUp">{{ __(setting('home_why_us_subtitle', 'WHY CHOOSE US')) }}</p>
 			<h3 class="neutral-1000 wow fadeInUp">
-				{!! nl2br(e(setting('home_why_us_title', "Presenting Your Premier Car\nDealership Experience"))) !!}
+				{!! nl2br(e(__(setting('home_why_us_title', "Presenting Your Premier Car\nDealership Experience")))) !!}
 			</h3>
 		</div>
 		<div class="row mt-40">

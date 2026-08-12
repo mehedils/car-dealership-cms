@@ -19,20 +19,37 @@ class WhyUsFeatureResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
-    protected static ?string $navigationGroup = 'Website Content';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Why Us Feature');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Why Us Features');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
+                    ->label(__('Title'))
                     ->required(),
                 Forms\Components\Textarea::make('description')
+                    ->label(__('Description'))
                     ->required()
                     ->columnSpanFull(),
                 \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                    ->label(__('Icon'))
                     ->required(),
                 Forms\Components\TextInput::make('sort_order')
+                    ->label(__('Sort Order'))
                     ->required()
                     ->numeric()
                     ->default(0),

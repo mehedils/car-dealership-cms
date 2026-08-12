@@ -2,8 +2,8 @@
 	<div class="container">
 		<div class="row align-items-end">
 			<div class="col-md-9 wow fadeInUp">
-				<h3 class="title-svg neutral-1000 mb-5">{{ setting('home_featured_title', 'Featured Vehicles') }}</h3>
-				<p class="text-lg-medium text-bold neutral-500">{{ setting('home_featured_subtitle', 'Explore our hand-picked premium selection') }}</p>
+				<h3 class="title-svg neutral-1000 mb-5">{{ __(setting('home_featured_title', 'Featured Vehicles')) }}</h3>
+				<p class="text-lg-medium text-bold neutral-500">{{ __(setting('home_featured_subtitle', 'Explore our hand-picked premium selection')) }}</p>
 			</div>
 			<div class="col-md-3 position-relative mb-30 wow fadeInUp">
 				<div class="box-button-slider box-button-slider-team justify-content-end">

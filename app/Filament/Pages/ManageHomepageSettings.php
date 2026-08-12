@@ -14,11 +14,20 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
 
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
-    protected static ?string $navigationGroup = 'Website Content';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
 
-    protected static ?string $navigationLabel = 'Homepage Settings';
+    public static function getNavigationLabel(): string
+    {
+        return __('Homepage Settings');
+    }
 
-    protected static ?string $title = 'Homepage Content Settings';
+    public function getTitle(): string
+    {
+        return __('Homepage Settings');
+    }
 
     protected static string $view = 'filament.pages.manage-homepage-settings';
 

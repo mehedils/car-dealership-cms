@@ -2,11 +2,11 @@
     <div class="container">
         <div class="row align-items-end">
             <div class="col-md-9 mb-30 wow fadeInUp">
-                <h3 class="title-svg neutral-1000 mb-15">{{ setting('home_blog_title', 'Latest News & Articles') }}</h3>
-                <p class="text-lg-medium text-bold neutral-500">{{ setting('home_blog_subtitle', 'Stay updated with our latest stories and automotive insights') }}</p>
+                <h3 class="title-svg neutral-1000 mb-15">{{ __(setting('home_blog_title', 'Latest News & Articles')) }}</h3>
+                <p class="text-lg-medium text-bold neutral-500">{{ __(setting('home_blog_subtitle', 'Stay updated with our latest stories and automotive insights')) }}</p>
             </div>
             <div class="col-md-3 position-relative mb-30 wow fadeInUp text-end">
-                <a href="{{ url('/blog') }}" class="btn btn-brand-2">{{ setting('home_blog_button_text', 'View All Posts') }}</a>
+                <a href="{{ url('/blog') }}" class="btn btn-brand-2">{{ __(setting('home_blog_button_text', 'View All Posts')) }}</a>
             </div>
         </div>
         <div class="box-list-news wow fadeInUp mt-5">
@@ -34,10 +34,10 @@
                                 <div class="card-program">
                                     <div class="endtime d-flex justify-content-between align-items-center">
                                         <div class="card-author d-flex align-items-center">
-                                            <span class="text-sm-bold neutral-1000">By {{ $post->author_name ?? 'Admin' }}</span>
+                                            <span class="text-sm-bold neutral-1000">{{ __('By') }} {{ $post->author_name ?? 'Admin' }}</span>
                                         </div>
                                         <div class="card-button">
-                                            <a class="btn btn-gray" href="{{ url('/blog') }}">Read More</a>
+                                            <a class="btn btn-gray" href="{{ url('/blog') }}">{{ __('View Details') }}</a>
                                         </div>
                                     </div>
                                 </div>

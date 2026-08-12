@@ -19,20 +19,38 @@ class TestimonialResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
-    protected static ?string $navigationGroup = 'Website Content';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Testimonial');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Testimonials');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('author_name')
+                    ->label(__('Name'))
                     ->required(),
-                Forms\Components\TextInput::make('author_role'),
-                Forms\Components\TextInput::make('author_avatar'),
+                Forms\Components\TextInput::make('author_role')
+                    ->label(__('Role')),
+                Forms\Components\TextInput::make('author_avatar')
+                    ->label(__('Image')),
                 Forms\Components\Textarea::make('content')
+                    ->label(__('Comment'))
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('rating')
+                    ->label(__('Rating'))
                     ->required()
                     ->numeric()
                     ->default(5),

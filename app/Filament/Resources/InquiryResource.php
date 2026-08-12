@@ -19,26 +19,45 @@ class InquiryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
-    protected static ?string $navigationGroup = 'Leads & Reviews';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('System');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Inquiry');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Inquiries');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('car_id')
+                    ->label(__('Car'))
                     ->relationship('car', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('name')
+                    ->label(__('Name'))
                     ->required(),
                 Forms\Components\TextInput::make('email')
+                    ->label(__('Email'))
                     ->email()
                     ->required(),
                 Forms\Components\TextInput::make('phone')
+                    ->label(__('Phone'))
                     ->tel(),
                 Forms\Components\Textarea::make('message')
+                    ->label(__('Message'))
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('status')
+                    ->label(__('Status'))
                     ->required(),
             ]);
     }

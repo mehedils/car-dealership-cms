@@ -19,15 +19,30 @@ class LocationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-map-pin';
 
-    protected static ?string $navigationGroup = 'Inventory';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Inventory');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Location');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Locations');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('Name'))
                     ->required(),
                 Forms\Components\Textarea::make('address')
+                    ->label(__('Address'))
                     ->columnSpanFull(),
             ]);
     }

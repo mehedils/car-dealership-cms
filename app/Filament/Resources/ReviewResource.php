@@ -19,27 +19,46 @@ class ReviewResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-star';
 
-    protected static ?string $navigationGroup = 'Leads & Reviews';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Review');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Reviews');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('car_id')
+                    ->label(__('Car'))
                     ->relationship('car', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('user_name')
+                    ->label(__('Name'))
                     ->required(),
                 Forms\Components\TextInput::make('user_email')
+                    ->label(__('Email'))
                     ->email()
                     ->required(),
                 Forms\Components\TextInput::make('rating')
+                    ->label(__('Rating'))
                     ->required()
                     ->numeric(),
                 Forms\Components\Textarea::make('comment')
+                    ->label(__('Comment'))
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('is_approved')
+                    ->label(__('Active'))
                     ->required(),
             ]);
     }

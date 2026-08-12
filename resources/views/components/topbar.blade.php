@@ -26,7 +26,7 @@
             @else
                 <div class="text-unlock text-sm-medium text-white d-flex align-items-center"><i class="fi fi-rr-car me-2"></i><span>{{ $slogan }}</span></div>
                 <a class="btn btn-brand-2 btn-small text-dark px-3 py-2 text-xs-medium ms-2 d-inline-flex align-items-center justify-content-center" href="/cars">
-                    <span>Access Now</span>
+                    <span>{{ __('Search Cars') }}</span>
                     <i class="fi fi-rr-arrow-right ms-1"></i>
                 </a>
             @endif

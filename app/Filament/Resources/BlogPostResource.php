@@ -19,27 +19,47 @@ class BlogPostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationGroup = 'Website Content';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Blog Post');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Blog Posts');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
+                    ->label(__('Title'))
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug')
+                    ->label(__('Slug'))
                     ->required(),
                 Forms\Components\Textarea::make('excerpt')
+                    ->label(__('Excerpt'))
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('content')
+                    ->label(__('Content Body'))
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
+                    ->label(__('Image'))
                     ->image(),
-                Forms\Components\TextInput::make('author_name'),
-                Forms\Components\DateTimePicker::make('published_at'),
+                Forms\Components\TextInput::make('author_name')
+                    ->label(__('Author')),
+                Forms\Components\DateTimePicker::make('published_at')
+                    ->label(__('Published At')),
             ]);
     }
 

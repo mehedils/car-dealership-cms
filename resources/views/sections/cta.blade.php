@@ -20,28 +20,28 @@
                 </div>
             </div>
             <div class="col-lg-6 mt-lg-0 mt-4">
-                <span class="btn btn-signin bg-white text-dark mb-4 wow fadeInUp">{{ setting('home_cta_badge', 'Best Car Dealership') }}</span>
-                <h4 class="mb-4 neutral-1000 wow fadeInUp">{{ setting('home_cta_title', 'Receive a Competitive Offer Sell Your Car to Us Today.') }}</h4>
-                <p class="text-lg-medium neutral-500 mb-4 wow fadeInUp">{{ setting('home_cta_description', 'We are committed to delivering exceptional service, competitive pricing, and a diverse selection of options for our customers.') }}</p>
+                <span class="btn btn-signin bg-white text-dark mb-4 wow fadeInUp">{{ __(setting('home_cta_badge', 'Best Car Dealership')) }}</span>
+                <h4 class="mb-4 neutral-1000 wow fadeInUp">{{ __(setting('home_cta_title', 'Receive a Competitive Offer Sell Your Car to Us Today.')) }}</h4>
+                <p class="text-lg-medium neutral-500 mb-4 wow fadeInUp">{{ __(setting('home_cta_description', 'We are committed to delivering exceptional service, competitive pricing, and a diverse selection of options for our customers.')) }}</p>
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="list-ticks-green">
                             @if(setting('home_cta_bullet_1', 'Expert Certified Mechanics'))
                                 <li class="neutral-1000 wow fadeInUp" data-wow-delay="0.1s">
                                     <x-tick-icon />
-                                    <span>{{ setting('home_cta_bullet_1', 'Expert Certified Mechanics') }}</span>
+                                    <span>{{ __(setting('home_cta_bullet_1', 'Expert Certified Mechanics')) }}</span>
                                 </li>
                             @endif
                             @if(setting('home_cta_bullet_2', 'Get Reasonable Price'))
                                 <li class="neutral-1000 wow fadeInUp" data-wow-delay="0.2s">
                                     <x-tick-icon />
-                                    <span>{{ setting('home_cta_bullet_2', 'Get Reasonable Price') }}</span>
+                                    <span>{{ __(setting('home_cta_bullet_2', 'Get Reasonable Price')) }}</span>
                                 </li>
                             @endif
                             @if(setting('home_cta_bullet_3', 'Genuine Spares Parts'))
                                 <li class="neutral-1000 wow fadeInUp" data-wow-delay="0.3s">
                                     <x-tick-icon />
-                                    <span>{{ setting('home_cta_bullet_3', 'Genuine Spares Parts') }}</span>
+                                    <span>{{ __(setting('home_cta_bullet_3', 'Genuine Spares Parts')) }}</span>
                                 </li>
                             @endif
                         </ul>
@@ -51,19 +51,13 @@
                             @if(setting('home_cta_bullet_4', 'First Class Services'))
                                 <li class="neutral-1000 wow fadeInUp" data-wow-delay="0.1s">
                                     <x-tick-icon />
-                                    <span>{{ setting('home_cta_bullet_4', 'First Class Services') }}</span>
+                                    <span>{{ __(setting('home_cta_bullet_4', 'First Class Services')) }}</span>
                                 </li>
                             @endif
                             @if(setting('home_cta_bullet_5', '24/7 road assistance'))
                                 <li class="neutral-1000 wow fadeInUp" data-wow-delay="0.2s">
                                     <x-tick-icon />
-                                    <span>{{ setting('home_cta_bullet_5', '24/7 road assistance') }}</span>
-                                </li>
-                            @endif
-                            @if(setting('home_cta_bullet_6', 'Free Pick-Up & Drop-Offs'))
-                                <li class="neutral-1000 wow fadeInUp" data-wow-delay="0.3s">
-                                    <x-tick-icon />
-                                    <span>{{ setting('home_cta_bullet_6', 'Free Pick-Up & Drop-Offs') }}</span>
+                                    <span>{{ __(setting('home_cta_bullet_5', '24/7 road assistance')) }}</span>
                                 </li>
                             @endif
                         </ul>

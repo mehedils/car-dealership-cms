@@ -24,14 +24,14 @@
                 <p class="card-miles text-md-medium">{{ is_object($car) ? ($car->mileage ?? '20k') : '20k' }}</p>
                 <p class="card-gear text-md-medium">{{ is_object($car) ? ($car->transmission ?? 'Auto') : 'Auto' }}</p>
                 <p class="card-fuel text-md-medium">{{ is_object($car) ? ($car->fuelType?->name ?? 'Petrol') : ($car['fuelType'] ?? '') }}</p>
-                <p class="card-seat text-md-medium">{{ is_object($car) ? ($car->seats ?? 5) : 5 }} seats</p>
+                <p class="card-seat text-md-medium">{{ is_object($car) ? ($car->seats ?? 5) : 5 }} {{ __('Seats') }}</p>
             </div>
             <div class="endtime">
                 <div class="card-price">
                     <h6 class="text-lg-bold neutral-1000">${{ is_object($car) ? number_format($car->price) : ($car['price'] ?? '0') }}</h6>
                 </div>
                 <div class="card-button">
-                    <a class="btn btn-primary btn-sm px-3" href="{{ is_object($car) && isset($car->slug) ? route('cars.show', $car->slug) : url('/cars/' . ($car['slug'] ?? '')) }}">View</a>
+                    <a class="btn btn-primary btn-sm px-3" href="{{ is_object($car) && isset($car->slug) ? route('cars.show', $car->slug) : url('/cars/' . ($car['slug'] ?? '')) }}">{{ __('View Details') }}</a>
                 </div>
             </div>
         </div>

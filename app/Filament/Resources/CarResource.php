@@ -17,9 +17,20 @@ class CarResource extends Resource
 {
     protected static ?string $model = Car::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-key';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Inventory');
+    }
 
-    protected static ?string $navigationGroup = 'Inventory';
+    public static function getModelLabel(): string
+    {
+        return __('Car');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Cars');
+    }
 
     public static function form(Form $form): Form
     {
@@ -27,66 +38,86 @@ class CarResource extends Resource
             ->schema([
                 Forms\Components\Tabs::make('Tabs')
                     ->tabs([
-                        Forms\Components\Tabs\Tab::make('Basic Info')
+                        Forms\Components\Tabs\Tab::make(__('Basic Info'))
                             ->schema([
                                 Forms\Components\TextInput::make('name')
+                                    ->label(__('Name'))
                                     ->required()
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (\Filament\Forms\Set $set, ?string $state) => $set('slug', \Illuminate\Support\Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
+                                    ->label(__('Slug'))
                                     ->required(),
                                 Forms\Components\Select::make('brand_id')
+                                    ->label(__('Brand'))
                                     ->relationship('brand', 'name')
                                     ->required(),
                                 Forms\Components\Select::make('car_type_id')
+                                    ->label(__('Car Type'))
                                     ->relationship('carType', 'name')
                                     ->required(),
                                 Forms\Components\Select::make('fuel_type_id')
+                                    ->label(__('Fuel Type'))
                                     ->relationship('fuelType', 'name')
                                     ->required(),
                                 Forms\Components\Select::make('location_id')
+                                    ->label(__('Location'))
                                     ->relationship('location', 'name')
                                     ->required(),
                                 Forms\Components\Select::make('amenities')
+                                    ->label(__('Amenities'))
                                     ->relationship('amenities', 'name')
                                     ->multiple(),
                                 Forms\Components\Toggle::make('is_featured')
+                                    ->label(__('Is Featured'))
                                     ->required(),
                                 Forms\Components\Textarea::make('description')
+                                    ->label(__('Description'))
                                     ->columnSpanFull(),
                             ]),
-                        Forms\Components\Tabs\Tab::make('Specifications')
+                        Forms\Components\Tabs\Tab::make(__('Specifications'))
                             ->schema([
                                 Forms\Components\TextInput::make('mileage')
+                                    ->label(__('Mileage'))
                                     ->numeric(),
-                                Forms\Components\TextInput::make('transmission'),
+                                Forms\Components\TextInput::make('transmission')
+                                    ->label(__('Transmission')),
                                 Forms\Components\TextInput::make('seats')
+                                    ->label(__('Seats'))
                                     ->numeric(),
                                 Forms\Components\TextInput::make('doors')
+                                    ->label(__('Doors'))
                                     ->numeric(),
-                                Forms\Components\TextInput::make('luggage'),
-                                Forms\Components\TextInput::make('engine_capacity'),
+                                Forms\Components\TextInput::make('luggage')
+                                    ->label(__('Luggage')),
+                                Forms\Components\TextInput::make('engine_capacity')
+                                    ->label(__('Engine')),
                             ]),
-                        Forms\Components\Tabs\Tab::make('Images')
+                        Forms\Components\Tabs\Tab::make(__('Images'))
                             ->schema([
                                 Forms\Components\SpatieMediaLibraryFileUpload::make('gallery')
+                                    ->label(__('Gallery'))
                                     ->collection('gallery')
                                     ->multiple()
                                     ->reorderable()
                                     ->columnSpanFull(),
                             ]),
-                        Forms\Components\Tabs\Tab::make('Pricing & Inclusions')
+                        Forms\Components\Tabs\Tab::make(__('Pricing & Inclusions'))
                             ->schema([
                                 Forms\Components\TextInput::make('price')
+                                    ->label(__('Price'))
                                     ->required()
                                     ->numeric()
                                     ->prefix('$'),
-                                Forms\Components\TextInput::make('duration'),
+                                Forms\Components\TextInput::make('duration')
+                                    ->label(__('Duration')),
                                 Forms\Components\TextInput::make('rating')
+                                    ->label(__('Rating'))
                                     ->required()
                                     ->numeric()
                                     ->default(0),
                                 Forms\Components\Textarea::make('included_in_price')
+                                    ->label(__('Included in Price'))
                                     ->columnSpanFull(),
                             ]),
                     ])

@@ -12,19 +12,19 @@
                     <nav class="nav-main-menu">
                         <ul class="main-menu">
                             <li>
-                                <a href="/">Home</a>
+                                <a href="/">{{ __('Home') }}</a>
                             </li>
                             <li>
-                                <a href="/cars">Cars</a>
+                                <a href="/cars">{{ __('Cars') }}</a>
                             </li>
                             <li>
-                                <a href="/services">Services</a>
+                                <a href="/services">{{ __('Services') }}</a>
                             </li>
                             <li>
-                                <a href="/about">About Us</a>
+                                <a href="/about">{{ __('About Us') }}</a>
                             </li>
                             <li>
-                                <a href="/contact">Contact Us</a>
+                                <a href="/contact">{{ __('Contact Us') }}</a>
                             </li>
                         </ul>
                     </nav>
@@ -32,7 +32,7 @@
                 <div class="header-right d-flex align-items-center gap-3">
                     <button class="btn btn-brand-2 btn-header-lead text-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#leadModal">
                         <i class="fi fi-rr-envelope"></i>
-                        <span>Inquire Now</span>
+                        <span>{{ __('Send Inquiry') }}</span>
                     </button>
                     <div class="burger-icon burger-icon-white" id="btn-mobile-menu">
                         <span class="burger-icon-top"></span>

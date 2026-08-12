@@ -3,9 +3,9 @@
         <div class="row align-items-end">
             <div class="col-md-9 col-sm-9 wow fadeInUp">
                 <div class="box-author-testimonials">
-                    {{ setting('home_testimonials_subtitle', 'Testimonials') }}
+                    {{ __(setting('home_testimonials_subtitle', 'Testimonials')) }}
                 </div>
-                <h3 class="mt-8 mb-15 neutral-1000">{{ setting('home_testimonials_title', 'What they say about us?') }}</h3>
+                <h3 class="mt-8 mb-15 neutral-1000">{{ __(setting('home_testimonials_title', 'What they say about us?')) }}</h3>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
                                 <div class="swiper-slide">
                                     <div class="card-testimonial background-card">
                                         <div class="card-info">
-                                            <p class="text-xl-bold card-title neutral-1000">Customer Review</p>
+                                            <p class="text-xl-bold card-title neutral-1000">{{ __('Reviews') }}</p>
                                             <p class="text-md-regular neutral-500">{{ $item->content }}</p>
                                         </div>
                                         <div class="card-top pt-40 border-0 mb-0">

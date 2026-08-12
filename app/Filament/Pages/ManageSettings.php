@@ -14,11 +14,20 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static ?string $navigationGroup = 'Settings';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Settings');
+    }
 
-    protected static ?string $navigationLabel = 'Site Settings';
+    public static function getNavigationLabel(): string
+    {
+        return __('Site Settings');
+    }
 
-    protected static ?string $title = 'Site Settings';
+    public function getTitle(): string
+    {
+        return __('Site Settings');
+    }
 
     protected static string $view = 'filament.pages.manage-settings';
 

@@ -26,14 +26,13 @@
                 <a class="btn btn-black" href="#">Logout</a>
             </div>
             <div class="box-contactus">
-                <h6 class="title-contactus neutral-1000">Contact Us</h6>
+                <h6 class="title-contactus neutral-1000">{{ __('Contact Us') }}</h6>
                 <div class="contact-info">
                     <p class="address-2 text-md-medium neutral-1000">
-                        4517 Washington Ave. <br>
-                        Manchester, Kentucky 39495
+                        {{ setting('contact_address', '750 7th Avenue, Manhattan, New York, NY 10019, USA') }}
                     </p>
-                    <p class="hour-work-2 text-md-medium neutral-1000">Hours: 8:00 - 17:00, Mon - Sat</p>
-                    <p class="email-2 text-md-medium neutral-1000">support@carento.com</p>
+                    <p class="hour-work-2 text-md-medium neutral-1000">{{ __('Hours') }}: 8:00 - 17:00, Mon - Sat</p>
+                    <p class="email-2 text-md-medium neutral-1000">{{ setting('contact_email', 'sale@carento.com') }}</p>
                 </div>
             </div>
         </div>

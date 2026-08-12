@@ -19,15 +19,30 @@ class AmenityResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-check-badge';
 
-    protected static ?string $navigationGroup = 'Inventory';
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Inventory');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Amenity');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Amenities');
+    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label(__('Name'))
                     ->required(),
                 \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                    ->label(__('Icon'))
                     ->required(),
             ]);
     }
