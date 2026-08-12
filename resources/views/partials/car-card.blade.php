@@ -8,16 +8,7 @@
             @endif
         </a>
     </div>
-    <div class="card-info p-4 pt-30">
-        <div class="card-rating">
-            <div class="card-left"></div>
-            <div class="card-right">
-                <span class="rating text-xs-medium rounded-pill">
-                    {{ is_object($car) ? $car->rating : ($car['rating'] ?? '5.0') }}
-                    <span class="text-xs-medium neutral-500">({{ is_object($car) ? $car->reviews_count ?? 5 : 5 }} reviews)</span>
-                </span>
-            </div>
-        </div>
+    <div class="card-info p-4 pt-3">
         <div class="card-title">
             <a class="text-lg-bold neutral-1000 text-truncate d-block" href="{{ is_object($car) && isset($car->slug) ? route('cars.show', $car->slug) : url('/cars/' . ($car['slug'] ?? '')) }}">
                 {{ is_object($car) ? $car->name : ($car['name'] ?? '') }}
