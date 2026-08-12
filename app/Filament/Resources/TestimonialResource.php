@@ -19,6 +19,8 @@ class TestimonialResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
+    protected static ?int $navigationSort = 5;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Content');

@@ -19,6 +19,8 @@ class TeamMemberResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?int $navigationSort = 6;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Content');
@@ -26,12 +28,12 @@ class TeamMemberResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Team Member');
+        return __('Team');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Team Members');
+        return __('Team');
     }
 
     public static function form(Form $form): Form

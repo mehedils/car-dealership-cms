@@ -19,19 +19,21 @@ class InquiryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
 
+    protected static ?int $navigationSort = 1;
+
     public static function getNavigationGroup(): ?string
     {
-        return __('System');
+        return __('Leads');
     }
 
     public static function getModelLabel(): string
     {
-        return __('Inquiry');
+        return __('Lead');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Inquiries');
+        return __('Leads');
     }
 
     public static function form(Form $form): Form

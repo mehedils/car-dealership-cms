@@ -19,6 +19,8 @@ class BlogPostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
+    protected static ?int $navigationSort = 3;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Content');
@@ -26,12 +28,12 @@ class BlogPostResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Blog Post');
+        return __('Blog');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Blog Posts');
+        return __('Blog');
     }
 
     public static function form(Form $form): Form

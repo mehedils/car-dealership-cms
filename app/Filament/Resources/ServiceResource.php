@@ -19,6 +19,8 @@ class ServiceResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
 
+    protected static ?int $navigationSort = 2;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Content');

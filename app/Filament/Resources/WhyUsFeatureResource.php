@@ -19,6 +19,8 @@ class WhyUsFeatureResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
+    protected static ?int $navigationSort = 7;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Content');
@@ -26,12 +28,12 @@ class WhyUsFeatureResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Why Us Feature');
+        return __('Highlight');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Why Us Features');
+        return __('Highlights');
     }
 
     public static function form(Form $form): Form

@@ -14,6 +14,8 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
+    protected static ?int $navigationSort = 1;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Settings');

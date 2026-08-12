@@ -19,6 +19,8 @@ class BrandResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
+    protected static ?int $navigationSort = 2;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Inventory');

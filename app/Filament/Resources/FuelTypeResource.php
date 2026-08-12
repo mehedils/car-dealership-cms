@@ -19,6 +19,8 @@ class FuelTypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-fire';
 
+    protected static ?int $navigationSort = 4;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Inventory');
@@ -26,12 +28,12 @@ class FuelTypeResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Fuel Type');
+        return __('Fuel');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Fuel Types');
+        return __('Fuels');
     }
 
     public static function form(Form $form): Form

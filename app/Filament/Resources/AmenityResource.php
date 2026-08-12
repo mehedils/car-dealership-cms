@@ -19,6 +19,8 @@ class AmenityResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-check-badge';
 
+    protected static ?int $navigationSort = 5;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Inventory');
@@ -26,12 +28,12 @@ class AmenityResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Amenity');
+        return __('Feature');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Amenities');
+        return __('Features');
     }
 
     public static function form(Form $form): Form

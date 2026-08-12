@@ -19,9 +19,11 @@ class ReviewResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-star';
 
+    protected static ?int $navigationSort = 2;
+
     public static function getNavigationGroup(): ?string
     {
-        return __('Content');
+        return __('Leads');
     }
 
     public static function getModelLabel(): string

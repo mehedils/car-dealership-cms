@@ -19,6 +19,8 @@ class CarTypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
+    protected static ?int $navigationSort = 3;
+
     public static function getNavigationGroup(): ?string
     {
         return __('Inventory');
@@ -26,12 +28,12 @@ class CarTypeResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return __('Car Type');
+        return __('Category');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('Car Types');
+        return __('Categories');
     }
 
     public static function form(Form $form): Form
