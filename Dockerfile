@@ -39,8 +39,8 @@ WORKDIR /app
 # Copy application files
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-dev --no-scripts --ignore-platform-reqs \
+# Install PHP dependencies (including dev for Faker/seeders)
+RUN composer install --no-scripts --ignore-platform-reqs \
     && composer dump-autoload --optimize --no-scripts \
     && mkdir -p bootstrap/cache \
     && php artisan package:discover --ansi
