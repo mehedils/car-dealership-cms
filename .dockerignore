@@ -1,0 +1,40 @@
+.git
+.gitignore
+.gitattributes
+.editorconfig
+.env
+.env.*
+!.env.example
+
+# Never copy local bootstrap cache — it contains dev package discovery
+bootstrap/cache/
+
+# Node / build artifacts (handled in Dockerfile stages)
+node_modules/
+
+# Dev / test tooling
+tests/
+.phpunit.result.cache
+phpunit.xml
+
+# Docker files (no need to copy docker-compose into container)
+Dockerfile
+docker-compose.yml
+
+# IDE / editor
+.idea/
+.vscode/
+*.sublime-*
+.opencode/
+.designs/
+.agent/
+
+# Logs
+storage/logs/*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled assets (built in node stage)
+public/hot

@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    expose:
+      - "80"
+    env_file:
+      - .env
+    environment:
+      - DB_DATABASE=/app/database/data/database.sqlite
+    volumes:
+      - database_volume:/app/database/data
+      - storage_volume:/app/storage
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    command: ["php", "artisan", "queue:work", "--sleep=3", "--tries=3", "--max-time=3600"]
+    env_file:
+      - .env
+    environment:
+      - DB_DATABASE=/app/database/data/database.sqlite
+    volumes:
+      - database_volume:/app/database/data
+      - storage_volume:/app/storage
+    depends_on:
+      - app
+
+volumes:
+  database_volume:
+  storage_volume:
