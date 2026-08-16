@@ -513,3 +513,30 @@ a.icon-socials:hover svg path {
     color: #ffffff !important;
     stroke: #ffffff !important;
 }
+
+/* --- Header Navigation Responsive Fix for 1200px - 1399px (e.g. 1366x768 screens) --- */
+@media screen and (min-width: 1200px) {
+    .header .nav-main-menu {
+        display: block !important;
+    }
+    .burger-icon {
+        display: none !important;
+    }
+}
+
+/* --- Fix Burger Icon Overlap on Mobile/Tablet (< 1200px) --- */
+@media screen and (max-width: 1199.98px) {
+    .header-right {
+        padding-right: 0 !important;
+    }
+    .header .main-header .header-right {
+        min-width: auto !important;
+    }
+    .burger-icon {
+        position: relative !important;
+        top: 0 !important;
+        margin-left: 10px !important;
+        flex-shrink: 0 !important;
+    }
+}
+
