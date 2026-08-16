@@ -37,10 +37,16 @@
                         </span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-lg-8">
                         <div class="tour-title-main">
                             <h4 class="neutral-1000">{{ $car->name }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-lg-end text-start mt-3 mt-lg-0">
+                        <div class="d-flex align-items-center justify-content-lg-end">
+                            <h3 class="text-3xl-bold neutral-1000">${{ number_format($car->price) }}</h3>
+                            <span class="text-md-medium neutral-500 ms-1">/ day</span>
                         </div>
                     </div>
                 </div>

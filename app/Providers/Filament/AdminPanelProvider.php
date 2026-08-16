@@ -27,9 +27,21 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->colors([
-                'primary' => Color::Amber,
-            ])
+            ->brandName(fn () => (string) setting('site_name', config('app.name', 'Carento')))
+            ->brandLogo(fn () => (string) setting('site_logo_dark', asset('assets/imgs/template/logo-d.svg')))
+            ->darkModeBrandLogo(fn () => (string) setting('site_logo_light', asset('assets/imgs/template/logo-w.svg')))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(fn () => (string) setting('site_favicon', asset('assets/imgs/template/favicon.svg')))
+            ->colors(function () {
+                $color = (string) setting('primary_color', '#70f46d');
+                if (empty($color) || ! preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $color)) {
+                    $color = '#70f46d';
+                }
+
+                return [
+                    'primary' => Color::hex($color),
+                ];
+            })
             ->navigationGroups([
                 __('Inventory'),
                 __('Leads'),
