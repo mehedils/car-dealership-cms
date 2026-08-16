@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
             ? ['Bluetooth', 'Cámara de Reversa', 'Navegación GPS', 'Asientos de Piel', 'Quemacocos', 'Asientos Calefaccionados', 'Apple CarPlay']
             : ['Bluetooth', 'Backup Camera', 'Navigation', 'Leather Seats', 'Sunroof', 'Heated Seats', 'Apple CarPlay'];
         foreach ($amenityNames as $name) {
-            $amenities[] = Amenity::create(['name' => $name, 'icon' => 'check-circle']);
+            $amenities[] = Amenity::create(['name' => $name, 'icon' => 'heroicon-o-check-circle']);
         }
 
         $this->command->info('Seeding Cars...');
@@ -172,7 +172,7 @@ class DatabaseSeeder extends Seeder
                 'slug' => $faker->unique()->slug,
                 'description' => $faker->paragraph,
                 'image' => $image,
-                'icon' => 'briefcase',
+                'icon' => 'heroicon-o-briefcase',
                 'is_active' => true,
             ]);
         }
@@ -229,7 +229,7 @@ class DatabaseSeeder extends Seeder
             WhyUsFeature::create([
                 'title' => $faker->words(3, true),
                 'description' => $faker->sentence,
-                'icon' => 'star',
+                'icon' => 'heroicon-o-star',
                 'sort_order' => $i,
             ]);
         }
