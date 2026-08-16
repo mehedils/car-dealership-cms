@@ -62,188 +62,188 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
     {
         return $form
             ->schema([
-                Forms\Components\Tabs::make('Homepage Settings')
+                Forms\Components\Tabs::make(__('Homepage Settings'))
                     ->tabs([
-                        Forms\Components\Tabs\Tab::make('Section Visibility')
+                        Forms\Components\Tabs\Tab::make(__('Section Visibility'))
                             ->icon('heroicon-o-eye')
                             ->schema([
-                                Forms\Components\Section::make('Enable / Disable Homepage Sections')
-                                    ->description('Toggle which sections appear on the main website homepage.')
+                                Forms\Components\Section::make(__('Enable / Disable Homepage Sections'))
+                                    ->description(__('Toggle which sections appear on the main website homepage.'))
                                     ->schema([
                                         Forms\Components\Grid::make(3)->schema([
                                             Forms\Components\Toggle::make('home_show_hero')
-                                                ->label('Hero Banner Section')
+                                                ->label(__('Hero Banner Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_search')
-                                                ->label('Search / Callback Form')
+                                                ->label(__('Search / Callback Form'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_brands')
-                                                ->label('Brands Showcase Section')
+                                                ->label(__('Brands Showcase Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_featured')
-                                                ->label('Featured Vehicles Section')
+                                                ->label(__('Featured Vehicles Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_cta')
-                                                ->label('CTA Promo Banner Section')
+                                                ->label(__('CTA Promo Banner Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_categories')
-                                                ->label('Car Categories Section')
+                                                ->label(__('Car Categories Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_why_us')
-                                                ->label('Why Choose Us Section')
+                                                ->label(__('Why Choose Us Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_latest')
-                                                ->label('Latest Arrivals Section')
+                                                ->label(__('Latest Arrivals Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_services')
-                                                ->label('Services Section')
+                                                ->label(__('Services Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_testimonials')
-                                                ->label('Testimonials Section')
+                                                ->label(__('Testimonials Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_blog')
-                                                ->label('Blog / News Section')
+                                                ->label(__('Blog / News Section'))
                                                 ->default(true),
                                         ]),
                                     ]),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('Hero Section')
+                        Forms\Components\Tabs\Tab::make(__('Hero Section'))
                             ->icon('heroicon-o-sparkles')
                             ->schema([
                                 Forms\Components\FileUpload::make('home_hero_bg_image')
-                                    ->label('Hero Background Image')
+                                    ->label(__('Hero Background Image'))
                                     ->image()
                                     ->directory('settings')
                                     ->preserveFilenames()
-                                    ->hint('Optimal size: 3838×1784 px or 1920×892 px (~2.15:1 Aspect Ratio)')
+                                    ->hint(__('Optimal size: 3838×1784 px or 1920×892 px (~2.15:1 Aspect Ratio)'))
                                     ->hintIcon('heroicon-m-information-circle')
-                                    ->helperText('Upload a high-resolution banner image for the homepage hero section. Displayed with 0.6 opacity dark overlay.'),
+                                    ->helperText(__('Upload a high-resolution banner image for the homepage hero section. Displayed with 0.6 opacity dark overlay.')),
                                 Forms\Components\TextInput::make('home_hero_tagline')
-                                    ->label('Hero Small Tagline')
-                                    ->placeholder('e.g. Find Your Perfect Car'),
+                                    ->label(__('Hero Small Tagline'))
+                                    ->placeholder(__('e.g. Find Your Perfect Car')),
                                 Forms\Components\Textarea::make('home_hero_title')
-                                    ->label('Hero Main Title')
+                                    ->label(__('Hero Main Title'))
                                     ->rows(2)
-                                    ->placeholder('e.g. Looking for a vehicle? You’re in the perfect spot.'),
+                                    ->placeholder(__('e.g. Looking for a vehicle? You’re in the perfect spot.')),
                                 Forms\Components\Grid::make(3)->schema([
                                     Forms\Components\TextInput::make('home_hero_bullet_1')
-                                        ->label('Bullet Point 1')
-                                        ->placeholder('e.g. High quality at a low cost.'),
+                                        ->label(__('Bullet Point 1'))
+                                        ->placeholder(__('e.g. High quality at a low cost.')),
                                     Forms\Components\TextInput::make('home_hero_bullet_2')
-                                        ->label('Bullet Point 2')
-                                        ->placeholder('e.g. Premium services'),
+                                        ->label(__('Bullet Point 2'))
+                                        ->placeholder(__('e.g. Premium services')),
                                     Forms\Components\TextInput::make('home_hero_bullet_3')
-                                        ->label('Bullet Point 3')
-                                        ->placeholder('e.g. 24/7 roadside support.'),
+                                        ->label(__('Bullet Point 3'))
+                                        ->placeholder(__('e.g. 24/7 roadside support.')),
                                 ]),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('Featured Vehicles')
+                        Forms\Components\Tabs\Tab::make(__('Featured Vehicles'))
                             ->icon('heroicon-o-truck')
                             ->schema([
                                 Forms\Components\TextInput::make('home_featured_title')
-                                    ->label('Section Title')
-                                    ->placeholder('e.g. Featured Vehicles'),
+                                    ->label(__('Section Title'))
+                                    ->placeholder(__('e.g. Featured Vehicles')),
                                 Forms\Components\TextInput::make('home_featured_subtitle')
-                                    ->label('Section Subtitle')
-                                    ->placeholder('e.g. Explore our hand-picked premium selection'),
+                                    ->label(__('Section Subtitle'))
+                                    ->placeholder(__('e.g. Explore our hand-picked premium selection')),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('CTA Banner')
+                        Forms\Components\Tabs\Tab::make(__('CTA Banner'))
                             ->icon('heroicon-o-megaphone')
                             ->schema([
                                 Forms\Components\TextInput::make('home_cta_badge')
-                                    ->label('Badge Label')
-                                    ->placeholder('e.g. Best Car Rental System'),
+                                    ->label(__('Badge Label'))
+                                    ->placeholder(__('e.g. Best Car Rental System')),
                                 Forms\Components\TextInput::make('home_cta_title')
-                                    ->label('Banner Heading')
-                                    ->placeholder('e.g. Receive a Competitive Offer Sell Your Car to Us Today.'),
+                                    ->label(__('Banner Heading'))
+                                    ->placeholder(__('e.g. Receive a Competitive Offer Sell Your Car to Us Today.')),
                                 Forms\Components\Textarea::make('home_cta_description')
-                                    ->label('Description Copy')
+                                    ->label(__('Description Copy'))
                                     ->rows(3),
                                 Forms\Components\TextInput::make('home_cta_video_url')
-                                    ->label('Video Popup URL')
+                                    ->label(__('Video Popup URL'))
                                     ->placeholder('e.g. https://www.youtube.com/watch?v=AOg61RB75Ho'),
                                 Forms\Components\FileUpload::make('home_cta_image')
-                                    ->label('Banner Media / Video Image')
+                                    ->label(__('Banner Media / Video Image'))
                                     ->image()
                                     ->directory('settings')
                                     ->preserveFilenames(),
-                                Forms\Components\Section::make('Feature Bullet List')->schema([
+                                Forms\Components\Section::make(__('Feature Bullet List'))->schema([
                                     Forms\Components\Grid::make(2)->schema([
-                                        Forms\Components\TextInput::make('home_cta_bullet_1')->label('Feature 1')->placeholder('e.g. Expert Certified Mechanics'),
-                                        Forms\Components\TextInput::make('home_cta_bullet_2')->label('Feature 2')->placeholder('e.g. Get Reasonable Price'),
-                                        Forms\Components\TextInput::make('home_cta_bullet_3')->label('Feature 3')->placeholder('e.g. Genuine Spares Parts'),
-                                        Forms\Components\TextInput::make('home_cta_bullet_4')->label('Feature 4')->placeholder('e.g. First Class Services'),
-                                        Forms\Components\TextInput::make('home_cta_bullet_5')->label('Feature 5')->placeholder('e.g. 24/7 road assistance'),
-                                        Forms\Components\TextInput::make('home_cta_bullet_6')->label('Feature 6')->placeholder('e.g. Free Pick-Up & Drop-Offs'),
+                                        Forms\Components\TextInput::make('home_cta_bullet_1')->label(__('Feature 1'))->placeholder(__('e.g. Expert Certified Mechanics')),
+                                        Forms\Components\TextInput::make('home_cta_bullet_2')->label(__('Feature 2'))->placeholder(__('e.g. Get Reasonable Price')),
+                                        Forms\Components\TextInput::make('home_cta_bullet_3')->label(__('Feature 3'))->placeholder(__('e.g. Genuine Spares Parts')),
+                                        Forms\Components\TextInput::make('home_cta_bullet_4')->label(__('Feature 4'))->placeholder(__('e.g. First Class Services')),
+                                        Forms\Components\TextInput::make('home_cta_bullet_5')->label(__('Feature 5'))->placeholder(__('e.g. 24/7 road assistance')),
+                                        Forms\Components\TextInput::make('home_cta_bullet_6')->label(__('Feature 6'))->placeholder(__('e.g. Free Pick-Up & Drop-Offs')),
                                     ]),
                                 ]),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('Categories')
+                        Forms\Components\Tabs\Tab::make(__('Categories'))
                             ->icon('heroicon-o-rectangle-stack')
                             ->schema([
                                 Forms\Components\TextInput::make('home_categories_title')
-                                    ->label('Section Title')
-                                    ->placeholder('e.g. Browse by Type'),
+                                    ->label(__('Section Title'))
+                                    ->placeholder(__('e.g. Browse by Type')),
                                 Forms\Components\TextInput::make('home_categories_subtitle')
-                                    ->label('Section Subtitle')
-                                    ->placeholder('e.g. Find the perfect ride for any occasion'),
+                                    ->label(__('Section Subtitle'))
+                                    ->placeholder(__('e.g. Find the perfect ride for any occasion')),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('Why Choose Us')
+                        Forms\Components\Tabs\Tab::make(__('Why Choose Us'))
                             ->icon('heroicon-o-star')
                             ->schema([
                                 Forms\Components\TextInput::make('home_why_us_subtitle')
-                                    ->label('Badge / Subtitle')
-                                    ->placeholder('e.g. WHY CHOOSE US'),
+                                    ->label(__('Badge / Subtitle'))
+                                    ->placeholder(__('e.g. WHY CHOOSE US')),
                                 Forms\Components\TextInput::make('home_why_us_title')
-                                    ->label('Main Title')
-                                    ->placeholder('e.g. Presenting Your Premier Car Dealership Experience'),
+                                    ->label(__('Main Title'))
+                                    ->placeholder(__('e.g. Presenting Your Premier Car Dealership Experience')),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('Latest Arrivals')
+                        Forms\Components\Tabs\Tab::make(__('Latest Arrivals'))
                             ->icon('heroicon-o-clock')
                             ->schema([
                                 Forms\Components\TextInput::make('home_latest_title')
-                                    ->label('Section Title')
-                                    ->placeholder('e.g. Latest Arrivals'),
+                                    ->label(__('Section Title'))
+                                    ->placeholder(__('e.g. Latest Arrivals')),
                                 Forms\Components\TextInput::make('home_latest_subtitle')
-                                    ->label('Section Subtitle')
-                                    ->placeholder('e.g. Check out the newest additions to our inventory'),
+                                    ->label(__('Section Subtitle'))
+                                    ->placeholder(__('e.g. Check out the newest additions to our inventory')),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('Services & Reviews')
+                        Forms\Components\Tabs\Tab::make(__('Services & Reviews'))
                             ->icon('heroicon-o-wrench-screwdriver')
                             ->schema([
                                 Forms\Components\TextInput::make('home_services_title')
-                                    ->label('Services Title')
-                                    ->placeholder('e.g. Our Services'),
+                                    ->label(__('Services Title'))
+                                    ->placeholder(__('e.g. Our Services')),
                                 Forms\Components\TextInput::make('home_services_subtitle')
-                                    ->label('Services Subtitle')
-                                    ->placeholder('e.g. Serving You with Quality, Comfort, and Convenience'),
+                                    ->label(__('Services Subtitle'))
+                                    ->placeholder(__('e.g. Serving You with Quality, Comfort, and Convenience')),
                                 Forms\Components\TextInput::make('home_testimonials_subtitle')
-                                    ->label('Testimonials Badge')
-                                    ->placeholder('e.g. Testimonials'),
+                                    ->label(__('Testimonials Badge'))
+                                    ->placeholder(__('e.g. Testimonials')),
                                 Forms\Components\TextInput::make('home_testimonials_title')
-                                    ->label('Testimonials Title')
-                                    ->placeholder('e.g. What they say about us?'),
+                                    ->label(__('Testimonials Title'))
+                                    ->placeholder(__('e.g. What they say about us?')),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make('Blog & News')
+                        Forms\Components\Tabs\Tab::make(__('Blog & News'))
                             ->icon('heroicon-o-newspaper')
                             ->schema([
                                 Forms\Components\TextInput::make('home_blog_title')
-                                    ->label('Section Title')
-                                    ->placeholder('e.g. Latest News & Articles'),
+                                    ->label(__('Section Title'))
+                                    ->placeholder(__('e.g. Latest News & Articles')),
                                 Forms\Components\TextInput::make('home_blog_subtitle')
-                                    ->label('Section Subtitle')
-                                    ->placeholder('e.g. Stay updated with our latest stories and automotive insights'),
+                                    ->label(__('Section Subtitle'))
+                                    ->placeholder(__('e.g. Stay updated with our latest stories and automotive insights')),
                                 Forms\Components\TextInput::make('home_blog_button_text')
-                                    ->label('Button Text')
-                                    ->placeholder('e.g. View All Posts'),
+                                    ->label(__('Button Text'))
+                                    ->placeholder(__('e.g. View All Posts')),
                             ]),
                     ])
                     ->columnSpanFull(),
@@ -264,7 +264,7 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
         }
 
         Notification::make()
-            ->title('Homepage settings saved successfully!')
+            ->title(__('Homepage settings saved successfully!'))
             ->success()
             ->send();
     }
