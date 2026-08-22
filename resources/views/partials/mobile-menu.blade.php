@@ -2,10 +2,11 @@
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-logo">
             <a class="d-flex" href="/"><img class="light-mode" alt="{{ setting('site_name', 'Carento') }}" src="{{ setting('site_logo_dark', '/assets/imgs/template/logo-d.svg') }}"></a>
-            <div class="burger-icon burger-icon-white" id="btn-mobile-menu-close">
-                <span class="burger-icon-top"></span>
-                <span class="burger-icon-mid"> </span>
-                <span class="burger-icon-bottom"> </span>
+            <div class="btn-close-mobile-menu" id="btn-mobile-menu-close" role="button" aria-label="{{ __('Close menu') }}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </div>
         </div>
         <div class="mobile-header-content-area">

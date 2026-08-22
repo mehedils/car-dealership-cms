@@ -173,12 +173,20 @@ function initMobileMenu() {
     const $menu = $('.mobile-header-active');
     const $body = $('body');
 
-    $('.burger-icon').on('click', function () {
+    $(document).on('click', '.burger-icon, #btn-mobile-menu, #btn-mobile-menu-close, .btn-close-mobile-menu', function (e) {
+        e.preventDefault();
         const isOpen = $menu.hasClass('sidebar-visible');
-        $menu.toggleClass('sidebar-visible', !isOpen);
-        $body.toggleClass('mobile-menu-active', !isOpen);
-        if (isOpen) $('.body-overlay-1').remove();
-        else $body.append('<div class="body-overlay-1"></div>');
+        if ($(this).is('#btn-mobile-menu-close, .btn-close-mobile-menu') || isOpen) {
+            $menu.removeClass('sidebar-visible');
+            $body.removeClass('mobile-menu-active');
+            $('.body-overlay-1').remove();
+        } else {
+            $menu.addClass('sidebar-visible');
+            $body.addClass('mobile-menu-active');
+            if (!$('.body-overlay-1').length) {
+                $body.append('<div class="body-overlay-1"></div>');
+            }
+        }
     });
 
     $(document).on('click', '.body-overlay-1', function () {

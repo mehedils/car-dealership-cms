@@ -779,6 +779,53 @@ a.icon-socials:hover svg path {
     justify-content: center !important;
 }
 
+/* --- Mobile Menu Close Button & Overlap Fix --- */
+.btn-close-mobile-menu,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-logo .burger-icon,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-logo #btn-mobile-menu-close {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    border-radius: 50% !important;
+    background-color: var(--bs-neutral-100, #f1f5f9) !important;
+    background-image: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    border: 1px solid var(--bs-border-color, #e2e8f0) !important;
+    color: var(--bs-neutral-1000, #101010) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 0 !important;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+}
+
+.btn-close-mobile-menu:hover,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-logo #btn-mobile-menu-close:hover {
+    background-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
+    color: var(--bs-button-text, #ffffff) !important;
+    border-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
+    transform: scale(1.08) !important;
+}
+
+.btn-close-mobile-menu svg,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-logo #btn-mobile-menu-close svg {
+    display: block !important;
+    width: 18px !important;
+    height: 18px !important;
+    stroke: currentColor !important;
+    transition: stroke 0.2s ease !important;
+}
+
+.btn-close-mobile-menu span,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-logo .burger-icon > span,
+.mobile-header-wrapper-style .mobile-header-wrapper-inner .mobile-header-logo #btn-mobile-menu-close > span {
+    display: none !important;
+    opacity: 0 !important;
+}
+
 
 
 
