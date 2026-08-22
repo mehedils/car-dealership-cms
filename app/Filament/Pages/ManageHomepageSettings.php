@@ -261,7 +261,10 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
                 ['key' => $key],
                 ['value' => $valToSave]
             );
+            \Illuminate\Support\Facades\Cache::forget('setting_' . $key);
         }
+
+        \Illuminate\Support\Facades\Cache::flush();
 
         Notification::make()
             ->title(__('Homepage settings saved successfully!'))

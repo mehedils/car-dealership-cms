@@ -101,25 +101,52 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Seeding Cars...');
         $carImages = File::glob(public_path('assets/imgs/cars-details/*.*'));
 
+        $brandModels = [
+            'Toyota' => ['Corolla', 'RAV4', 'Camry', 'Hilux', 'Yaris'],
+            'BMW' => ['Serie 3', 'Serie 5', 'X3', 'X5', 'M4'],
+            'Mercedes' => ['Clase C', 'Clase E', 'GLC', 'GLA', 'Clase A'],
+            'Lexus' => ['RX 350', 'NX 300', 'ES 350', 'IS 300'],
+            'Honda' => ['Civic', 'CR-V', 'Accord', 'HR-V'],
+            'Chevrolet' => ['Tahoe', 'Silverado', 'Onix', 'Tracker'],
+            'Jaguar' => ['F-Pace', 'XE', 'XF', 'F-Type'],
+            'Acura' => ['MDX', 'RDX', 'TLX', 'Integra'],
+            'Bugatti' => ['Chiron', 'Veyron'],
+        ];
+
         $cars = [];
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 24; $i++) {
+            $selectedBrand = $faker->randomElement($brands);
+            $availableModels = $brandModels[$selectedBrand->name] ?? ['Sedan', 'SUV', 'Coupe'];
+            $selectedModel = $faker->randomElement($availableModels);
+            $year = $faker->numberBetween(2019, 2025);
+            $name = "{$year} {$selectedBrand->name} {$selectedModel}";
+            $condition = $year >= 2024 ? $faker->randomElement(['new', 'certified']) : $faker->randomElement(['used', 'certified']);
+            $status = $faker->randomElement(['available', 'available', 'available', 'reserved', 'sold']);
+            $price = $faker->randomElement([18500, 24900, 32500, 41000, 54000, 68000, 89000]);
+            $mileage = $condition === 'new' ? $faker->numberBetween(10, 150) : $faker->numberBetween(8000, 95000);
+
             $car = Car::create([
-                'brand_id' => $faker->randomElement($brands)->id,
+                'brand_id' => $selectedBrand->id,
                 'car_type_id' => $faker->randomElement($carTypes)->id,
                 'fuel_type_id' => $faker->randomElement($fuelTypes)->id,
                 'location_id' => $faker->randomElement($locations)->id,
-                'name' => $faker->company . ' ' . $faker->word,
-                'slug' => $faker->unique()->slug,
-                'price' => $faker->randomElement([25000, 35000, 45000, 55000, 65000]),
+                'name' => $name,
+                'year' => $year,
+                'model' => $selectedModel,
+                'condition' => $condition,
+                'status' => $status,
+                'slug' => Str::slug($name . '-' . $faker->unique()->numberBetween(100, 9999)),
+                'price' => $price,
+                'monthly_payment' => round(($price * 0.8 * 1.12) / 48, 0),
                 'rating' => $faker->randomFloat(1, 4, 5),
-                'is_featured' => $faker->boolean(30),
-                'mileage' => $faker->numberBetween(10, 50) . 'k km',
-                'transmission' => $faker->randomElement(env('APP_LOCALE') === 'es' ? ['Automático', 'Manual'] : ['Automatic', 'Manual']),
-                'seats' => $faker->randomElement([2, 4, 5, 7]),
+                'is_featured' => $faker->boolean(35),
+                'mileage' => $mileage,
+                'transmission' => $faker->randomElement(env('APP_LOCALE') === 'es' ? ['Automática', 'Manual'] : ['Automatic', 'Manual']),
+                'seats' => $faker->randomElement([4, 5, 7]),
                 'doors' => $faker->randomElement([2, 4]),
-                'luggage' => $faker->randomElement(['2 Bags', '3 Bags', '4 Bags']),
-                'engine_capacity' => $faker->randomElement(['1.6L', '2.0L', '3.0L', 'EV']),
-                'included_in_price' => "Free cancellation up to 48 hours\nUnlimited Mileage\nInsurance Included",
+                'luggage' => '3 Bags',
+                'engine_capacity' => $faker->randomElement(['1.6L Turbo', '2.0L Turbo', '2.5L I4', '3.0L V6', 'EV']),
+                'included_in_price' => "Garantía de 12 meses o 20,000 km\nInspección mecánica de 150 puntos\nDocumentación en regla y verificación vigente",
                 'description' => $faker->paragraphs(3, true),
             ]);
 
@@ -240,6 +267,12 @@ class DatabaseSeeder extends Seeder
             'site_name' => 'Carento',
             'site_slogan' => 'More than 800+ special collection cars in this summer',
             'currency_symbol' => '$',
+
+            // Inventory Header
+            'inventory_hero_badge' => env('APP_LOCALE') === 'es' ? 'Inventario de Vehículos Nuevos y Usados' : 'New & Used Vehicle Inventory',
+            'inventory_hero_title' => env('APP_LOCALE') === 'es' ? 'Encuentra el auto que estás buscando' : 'Find Your Perfect Car',
+            'inventory_hero_subtitle' => env('APP_LOCALE') === 'es' ? 'Inventario verificado con garantía, inspección certificada y opciones de financiamiento.' : 'Verified dealership inventory with multi-point inspection and flexible financing.',
+            'inventory_hero_bg_image' => null,
 
             // Contact
             'contact_email' => 'sale@carento.com',

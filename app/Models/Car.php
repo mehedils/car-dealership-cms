@@ -16,6 +16,30 @@ class Car extends Model implements HasMedia
 
     protected $guarded = [];
 
+    protected $casts = [
+        'year' => 'integer',
+        'price' => 'decimal:2',
+        'monthly_payment' => 'decimal:2',
+        'rating' => 'decimal:1',
+        'is_featured' => 'boolean',
+        'mileage' => 'integer',
+    ];
+
+    public function getEstimatedMonthlyPaymentAttribute(): float
+    {
+        if ($this->monthly_payment && $this->monthly_payment > 0) {
+            return (float) $this->monthly_payment;
+        }
+
+        // Standard estimate: 20% down payment, 48-month term, ~7% annual interest estimate
+        if ($this->price > 0) {
+            $principal = (float) $this->price * 0.8;
+            return round(($principal * 1.14) / 48, 0);
+        }
+
+        return 0;
+    }
+
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);

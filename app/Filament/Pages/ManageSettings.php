@@ -81,6 +81,26 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
                                     ->hintIcon('heroicon-m-information-circle')
                                     ->helperText(__('Square icon displayed in browser tabs (PNG, ICO, or SVG).')),
                             ]),
+                        Forms\Components\Tabs\Tab::make(__('Inventory Page'))
+                            ->icon('heroicon-o-truck')
+                            ->schema([
+                                Forms\Components\FileUpload::make('inventory_hero_bg_image')
+                                    ->label(__('Hero Background Banner Image'))
+                                    ->image()
+                                    ->directory('settings')
+                                    ->preserveFilenames()
+                                    ->helperText(__('Custom background banner for the /cars inventory page. Leave empty to use default showroom graphic.')),
+                                Forms\Components\TextInput::make('inventory_hero_badge')
+                                    ->label(__('Hero Badge Tag'))
+                                    ->placeholder(__('e.g. Inventario de Vehículos Nuevos y Usados')),
+                                Forms\Components\TextInput::make('inventory_hero_title')
+                                    ->label(__('Hero Title'))
+                                    ->placeholder(__('e.g. Encuentra el auto que estás buscando')),
+                                Forms\Components\Textarea::make('inventory_hero_subtitle')
+                                    ->label(__('Hero Subtitle Copy'))
+                                    ->rows(2)
+                                    ->placeholder(__('e.g. Inventario verificado con garantía, inspección certificada y opciones de financiamiento.')),
+                            ]),
                         Forms\Components\Tabs\Tab::make(__('General'))
                             ->icon('heroicon-o-information-circle')
                             ->schema([
@@ -207,7 +227,10 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
                 ['key' => $key],
                 ['value' => $valToSave]
             );
+            \Illuminate\Support\Facades\Cache::forget('setting_' . $key);
         }
+
+        \Illuminate\Support\Facades\Cache::flush();
 
         Notification::make()
             ->title(__('Settings saved successfully!'))

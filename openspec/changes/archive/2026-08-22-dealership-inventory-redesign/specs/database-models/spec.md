@@ -1,9 +1,4 @@
-# database-models Specification
-
-## Purpose
-Defines database schema, migrations, and Eloquent models for inventory, taxonomy, media, and user interaction entities.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Database Migrations and Models
 The system SHALL contain migrations and Eloquent models for all required inventory, content, and interaction entities, including extended sales attributes on the `Car` model (`year`, `model`, `condition`, `status`).

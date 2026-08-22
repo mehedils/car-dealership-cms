@@ -52,6 +52,33 @@ class CarResource extends Resource
                                 Forms\Components\TextInput::make('slug')
                                     ->label(__('Slug'))
                                     ->required(),
+                                Forms\Components\Grid::make(4)->schema([
+                                    Forms\Components\TextInput::make('year')
+                                        ->label(__('Year'))
+                                        ->numeric()
+                                        ->minValue(1900)
+                                        ->maxValue((int) date('Y') + 2),
+                                    Forms\Components\TextInput::make('model')
+                                        ->label(__('Model')),
+                                    Forms\Components\Select::make('condition')
+                                        ->label(__('Condition'))
+                                        ->options([
+                                            'new' => __('New'),
+                                            'used' => __('Used'),
+                                            'certified' => __('Certified'),
+                                        ])
+                                        ->default('used')
+                                        ->required(),
+                                    Forms\Components\Select::make('status')
+                                        ->label(__('Status'))
+                                        ->options([
+                                            'available' => __('Available'),
+                                            'reserved' => __('Reserved'),
+                                            'sold' => __('Sold'),
+                                        ])
+                                        ->default('available')
+                                        ->required(),
+                                ]),
                                 Forms\Components\Select::make('brand_id')
                                     ->label(__('Brand'))
                                     ->relationship('brand', 'name')
@@ -82,7 +109,7 @@ class CarResource extends Resource
                         Forms\Components\Tabs\Tab::make(__('Specifications'))
                             ->schema([
                                 Forms\Components\TextInput::make('mileage')
-                                    ->label(__('Mileage'))
+                                    ->label(__('Mileage (km)'))
                                     ->numeric(),
                                 Forms\Components\TextInput::make('transmission')
                                     ->label(__('Transmission')),
@@ -92,8 +119,6 @@ class CarResource extends Resource
                                 Forms\Components\TextInput::make('doors')
                                     ->label(__('Doors'))
                                     ->numeric(),
-                                Forms\Components\TextInput::make('luggage')
-                                    ->label(__('Luggage')),
                                 Forms\Components\TextInput::make('engine_capacity')
                                     ->label(__('Engine')),
                             ]),
@@ -113,15 +138,17 @@ class CarResource extends Resource
                                     ->required()
                                     ->numeric()
                                     ->prefix('$'),
-                                Forms\Components\TextInput::make('duration')
-                                    ->label(__('Duration')),
+                                Forms\Components\TextInput::make('monthly_payment')
+                                    ->label(__('Monthly Installment (Optional Override)'))
+                                    ->numeric()
+                                    ->prefix('$'),
                                 Forms\Components\TextInput::make('rating')
                                     ->label(__('Rating'))
                                     ->required()
                                     ->numeric()
-                                    ->default(0),
+                                    ->default(5),
                                 Forms\Components\Textarea::make('included_in_price')
-                                    ->label(__('Included in Price'))
+                                    ->label(__('Included in Price / Warranty'))
                                     ->columnSpanFull(),
                             ]),
                     ])
@@ -133,56 +160,71 @@ class CarResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('brand.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('carType.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('fuelType.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('location.name')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('brand.name')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('year')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('condition')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'new' => 'success',
+                        'certified' => 'warning',
+                        default => 'info',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'new' => __('New'),
+                        'certified' => __('Certified'),
+                        default => __('Used'),
+                    }),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'available' => 'success',
+                        'reserved' => 'warning',
+                        'sold' => 'gray',
+                        default => 'primary',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'available' => __('Available'),
+                        'reserved' => __('Reserved'),
+                        'sold' => __('Sold'),
+                        default => $state,
+                    }),
                 Tables\Columns\TextColumn::make('price')
                     ->money()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('duration')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('rating')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('is_featured')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('mileage')
                     ->numeric()
+                    ->formatStateUsing(fn ($state) => $state ? number_format($state) . ' km' : '-')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('transmission')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('seats')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('doors')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('luggage')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('engine_capacity')
-                    ->searchable(),
+                Tables\Columns\IconColumn::make('is_featured')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('condition')
+                    ->options([
+                        'new' => __('New'),
+                        'used' => __('Used'),
+                        'certified' => __('Certified'),
+                    ]),
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        'available' => __('Available'),
+                        'reserved' => __('Reserved'),
+                        'sold' => __('Sold'),
+                    ]),
+                Tables\Filters\SelectFilter::make('brand_id')
+                    ->relationship('brand', 'name')
+                    ->label(__('Brand')),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

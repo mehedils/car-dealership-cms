@@ -22,9 +22,19 @@ if (! function_exists('setting')) {
                     ? $setting->value
                     : null;
 
+                // If stored as JSON string (e.g. from FileUpload or repeater), try decoding
+                if (is_string($val) && (str_starts_with($val, '[') || str_starts_with($val, '{'))) {
+                    $decoded = json_decode($val, true);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        if (in_array($key, ['site_logo_dark', 'site_logo_light', 'site_favicon', 'inventory_hero_bg_image', 'home_hero_bg_image', 'home_cta_image'])) {
+                            $val = is_array($decoded) ? (reset($decoded) ?: null) : $decoded;
+                        }
+                    }
+                }
+
                 // Smart logo fallback logic:
                 // If light logo is missing, use dark logo (or vice versa)
-                if (is_null($val)) {
+                if (is_null($val) || $val === '') {
                     if ($key === 'site_logo_light') {
                         $darkSetting = Setting::where('key', 'site_logo_dark')->first();
                         if ($darkSetting && ! is_null($darkSetting->value) && $darkSetting->value !== '') {
@@ -38,12 +48,30 @@ if (! function_exists('setting')) {
                     }
                 }
 
-                if (is_null($val)) {
+                if (is_null($val) || $val === '') {
                     $val = $default;
                 }
 
-                if (is_string($val) && str_starts_with($val, 'settings/')) {
-                    return asset('storage/' . $val);
+                if (is_string($val)) {
+                    // Full external URL
+                    if (str_starts_with($val, 'http://') || str_starts_with($val, 'https://')) {
+                        return $val;
+                    }
+
+                    // Template assets
+                    if (str_starts_with($val, '/assets/') || str_starts_with($val, 'assets/')) {
+                        return asset(ltrim($val, '/'));
+                    }
+
+                    // Storage files
+                    if (str_starts_with($val, '/storage/') || str_starts_with($val, 'storage/')) {
+                        return asset(ltrim($val, '/'));
+                    }
+
+                    // Uploaded settings/media files
+                    if (str_starts_with($val, 'settings/') || str_starts_with($val, 'uploads/') || str_starts_with($val, 'cars/')) {
+                        return asset('storage/' . $val);
+                    }
                 }
 
                 return $val;
