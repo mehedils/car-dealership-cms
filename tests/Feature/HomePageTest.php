@@ -38,4 +38,19 @@ class HomePageTest extends TestCase
             'blogPosts',
         ]);
     }
+
+    public function test_footer_renders_dealership_links_and_hours(): void
+    {
+        $this->seed();
+
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+        $response->assertSee('Quick Links');
+        $response->assertSee('Vehicles by Type');
+        $response->assertSee('Vehicle Financing');
+        $response->assertSee('Schedule Test Drive');
+        $response->assertDontSee('Car Rental Services');
+        $response->assertDontSee('Travel Agents');
+    }
 }

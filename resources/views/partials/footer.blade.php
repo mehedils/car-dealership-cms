@@ -3,106 +3,124 @@
         <div class="footer-top">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-6 text-center text-md-start">
-                    <h5 class="color-white wow fadeInDown">{{ __('Subscribe to see secret deals prices drop the moment you sign up!') }}</h5>
+                    <h5 class="color-white wow fadeInDown">{{ __('Subscribe to get exclusive dealership offers, new inventory alerts & price drop updates!') }}</h5>
                 </div>
                 <div class="col-lg-7 col-md-6 text-center text-md-end mt-md-0 mt-4">
                     <div class="d-flex align-items-center justify-content-center justify-content-md-end">
-                        <form class="form-newsletter wow fadeInUp" action="#">
-                            <input class="form-control" type="text" placeholder="{{ __('Your Email') }}">
-                            <input class="btn btn-brand-2" type="submit" value="{{ __('Submit') }}">
+                        <form class="form-newsletter wow fadeInUp" action="{{ route('inquiries.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="name" value="Newsletter Subscriber">
+                            <input type="hidden" name="message" value="Newsletter Subscription Request">
+                            <input class="form-control" type="email" name="email" placeholder="{{ __('Your Email') }}" required>
+                            <input class="btn btn-brand-2" type="submit" value="{{ __('Subscribe') }}">
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-sm-12 footer-1">
+            <!-- Column 1: Dealership Info & Contact -->
+            <div class="col-lg-3 col-md-6 col-sm-12 footer-1 mb-30">
                 <div class="mt-20 mb-20">
-                    <a class="d-flex" href="/">
+                    <a class="d-flex" href="{{ route('home') }}">
                         <img class="light-mode" alt="{{ setting('site_name', 'Carento') }}" src="{{ setting('site_logo_light', '/assets/imgs/template/logo-w.svg') }}">
                     </a>
-                    <div class="box-info-contact mt-0">
-                        <p class="text-md neutral-400 icon-address">{{ setting('contact_address', '2356 Oakwood Drive, Suite 18, San Francisco, California 94111, US') }}</p>
-                        <p class="text-md neutral-400 icon-worktime">{{ __('Hours') }}: 8:00 - 17:00, Mon - Sat</p>
-                        <p class="text-md neutral-400 icon-email">{{ setting('contact_email', 'sale@carento.com') }}</p>
+                    <div class="box-info-contact mt-3">
+                        <p class="text-md neutral-400 icon-address mb-2">{{ setting('contact_address', '750 7th Avenue, Manhattan, New York, NY 10019, USA') }}</p>
+                        <p class="text-md neutral-400 icon-worktime mb-2">{{ __('Hours') }}: {{ __(setting('contact_hours', 'Mon - Sat: 9:00 AM - 7:00 PM')) }}</p>
+                        <p class="text-md neutral-400 icon-email mb-2">
+                            <a href="mailto:{{ setting('contact_email', 'sale@carento.com') }}" class="neutral-400">{{ setting('contact_email', 'sale@carento.com') }}</a>
+                        </p>
                     </div>
-                    <div class="box-need-help">
-                        <p class="need-help text-md-medium mb-5">{{ __('Need help? Call us') }}</p>
-                        <br><a class="heading-6 phone-support" href="tel:{{ preg_replace('/[^0-9+]/', '', setting('contact_phone', '+1 222-555-33-99')) }}">{{ setting('contact_phone', '+1 222-555-33-99') }}</a>
+                    <div class="box-need-help mt-3">
+                        <p class="need-help text-md-medium mb-1">{{ __('Need help? Call us') }}</p>
+                        <a class="heading-6 phone-support" href="tel:{{ preg_replace('/[^0-9+]/', '', setting('contact_phone', '+1 222-555-33-99')) }}">{{ setting('contact_phone', '+1 222-555-33-99') }}</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 col-xs-6 footer-3">
-                <h6 class="text-linear-3">{{ __('Quick Links') }}</h6>
+            <!-- Column 2: Navigation / Quick Links -->
+            <div class="col-lg-2 col-md-6 col-xs-6 footer-3 mb-30">
+                <h6 class="text-linear-3 mb-20">{{ __('Quick Links') }}</h6>
                 <ul class="menu-footer">
-                    <li><a href="/">{{ __('Home') }}</a></li>
-                    <li><a href="/cars">{{ __('Inventory') }}</a></li>
-                    <li><a href="/services">{{ __('Services') }}</a></li>
-                    <li><a href="/about">{{ __('About Us') }}</a></li>
-                    <li><a href="/contact">{{ __('Contact Us') }}</a></li>
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                    <li><a href="{{ route('cars.index') }}">{{ __('Inventory') }}</a></li>
+                    <li><a href="{{ route('services') }}">{{ __('Services') }}</a></li>
+                    <li><a href="{{ route('about') }}">{{ __('About Us') }}</a></li>
+                    <li><a href="{{ route('contact') }}">{{ __('Contact Us') }}</a></li>
                 </ul>
             </div>
-            <div class="col-md-2 col-xs-6 footer-2">
-                <h6 class="text-linear-3">{{ __('Our Services') }}</h6>
+            <!-- Column 3: Vehicle Inventory / Categories -->
+            <div class="col-lg-2 col-md-6 col-xs-6 footer-2 mb-30">
+                <h6 class="text-linear-3 mb-20">{{ __('Vehicles by Type') }}</h6>
                 <ul class="menu-footer">
-                    <li><a href="#">{{ __('Car Rental Services') }}</a></li>
-                    <li><a href="#">{{ __('Vehicle Leasing Options') }}</a></li>
-                    <li><a href="#">{{ __('Long-Term Car Rentals') }}</a></li>
-                    <li><a href="#">{{ __('Car Sales and Trade-Ins') }}</a></li>
-                    <li><a href="#">{{ __('Luxury Car Rentals') }}</a></li>
+                    <li><a href="{{ route('cars.index', ['type' => 'suv']) }}">{{ __('SUVs') }}</a></li>
+                    <li><a href="{{ route('cars.index', ['type' => 'sedan']) }}">{{ __('Sedans') }}</a></li>
+                    <li><a href="{{ route('cars.index', ['type' => 'pickup']) }}">{{ __('Pickups & Trucks') }}</a></li>
+                    <li><a href="{{ route('cars.index', ['condition' => 'new']) }}">{{ __('New Inventory') }}</a></li>
+                    <li><a href="{{ route('cars.index', ['condition' => 'certified']) }}">{{ __('Certified Pre-Owned') }}</a></li>
                 </ul>
             </div>
-            <div class="col-md-2 col-xs-6 footer-4">
-                <h6 class="text-linear-3">{{ __('Our Partners') }}</h6>
+            <!-- Column 4: Dealership Services -->
+            <div class="col-lg-2 col-md-6 col-xs-6 footer-4 mb-30">
+                <h6 class="text-linear-3 mb-20">{{ __('Our Services') }}</h6>
                 <ul class="menu-footer">
-                    <li><a href="#">{{ __('Affiliates') }}</a></li>
-                    <li><a href="#">{{ __('Travel Agents') }}</a></li>
-                    <li><a href="#">{{ __('Work with us') }}</a></li>
+                    <li><a href="{{ route('services') }}">{{ __('Vehicle Financing') }}</a></li>
+                    <li><a href="{{ route('contact') }}">{{ __('Trade-In Valuation') }}</a></li>
+                    <li><a href="{{ route('about') }}">{{ __('Multi-Point Inspection') }}</a></li>
+                    <li><a href="{{ route('services') }}">{{ __('Warranty & Protection') }}</a></li>
+                    <li><a href="{{ route('cars.index') }}">{{ __('Custom Vehicle Search') }}</a></li>
                 </ul>
             </div>
-            <div class="col-md-3 col-xs-6 footer-5">
-                <h6 class="text-linear-3">{{ __('Support') }}</h6>
+            <!-- Column 5: Support & Inquiries -->
+            <div class="col-lg-3 col-md-6 col-xs-6 footer-5 mb-30">
+                <h6 class="text-linear-3 mb-20">{{ __('Support & Info') }}</h6>
                 <ul class="menu-footer">
-                    <li><a href="#">{{ __('Help Center') }}</a></li>
-                    <li><a href="#">{{ __('How it works') }}</a></li>
-                    <li><a href="#">{{ __('Security') }}</a></li>
+                    <li><a href="{{ route('cars.index') }}">{{ __('Schedule Test Drive') }}</a></li>
+                    <li><a href="{{ route('about') }}#faqs">{{ __('Frequently Asked Questions') }}</a></li>
+                    <li><a href="{{ route('contact') }}">{{ __('Location & Directions') }}</a></li>
+                    <li><a href="{{ route('contact') }}">{{ __('Contact Sales Team') }}</a></li>
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom mt-50">
-            <div class="row align-items-center justify-content-center">
+        <div class="footer-bottom mt-30">
+            <div class="row align-items-center justify-content-between">
                 <div class="col-md-6 text-md-start text-center mb-20">
-                    <p class="text-sm color-white">{{ __(setting('footer_copyright', '© ' . date('Y') . ' Carento. All rights reserved.')) }}</p>
+                    <p class="text-sm color-white mb-0">{{ __(setting('footer_copyright', '© ' . date('Y') . ' ' . setting('site_name', 'Carento') . '. All rights reserved.')) }}</p>
                 </div>
                 <div class="col-md-6 text-md-end text-center mb-20">
                     <div class="d-flex align-items-center justify-content-center justify-content-md-end">
-                        <p class="text-lg-bold neutral-0 d-inline-block mr-10">{{ __('Follow Us') }}</p>
+                        <p class="text-lg-bold neutral-0 d-inline-block mr-10 mb-0">{{ __('Follow Us') }}</p>
                         <div class="box-socials-footer d-inline-block">
                             @if(setting('social_instagram') && setting('social_instagram') !== '#')
-                            <a class="icon-socials icon-instagram" href="{{ setting('social_instagram') }}" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                    <path d="M13.9146 1.6665H6.93127C3.89793 1.6665 2.0896 3.47484 2.0896 6.50817V13.4832C2.0896 16.5248 3.89793 18.3332 6.93127 18.3332H13.9063C16.9396 18.3332 18.7479 16.5248 18.7479 13.4915V6.50817C18.7563 3.47484 16.9479 1.6665 13.9146 1.6665ZM10.4229 13.2332C8.6396 13.2332 7.1896 11.7832 7.1896 9.99984C7.1896 8.2165 8.6396 6.7665 10.4229 6.7665C12.2063 6.7665 13.6563 8.2165 13.6563 9.99984C13.6563 11.7832 12.2063 13.2332 10.4229 13.2332ZM15.3563 5.73317C15.3146 5.83317 15.2563 5.92484 15.1813 6.00817C15.0979 6.08317 15.0063 6.1415 14.9063 6.18317C14.8063 6.22484 14.6979 6.24984 14.5896 6.24984C14.3646 6.24984 14.1563 6.1665 13.9979 6.00817C13.9229 5.92484 13.8646 5.83317 13.8229 5.73317C13.7813 5.63317 13.7563 5.52484 13.7563 5.4165C13.7563 5.30817 13.7813 5.19984 13.8229 5.09984C13.8646 4.9915 13.9229 4.90817 13.9979 4.82484C14.1896 4.63317 14.4813 4.5415 14.7479 4.59984C14.8063 4.60817 14.8563 4.62484 14.9063 4.64984C14.9563 4.6665 15.0063 4.6915 15.0563 4.72484C15.0979 4.74984 15.1396 4.7915 15.1813 4.82484C15.2563 4.90817 15.3146 4.9915 15.3563 5.09984C15.3979 5.19984 15.4229 5.30817 15.4229 5.4165C15.4229 5.52484 15.3979 5.63317 15.3563 5.73317Z" />
+                            <a class="icon-socials icon-instagram" href="{{ setting('social_instagram') }}" target="_blank" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                                 </svg>
                             </a>
                             @endif
                             @if(setting('social_facebook') && setting('social_facebook') !== '#')
-                            <a class="icon-socials icon-facebook" href="{{ setting('social_facebook') }}" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                    <path d="M18.7563 13.4915C18.7563 16.5248 16.9479 18.3332 13.9146 18.3332H12.9229C12.4646 18.3332 12.0896 17.9582 12.0896 17.4998V12.6915C12.0896 12.4665 12.2729 12.2748 12.4979 12.2748L13.9646 12.2498C14.0813 12.2415 14.1813 12.1582 14.2063 12.0415L14.4979 10.4498C14.5229 10.2998 14.4063 10.1582 14.2479 10.1582L12.4729 10.1832C12.2396 10.1832 12.0563 9.99985 12.0479 9.77485L12.0146 7.73317C12.0146 7.59984 12.1229 7.48318 12.2646 7.48318L14.2646 7.44984C14.4063 7.44984 14.5146 7.34152 14.5146 7.19985L14.4813 5.19983C14.4813 5.05816 14.3729 4.94984 14.2313 4.94984L11.9813 4.98318C10.5979 5.00818 9.49794 6.1415 9.52294 7.52484L9.5646 9.8165C9.57293 10.0498 9.38961 10.2332 9.15628 10.2415L8.15627 10.2582C8.0146 10.2582 7.90628 10.3665 7.90628 10.5082L7.93127 12.0915C7.93127 12.2332 8.0396 12.3415 8.18126 12.3415L9.18127 12.3248C9.41461 12.3248 9.59792 12.5082 9.60626 12.7332L9.68125 17.4832C9.68959 17.9498 9.31459 18.3332 8.84792 18.3332H6.93126C3.89793 18.3332 2.0896 16.5248 2.0896 13.4832V6.50817C2.0896 3.47484 3.89793 1.6665 6.93126 1.6665H13.9146C16.9479 1.6665 18.7563 3.47484 18.7563 6.50817V13.4915Z" />
+                            <a class="icon-socials icon-facebook" href="{{ setting('social_facebook') }}" target="_blank" aria-label="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                 </svg>
                             </a>
                             @endif
                             @if(setting('social_twitter') && setting('social_twitter') !== '#')
-                            <a class="icon-socials icon-twitter" href="{{ setting('social_twitter') }}" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                    <path d="M12.2847 8.46864L19.5701 0H17.8437L11.5178 7.3532L6.46535 0H0.637939L8.27824 11.1193L0.637939 20H2.36443L9.04472 12.2348L14.3805 20H20.2079L12.2843 8.46864H12.2847ZM9.92005 11.2173L9.14593 10.1101L2.98651 1.29967H5.63831L10.609 8.40994L11.3831 9.51718L17.8445 18.7594H15.1927L9.92005 11.2177V11.2173Z" />
+                            <a class="icon-socials icon-twitter" href="{{ setting('social_twitter') }}" target="_blank" aria-label="Twitter / X">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                                 </svg>
                             </a>
                             @endif
                             @if(setting('social_behance') && setting('social_behance') !== '#')
-                            <a class="icon-socials icon-be" href="{{ setting('social_behance') }}" target="_blank">
-                                <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.82393 10.736L13.9225 7.78881L8.82393 4.84165V10.736ZM20.1803 3.04389C20.308 3.50561 20.3964 4.12451 20.4554 4.91042C20.5242 5.69633 20.5536 6.37418 20.5536 6.96361L20.6126 7.78881C20.6126 9.94024 20.4554 11.5219 20.1803 12.5337C19.9347 13.4179 19.3649 13.9877 18.4808 14.2333C18.6004 14.5771 13.4313 14.6066 12.3507 14.6066L10.7887 14.6655C6.67251 14.6655 4.10848 14.5083 3.09662 14.2333C2.21247 13.9877 1.64269 13.4179 1.39709 12.5337C1.26938 12.072 1.18097 11.4531 1.12203 10.6672C1.05326 9.8813 1.02379 9.20345 1.02379 8.61402L0.964844 7.78881C0.964844 5.63739 1.12203 4.05575 1.39709 3.04389C1.64269 2.15974 2.21247 1.58996 3.09662 1.34436C3.55834 1.21665 4.4032 1.12823 5.69995 1.06929C6.97705 1.00052 8.14609 0.971052 9.22671 0.971052L10.7887 0.912109C14.9049 0.912109 17.4689 1.06929 18.4808 1.34436C19.3649 1.58996 19.9347 2.15974 20.1803 3.04389Z" />
+                            <a class="icon-socials icon-be" href="{{ setting('social_behance') }}" target="_blank" aria-label="Behance">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 7h7a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H3V7z"></path>
+                                    <path d="M3 13h8a3.5 3.5 0 0 1 3.5 3.5v0A3.5 3.5 0 0 1 11 20H3v-7z"></path>
+                                    <path d="M17 10h4"></path>
+                                    <path d="M21 14.5a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0z"></path>
                                 </svg>
                             </a>
                             @endif

@@ -156,6 +156,10 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
                                 Forms\Components\TextInput::make('contact_phone')
                                     ->label(__('Contact Phone'))
                                     ->required(),
+                                Forms\Components\TextInput::make('contact_hours')
+                                    ->label(__('Business Hours'))
+                                    ->placeholder(__('e.g. Mon - Sat: 9:00 AM - 7:00 PM'))
+                                    ->default('Mon - Sat: 9:00 AM - 7:00 PM'),
                                 Forms\Components\Textarea::make('contact_address')
                                     ->label(__('Contact Address'))
                                     ->rows(3),
