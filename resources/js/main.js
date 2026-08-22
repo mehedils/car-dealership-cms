@@ -217,7 +217,14 @@ function initOffcanvas() {
 
 function initBackToTop() {
     const $btn = $('#scrollUp');
-    const onScroll = () => $btn.toggle(window.scrollY > 100);
+    if (!$btn.length) return;
+    const onScroll = () => {
+        if (window.scrollY > 200) {
+            $btn.addClass('show-scroll');
+        } else {
+            $btn.removeClass('show-scroll');
+        }
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     $btn.on('click', (e) => {
         e.preventDefault();

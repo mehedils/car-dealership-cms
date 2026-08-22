@@ -44,7 +44,8 @@ class CarDetailsPageTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Toyota Camry 2025 Special Edition');
         $response->assertSee('$32,000');
-        $response->assertSee('Los Angeles');
+        $response->assertSee('Schedule Test Drive');
+        $response->assertSee('Make An Offer Price');
         $response->assertSee('Inquire About This Car');
     }
 
@@ -81,5 +82,32 @@ class CarDetailsPageTest extends TestCase
             'name' => 'Jane Smith',
             'email' => 'jane@example.com',
         ]);
+    }
+
+    public function test_car_details_page_renders_configured_currency(): void
+    {
+        \App\Models\Setting::updateOrCreate(['key' => 'currency_symbol'], ['value' => 'MXN $']);
+        \App\Models\Setting::updateOrCreate(['key' => 'currency_code'], ['value' => 'MXN']);
+        \Illuminate\Support\Facades\Cache::flush();
+
+        $brand = Brand::create(['name' => 'Nissan', 'slug' => 'nissan']);
+        $carType = CarType::create(['name' => 'Sedan', 'slug' => 'sedan-nissan']);
+        $fuelType = FuelType::create(['name' => 'Petrol', 'slug' => 'petrol-nissan']);
+        $location = Location::create(['name' => 'Mexico City']);
+
+        $car = Car::create([
+            'brand_id' => $brand->id,
+            'car_type_id' => $carType->id,
+            'fuel_type_id' => $fuelType->id,
+            'location_id' => $location->id,
+            'name' => 'Nissan Versa 2024',
+            'slug' => 'nissan-versa-2024',
+            'price' => 280000,
+        ]);
+
+        $response = $this->get('/cars/' . $car->slug);
+        $response->assertStatus(200);
+        $response->assertSee('MXN $280,000');
+        $response->assertSee('MXN');
     }
 }

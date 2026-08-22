@@ -6,11 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
 use App\Models\Service;
 use App\Models\TeamMember;
-use App\Models\Testimonial;
 use App\Models\WhyUsFeature;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 // Cars / Inventory
 Route::get('/cars', CarsListController::class)->name('cars.index');
@@ -29,8 +28,7 @@ Route::get('/services', function () {
 Route::get('/about', function () {
     $whyUsFeatures = WhyUsFeature::all();
     $teamMembers = TeamMember::all();
-    $testimonials = Testimonial::all();
-    return view('about', compact('whyUsFeatures', 'teamMembers', 'testimonials'));
+    return view('about', compact('whyUsFeatures', 'teamMembers'));
 })->name('about');
 
 Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');

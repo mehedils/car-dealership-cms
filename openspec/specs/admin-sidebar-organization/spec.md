@@ -8,11 +8,11 @@ The system SHALL display concise, 1-2 word navigation labels across all Filament
 - **THEN** every resource and page label SHALL be 1-2 short words without line wrapping or truncation ellipses
 
 ### Requirement: Structured Group Hierarchy & Explicit Sorting
-The system SHALL group all resources into `Inventory`, `Leads`, `Content`, and `Settings` groups, ordered sequentially via `$panel->navigationGroups()` and explicit `$navigationSort` values.
+The system SHALL group all active resources into `Inventory`, `Leads`, `Content`, and `Settings` groups, ordered sequentially via `$panel->navigationGroups()` and explicit `$navigationSort` values, excluding Testimonials from navigation.
 
 #### Scenario: Navigating ordered sidebar groups
-- **WHEN** an administrator expands any navigation group in the sidebar
-- **THEN** items inside the group SHALL display in explicit logical rank order (e.g. *Cars* as #1 in Inventory, *Leads* as #1 in Leads)
+- **WHEN** an administrator expands the `Content` navigation group in the sidebar
+- **THEN** items inside the group SHALL display active content resources (Blog Posts, Services, FAQs, Highlights, Team Members) without displaying Testimonials.
 
 ### Requirement: Multi-language Dictionary Parity
 The system SHALL provide exact Spanish dictionary key mappings in `lang/es.json` for all updated short navigation titles and group headers.

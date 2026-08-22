@@ -455,6 +455,47 @@ a.icon-socials:hover svg path {
     color: var(--bs-button-hover-text, var(--bs-button-text, #ffffff)) !important;
 }
 
+/* --- Compact & Sleek Car Card View Details Button --- */
+.card-journey-small .card-info .card-program .endtime {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+}
+
+.card-journey-small .card-info .card-program .endtime .card-price {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+.card-journey-small .card-info .card-program .endtime .card-price h6 {
+    white-space: nowrap !important;
+    font-size: 16.5px !important;
+}
+
+.card-journey-small .card-info .card-program .endtime .card-button {
+    flex: 0 0 auto !important;
+}
+
+.card-journey-small .card-info .card-program .endtime .card-button .btn,
+.card-journey-small .card-button a,
+.card-journey-small .card-button .btn,
+.card-journey-small .btn.btn-primary {
+    padding: 6px 14px !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+    border-radius: 8px !important;
+    height: auto !important;
+    min-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+
 /* --- Dynamic Play Button Component Micro-animations --- */
 .btn-play-trigger {
     text-decoration: none !important;
@@ -539,4 +580,174 @@ a.icon-socials:hover svg path {
         flex-shrink: 0 !important;
     }
 }
+
+/* --- Dynamic Condition Filter Tabs (Theme-synced Colors) --- */
+.btn-condition-tab {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    padding: 8px 16px !important;
+    border-radius: 10px !important;
+    text-decoration: none !important;
+    border: 1px solid var(--bs-border-color, #e2e8f0) !important;
+    background-color: var(--bs-neutral-100, #f8fafc) !important;
+    color: var(--bs-neutral-700, #334155) !important;
+    transition: all 0.2s ease !important;
+}
+
+.btn-condition-tab:hover {
+    background-color: var(--bs-neutral-200, #f1f5f9) !important;
+    color: var(--bs-neutral-900, #0f172a) !important;
+    border-color: var(--bs-neutral-400, #94a3b8) !important;
+}
+
+.btn-condition-tab .badge {
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    background-color: #ffffff !important;
+    color: #1e293b !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.btn-condition-tab.active {
+    background-color: var(--bs-brand-2, var(--bs-primary, #70f46d)) !important;
+    border-color: var(--bs-brand-2-darken, var(--bs-primary, #70f46d)) !important;
+    color: var(--bs-button-text, #ffffff) !important;
+}
+
+.btn-condition-tab.active .badge {
+    background-color: rgba(255, 255, 255, 0.28) !important;
+    color: var(--bs-button-text, #ffffff) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* --- Clear Active Filters Pill Button --- */
+.btn-clear-active-filters {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    background-color: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #334155 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    line-height: 1.2 !important;
+}
+
+.btn-clear-active-filters i {
+    font-size: 13px !important;
+    color: #ef4444 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
+}
+
+.btn-clear-active-filters:hover {
+    background-color: #e2e8f0 !important;
+    border-color: #94a3b8 !important;
+    color: #0f172a !important;
+}
+
+/* --- Dealership Why Choose Us Value Cards --- */
+.card-why-dealership {
+    position: relative;
+    background: var(--bs-card-bg, #ffffff);
+    border: 1px solid var(--bs-border-color, #e2e8f0);
+    border-radius: 16px;
+    padding: 32px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card-why-dealership:hover {
+    transform: translateY(-6px);
+    border-color: var(--bs-brand-2, #70f46d);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card-why-dealership .card-why-icon-wrap {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background-color: var(--bs-neutral-100, #f8fafc);
+    background-color: color-mix(in srgb, var(--bs-brand-2, #70f46d) 14%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card-why-dealership:hover .card-why-icon-wrap {
+    transform: scale(1.08);
+    background-color: var(--bs-brand-2, #70f46d);
+}
+
+.card-why-dealership .card-why-icon-wrap i {
+    font-size: 28px;
+    color: var(--bs-brand-2, #70f46d);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.card-why-dealership:hover .card-why-icon-wrap i {
+    color: var(--bs-button-text, #ffffff) !important;
+}
+
+.card-why-dealership .card-why-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--bs-neutral-1000, #101010);
+    margin-bottom: 12px;
+    line-height: 1.35;
+}
+
+.card-why-dealership .card-why-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--bs-neutral-600, #64748b);
+    margin-bottom: 0;
+}
+
+/* --- list-feature-car spec badges alignment & svg support --- */
+.list-feature-car .item-feature-car .item-feature-car-inner .feature-image {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 28px !important;
+    height: 28px !important;
+    margin-right: 8px !important;
+    flex-shrink: 0 !important;
+}
+
+.list-feature-car .item-feature-car .item-feature-car-inner .feature-image svg {
+    display: block !important;
+}
+
+.list-feature-car .item-feature-car .item-feature-car-inner .feature-image i {
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+
+
+
 

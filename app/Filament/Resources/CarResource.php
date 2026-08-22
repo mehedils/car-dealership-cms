@@ -133,15 +133,18 @@ class CarResource extends Resource
                             ]),
                         Forms\Components\Tabs\Tab::make(__('Pricing & Inclusions'))
                             ->schema([
-                                Forms\Components\TextInput::make('price')
-                                    ->label(__('Price'))
-                                    ->required()
-                                    ->numeric()
-                                    ->prefix('$'),
-                                Forms\Components\TextInput::make('monthly_payment')
-                                    ->label(__('Monthly Installment (Optional Override)'))
-                                    ->numeric()
-                                    ->prefix('$'),
+                                Forms\Components\Grid::make(2)->schema([
+                                    Forms\Components\TextInput::make('price')
+                                        ->label(__('Purchase Price'))
+                                        ->required()
+                                        ->numeric()
+                                        ->prefix('$'),
+                                    Forms\Components\TextInput::make('monthly_payment')
+                                        ->label(__('Monthly Installment'))
+                                        ->numeric()
+                                        ->prefix('$')
+                                        ->helperText(__('Leave blank to auto-calculate based on price')),
+                                ]),
                                 Forms\Components\TextInput::make('rating')
                                     ->label(__('Rating'))
                                     ->required()

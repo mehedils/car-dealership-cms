@@ -1,12 +1,16 @@
 @extends('layouts.app')
-@section('title', 'Carento - Car Details')
+@section('title', $car->name . ' - ' . setting('site_name', 'Carento'))
 @section('content')
+@php
+    $currencySymbol = setting('currency_symbol', '$');
+    $currencyCode = setting('currency_code', ($currencySymbol !== '$' && $currencySymbol !== 'USD') ? $currencySymbol : 'USD');
+@endphp
 <div>
     <section class="box-section box-breadcrumb background-body">
         <div class="container">
             <ul class="breadcrumbs">
                 <li>
-                    <a href="/">Home</a>
+                    <a href="{{ route('home') }}">{{ __('Home') }}</a>
                     <span class="arrow-right">
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 11L6 6L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -14,7 +18,7 @@
                     </span>
                 </li>
                 <li>
-                    <a href="/cars">Cars</a>
+                    <a href="{{ route('cars.index') }}">{{ __('Cars') }}</a>
                     <span class="arrow-right">
                         <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 11L6 6L1 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -22,70 +26,42 @@
                     </span>
                 </li>
                 <li>
-                    <span class="text-breadcrumb">{{ $car->name }} </span>
+                    <span class="text-breadcrumb">{{ $car->name }}</span>
                 </li>
             </ul>
         </div>
     </section>
     <section class="box-section box-content-tour-detail background-body pt-0">
         <div class="container">
-            <div class="tour-header">
-                <div class="tour-rate">
-                    <div class="rate-element">
-                        <span class="rating">
-                            4.96 <span class="text-sm-medium neutral-500">(672 reviews)</span>
-                        </span>
-                    </div>
-                </div>
-                <div class="row align-items-center">
-                    <div class="col-lg-8">
+            <div class="tour-header pb-20 mb-15">
+                <div class="row align-items-end justify-content-between g-3">
+                    <div class="col-lg-7">
                         <div class="tour-title-main">
-                            <h4 class="neutral-1000">{{ $car->name }}</h4>
+                            <h2 class="neutral-1000 fw-bold mb-2">{{ $car->name }}</h2>
+                            @if($car->estimated_monthly_payment > 0)
+                                <div class="d-flex align-items-center gap-2 flex-wrap">
+                                    <span class="badge bg-light text-primary border rounded-pill px-3 py-2 text-xs-bold d-inline-flex align-items-center">
+                                        <i class="fi fi-rr-credit-card me-1"></i>{{ __('Financiamiento disponible desde :symbol:amount/mes', ['symbol' => $currencySymbol, 'amount' => number_format($car->estimated_monthly_payment)]) }}
+                                    </span>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                    <div class="col-lg-4 text-lg-end text-start mt-3 mt-lg-0">
-                        <div class="d-flex align-items-center justify-content-lg-end">
-                            <h3 class="text-3xl-bold neutral-1000">${{ number_format($car->price) }}</h3>
-                            <span class="text-md-medium neutral-500 ms-1">/ day</span>
+                    <div class="col-lg-5">
+                        <div class="d-flex flex-column align-items-lg-end align-items-start gap-2">
+                            <div class="d-flex align-items-baseline justify-content-lg-end">
+                                <h2 class="text-3xl-bold neutral-1000 mb-0">{{ $currencySymbol }}{{ number_format($car->price) }}</h2>
+                                <span class="text-sm-bold text-muted ms-1">{{ $currencyCode }}</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button type="button" class="btn btn-share btn-sm px-3 py-2 rounded-pill text-xs-bold d-inline-flex align-items-center border bg-white" onclick="shareVehicle(this)" id="btnShareVehicle">
+                                    <svg width="14" height="16" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-1">
+                                        <path d="M13 11.5332C12.012 11.5332 11.1413 12.0193 10.5944 12.7584L5.86633 10.3374C5.94483 10.0698 6 9.79249 6 9.49989C6 9.10302 5.91863 8.72572 5.77807 8.37869L10.7262 5.40109C11.2769 6.04735 12.0863 6.46655 13 6.46655C14.6543 6.46655 16 5.12085 16 3.46655C16 1.81225 14.6543 0.466553 13 0.466553C11.3457 0.466553 10 1.81225 10 3.46655C10 3.84779 10.0785 4.20942 10.2087 4.54515L5.24583 7.53149C4.69563 6.90442 3.8979 6.49989 3 6.49989C1.3457 6.49989 0 7.84559 0 9.49989C0 11.1542 1.3457 12.4999 3 12.4999C4.00433 12.4999 4.8897 11.9996 5.4345 11.2397L10.147 13.6529C10.0602 13.9331 10 14.2249 10 14.5332C10 16.1875 11.3457 17.5332 13 17.5332C14.6543 17.5332 16 16.1875 16 14.5332C16 12.8789 14.6543 11.5332 13 11.5332Z" fill="currentColor"></path>
+                                    </svg>
+                                    <span class="share-btn-text">{{ __('Share') }}</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="tour-metas">
-                    <div class="tour-meta-left">
-                        <p class="text-md-medium neutral-1000 mr-20 tour-location">
-                            <svg class="invert" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M7.99967 0C4.80452 0 2.20508 2.59944 2.20508 5.79456C2.20508 9.75981 7.39067 15.581 7.61145 15.8269C7.81883 16.0579 8.18089 16.0575 8.38789 15.8269C8.60867 15.581 13.7943 9.75981 13.7943 5.79456C13.7942 2.59944 11.1948 0 7.99967 0ZM7.99967 8.70997C6.39211 8.70997 5.0843 7.40212 5.0843 5.79456C5.0843 4.187 6.39214 2.87919 7.99967 2.87919C9.6072 2.87919 10.915 4.18703 10.915 5.79459C10.915 7.40216 9.6072 8.70997 7.99967 8.70997Z" fill="#101010"></path>
-                            </svg>
-                            {{ $car->location?->name ?? 'Las Vegas, USA' }}
-                        </p>
-                        <a class="text-md-medium neutral-1000 mr-30" href="#">
-                            Show on map
-                        </a>
-                        <p class="text-md-medium neutral-1000 tour-code mr-15">
-                            <svg class="invert" xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2729 0.273646C13.4097 0.238432 13.5538 0.24262 13.6884 0.28573L18.5284 1.83572L18.5474 1.84209C18.8967 1.96436 19.1936 2.19167 19.4024 2.4875C19.5891 2.75202 19.7309 3.08694 19.7489 3.46434C19.7494 3.47622 19.7497 3.4881 19.7497 3.49998V15.5999C19.7625 15.8723 19.7102 16.1395 19.609 16.3754C19.6059 16.3827 19.6026 16.39 19.5993 16.3972C19.476 16.6613 19.3017 16.8663 19.1098 17.0262C19.1023 17.0324 19.0947 17.0385 19.087 17.0445C18.8513 17.2258 18.5774 17.3363 18.2988 17.3734L18.2927 17.3743C18.0363 17.4063 17.7882 17.3792 17.5622 17.3133C17.5379 17.3081 17.5138 17.3016 17.4901 17.294L13.4665 16.0004L6.75651 17.7263C6.62007 17.7614 6.47649 17.7574 6.34221 17.7147L1.47223 16.1647C1.46543 16.1625 1.45866 16.1603 1.45193 16.1579C1.0871 16.0302 0.813939 15.7971 0.613929 15.5356C0.608133 15.528 0.602481 15.5203 0.596973 15.5125C0.395967 15.2278 0.277432 14.8905 0.260536 14.5357C0.259972 14.5238 0.259689 14.5119 0.259689 14.5V2.39007C0.246699 2.11286 0.301239 1.83735 0.420015 1.58283C0.544641 1.31578 0.724533 1.10313 0.942417 0.93553C1.17424 0.757204 1.45649 0.6376 1.7691 0.61312C2.03626 0.583264 2.30621 0.616234 2.56047 0.712834L6.56277 1.99963L13.2729 0.273646ZM13.437 1.78025L6.72651 3.50634C6.58929 3.54162 6.44493 3.53736 6.31011 3.49398L2.08011 2.13402C2.06359 2.1287 2.04725 2.12282 2.03113 2.11637C2.00054 2.10413 1.96854 2.09972 1.93273 2.10419C1.91736 2.10611 1.90194 2.10756 1.88649 2.10852C1.88649 2.10852 1.88436 2.10866 1.88088 2.11001C1.8771 2.11149 1.86887 2.11532 1.85699 2.12447C1.81487 2.15686 1.79467 2.18421 1.77929 2.21715C1.76189 2.25446 1.75611 2.28942 1.75823 2.32321C1.7592 2.33879 1.75969 2.35439 1.75969 2.36999V14.4772C1.76448 14.5336 1.78316 14.5879 1.81511 14.6367C1.86704 14.7014 1.90866 14.7272 1.94108 14.7398L6.59169 16.2199L13.3028 14.4937C13.44 14.4584 13.5844 14.4626 13.7192 14.506L17.8938 15.8482C17.9184 15.8537 17.9428 15.8605 17.9669 15.8685C18.0209 15.8865 18.0669 15.8902 18.1034 15.8862C18.1214 15.8833 18.1425 15.8759 18.1629 15.8623C18.1981 15.8309 18.2196 15.8024 18.2346 15.7738C18.2473 15.7399 18.2533 15.7014 18.2511 15.6668C18.2502 15.6512 18.2497 15.6356 18.2497 15.62V3.52464C18.2453 3.48222 18.2258 3.42174 18.1769 3.3525C18.147 3.3102 18.1062 3.2784 18.0582 3.26022L13.437 1.78025Z" fill="#101010"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.55957 2.01953C6.97375 2.01953 7.30957 2.35532 7.30957 2.76953V16.9195C7.30957 17.3338 6.97375 17.6695 6.55957 17.6695C6.14533 17.6695 5.80957 17.3338 5.80957 16.9195V2.76953C5.80957 2.35532 6.14533 2.01953 6.55957 2.01953Z" fill="#101010"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.4893 0.330078C13.9035 0.330078 14.2393 0.665862 14.2393 1.08008V15.2301C14.2393 15.6443 13.9035 15.9801 13.4893 15.9801C13.0751 15.9801 12.7393 15.6443 12.7393 15.2301V1.08008C12.7393 0.665862 13.0751 0.330078 13.4893 0.330078Z" fill="#101010"></path>
-                            </svg>
-                            Fleet Code:
-                        </p>
-                        <a class="text-md-medium neutral-1000" href="#">
-                            LVA-4125
-                        </a>
-                    </div>
-                    <div class="tour-meta-right">
-                        <a class="btn btn-share" href="#">
-                            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13 11.5332C12.012 11.5332 11.1413 12.0193 10.5944 12.7584L5.86633 10.3374C5.94483 10.0698 6 9.79249 6 9.49989C6 9.10302 5.91863 8.72572 5.77807 8.37869L10.7262 5.40109C11.2769 6.04735 12.0863 6.46655 13 6.46655C14.6543 6.46655 16 5.12085 16 3.46655C16 1.81225 14.6543 0.466553 13 0.466553C11.3457 0.466553 10 1.81225 10 3.46655C10 3.84779 10.0785 4.20942 10.2087 4.54515L5.24583 7.53149C4.69563 6.90442 3.8979 6.49989 3 6.49989C1.3457 6.49989 0 7.84559 0 9.49989C0 11.1542 1.3457 12.4999 3 12.4999C4.00433 12.4999 4.8897 11.9996 5.4345 11.2397L10.147 13.6529C10.0602 13.9331 10 14.2249 10 14.5332C10 16.1875 11.3457 17.5332 13 17.5332C14.6543 17.5332 16 16.1875 16 14.5332C16 12.8789 14.6543 11.5332 13 11.5332Z" fill="currentColor"></path>
-                            </svg>
-                            Share
-                        </a>
-                        <a class="btn btn-wishlish" href="#">
-                            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.2222 2.3638C4.34203 0.243977 7.65342 0.0419426 10.0004 1.7577C12.3473 0.0419426 15.6587 0.243977 17.7786 2.3638C20.1217 4.70695 20.1217 8.50594 17.7786 10.8491L12.1217 16.5059C10.9501 17.6775 9.05063 17.6775 7.87906 16.5059L2.2222 10.8491C-0.120943 8.50594 -0.120943 4.70695 2.2222 2.3638Z" fill="currentColor"></path>
-                            </svg>
-                            Wishlish
-                        </a>
                     </div>
                 </div>
             </div>
@@ -146,7 +122,7 @@
                                         <i class="fi fi-rr-dashboard fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">{{ $car->mileage ?? '56,500' }} mi</p>
+                                        <p class="text-md-medium neutral-1000">{{ is_numeric($car->mileage) ? number_format((int)$car->mileage) . ' mi' : ($car->mileage ?? '56,500 mi') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -176,17 +152,17 @@
                                         <i class="fi fi-rr-user fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">{{ $car->seats ?? 7 }} seats</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->seats ?? 5 }} {{ __('seats') }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <i class="fi fi-rr-box fs-4 text-primary"></i>
+                                        <i class="fi fi-rr-calendar fs-4 text-primary"></i>
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">3 Large bags</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->year ? $car->year : ($car->condition ? ucfirst(__($car->condition)) : '2024') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -203,17 +179,27 @@
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <i class="fi fi-rr-door-closed fs-4 text-primary"></i>
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                            <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+                                            <path d="M2 20h20"></path>
+                                            <circle cx="14" cy="12" r="1.5" fill="currentColor"></circle>
+                                        </svg>
                                     </div>
                                     <div class="feature-info">
-                                        <p class="text-md-medium neutral-1000">{{ $car->doors ?? 4 }} Doors</p>
+                                        <p class="text-md-medium neutral-1000">{{ $car->doors ?? 4 }} {{ __('Doors') }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="item-feature-car w-md-25">
                                 <div class="item-feature-car-inner">
                                     <div class="feature-image">
-                                        <i class="fi fi-rr-engine fs-4 text-primary"></i>
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                            <path d="M3 10h2V8h2V6h4v2h2v2h2"></path>
+                                            <path d="M7 10v8h10v-8"></path>
+                                            <line x1="10" y1="14" x2="14" y2="14"></line>
+                                            <path d="M17 12h4v4h-4"></path>
+                                            <path d="M1 12h2v4H1z"></path>
+                                        </svg>
                                     </div>
                                     <div class="feature-info">
                                         <p class="text-md-medium neutral-1000">{{ $car->engine_capacity ?? '2.5L' }}</p>
@@ -296,6 +282,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- Review System & Add Review (Disabled)
                         <div class="group-collapse-expand">
                             <button class="btn btn-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">
                                 <h6>Rate Reviews</h6>
@@ -328,13 +315,11 @@
                                                     </div>
                                                     <div class="bar-rv-progress">
                                                         <div class="progress">
-                                                            <div class="progress-bar" style="width: 90%">
-                                                                
-                                                            </div>
+                                                            <div class="progress-bar" style="width: 90%"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-avarage">
-                                                        <p>4.8/5</p>
+                                                    <div class="text-rv-score">
+                                                        <p class="text-sm-bold">4.8</p>
                                                     </div>
                                                 </div>
                                                 <div class="item-review-progress">
@@ -343,13 +328,11 @@
                                                     </div>
                                                     <div class="bar-rv-progress">
                                                         <div class="progress">
-                                                            <div class="progress-bar" style="width: 90%">
-                                                                
-                                                            </div>
+                                                            <div class="progress-bar" style="width: 95%"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-avarage">
-                                                        <p>4.2/5</p>
+                                                    <div class="text-rv-score">
+                                                        <p class="text-sm-bold">4.9</p>
                                                     </div>
                                                 </div>
                                                 <div class="item-review-progress">
@@ -358,13 +341,11 @@
                                                     </div>
                                                     <div class="bar-rv-progress">
                                                         <div class="progress">
-                                                            <div class="progress-bar" style="width: 95%">
-                                                                
-                                                            </div>
+                                                            <div class="progress-bar" style="width: 90%"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-avarage">
-                                                        <p>4.9/5</p>
+                                                    <div class="text-rv-score">
+                                                        <p class="text-sm-bold">4.8</p>
                                                     </div>
                                                 </div>
                                                 <div class="item-review-progress">
@@ -373,13 +354,11 @@
                                                     </div>
                                                     <div class="bar-rv-progress">
                                                         <div class="progress">
-                                                            <div class="progress-bar" style="width: 85%">
-                                                                
-                                                            </div>
+                                                            <div class="progress-bar" style="width: 80%"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-avarage">
-                                                        <p>4.7/5</p>
+                                                    <div class="text-rv-score">
+                                                        <p class="text-sm-bold">4.0</p>
                                                     </div>
                                                 </div>
                                                 <div class="item-review-progress">
@@ -388,13 +367,11 @@
                                                     </div>
                                                     <div class="bar-rv-progress">
                                                         <div class="progress">
-                                                            <div class="progress-bar" style="width: 100%">
-                                                                
-                                                            </div>
+                                                            <div class="progress-bar" style="width: 90%"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-avarage">
-                                                        <p>5/5</p>
+                                                    <div class="text-rv-score">
+                                                        <p class="text-sm-bold">4.8</p>
                                                     </div>
                                                 </div>
                                                 <div class="item-review-progress">
@@ -403,11 +380,11 @@
                                                     </div>
                                                     <div class="bar-rv-progress">
                                                         <div class="progress">
-                                                            <div class="progress-bar" style="width: 100%"></div>
+                                                            <div class="progress-bar" style="width: 90%"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-avarage">
-                                                        <p>5/5</p>
+                                                    <div class="text-rv-score">
+                                                        <p class="text-sm-bold">4.8</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -417,20 +394,18 @@
                                         <div class="item-review">
                                             <div class="head-review">
                                                 <div class="author-review">
-                                                    
-                                                    <img src="/assets/imgs/page/tour-detail/avatar.png" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/author.png" alt="Travila">
                                                     <div class="author-info">
-                                                        <p class="text-lg-bold">Sarah Johnson</p>
-                                                        <p class="text-sm-medium neutral-500">December 4, 2024 at 3:12 pm</p>
+                                                        <p class="text-lg-bold">Sophia Miller</p>
+                                                        <p class="text-sm-medium neutral-500">March 2024</p>
                                                     </div>
                                                 </div>
                                                 <div class="rate-review">
-                                                    
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
                                                 </div>
                                             </div>
                                             <div class="content-review">
@@ -440,96 +415,74 @@
                                         <div class="item-review">
                                             <div class="head-review">
                                                 <div class="author-review">
-                                                    
-                                                    <img src="/assets/imgs/page/tour-detail/avatar.png" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/author2.png" alt="Travila">
                                                     <div class="author-info">
-                                                        <p class="text-lg-bold">Sarah Johnson</p>
-                                                        <p class="text-sm-medium neutral-500">December 4, 2024 at 3:12 pm</p>
+                                                        <p class="text-lg-bold">David Johnson</p>
+                                                        <p class="text-sm-medium neutral-500">February 2024</p>
                                                     </div>
                                                 </div>
                                                 <div class="rate-review">
-                                                    
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
                                                 </div>
                                             </div>
                                             <div class="content-review">
-                                                <p class="text-sm-medium neutral-800">The views from The High Roller were absolutely stunning! It's a fantastic way to see the Strip and the surrounding area. The cabins are spacious and comfortable, and the audio commentary adds an extra layer of enjoyment. Highly recommend!</p>
+                                                <p class="text-sm-medium neutral-800">We had a fantastic time on The High Roller. The views were amazing, and the ride was very smooth. It's a great way to see Las Vegas from a different perspective. The staff were friendly and helpful. Definitely worth it! The High Roller was one of the highlights of our Las Vegas trip.</p>
                                             </div>
                                         </div>
                                         <div class="item-review">
                                             <div class="head-review">
                                                 <div class="author-review">
-                                                    
-                                                    <img src="/assets/imgs/page/tour-detail/avatar.png" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/author3.png" alt="Travila">
                                                     <div class="author-info">
-                                                        <p class="text-lg-bold">Sarah Johnson</p>
-                                                        <p class="text-sm-medium neutral-500">December 4, 2024 at 3:12 pm</p>
+                                                        <p class="text-lg-bold">Emily Brown</p>
+                                                        <p class="text-sm-medium neutral-500">January 2024</p>
                                                     </div>
                                                 </div>
                                                 <div class="rate-review">
-                                                    
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
-                                                    <img src="/assets/imgs/page/tour-detail/star-big.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
+                                                    <img src="/assets/imgs/page/tour-detail/star.svg" alt="Travila">
                                                 </div>
                                             </div>
                                             <div class="content-review">
-                                                <p class="text-sm-medium neutral-800">The views from The High Roller were absolutely stunning! It's a fantastic way to see the Strip and the surrounding area. The cabins are spacious and comfortable, and the audio commentary adds an extra layer of enjoyment. Highly recommend!</p>
+                                                <p class="text-sm-medium neutral-800">Took my family on The High Roller, and we all loved it! The kids were amazed by the views, and the adults enjoyed the experience just as much. It's suitable for all ages and definitely a highlight of our trip to Vegas. Don't miss your chance to see Las Vegas from a whole new perspective and create memories that will last a lifetime!</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <nav aria-label="Page navigation example">
+                                    <nav class="box-pagination">
                                         <ul class="pagination">
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">
-                                                        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M6.00016 1.33325L1.3335 5.99992M1.3335 5.99992L6.00016 10.6666M1.3335 5.99992H10.6668" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <a class="page-link page-prev" href="#">
+                                                    <span class="icon-prev">
+                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M6.00016 1.33325L1.3335 5.99992M1.3335 5.99992L6.00016 10.6666M1.3335 5.99992H10.6668" stroke="" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         </svg>
                                                     </span>
                                                 </a>
                                             </li>
                                             <li class="page-item">
-                                                <a class="page-link" href="#">
-                                                    1
-                                                </a>
+                                                <a class="page-link active" href="#">1</a>
                                             </li>
                                             <li class="page-item">
-                                                <a class="page-link active" href="#">
-                                                    2
-                                                </a>
+                                                <a class="page-link" href="#">2</a>
                                             </li>
                                             <li class="page-item">
-                                                <a class="page-link" href="#">
-                                                    3
-                                                </a>
+                                                <a class="page-link" href="#">3</a>
                                             </li>
                                             <li class="page-item">
-                                                <a class="page-link" href="#">
-                                                    4
-                                                </a>
+                                                <a class="page-link" href="#">...</a>
                                             </li>
                                             <li class="page-item">
-                                                <a class="page-link" href="#">
-                                                    5
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">
-                                                    ...
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">
-                                                        <svg width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M5.99967 10.6666L10.6663 5.99992L5.99968 1.33325M10.6663 5.99992L1.33301 5.99992" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <a class="page-link page-next" href="#">
+                                                    <span class="icon-next">
+                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M5.99984 1.33325L10.6665 5.99992M10.6665 5.99992L5.99984 10.6666M10.6665 5.99992H1.33317" stroke="" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         </svg>
                                                     </span>
                                                 </a>
@@ -655,29 +608,46 @@
                                 </div>
                             </div>
                         </div>
+                        --}}
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="sidebar-banner">
                         <div class="p-4 background-body border rounded-3">
-                            <p class="text-xl-bold neutral-1000 mb-4">Get Started</p>
-                            <a href="#" class="btn btn-primary w-100 rounded-3 py-3 mb-3">
-                                Schedule Test Drive
+                            <p class="text-xl-bold neutral-1000 mb-4">{{ __('Get Started') }}</p>
+                            <button type="button" 
+                                    class="btn btn-primary w-100 rounded-3 py-3 mb-3 d-flex align-items-center justify-content-center" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#leadModal"
+                                    data-car-id="{{ $car->id }}"
+                                    data-car-name="{{ $car->name }}"
+                                    data-car-price="{{ $currencySymbol }}{{ number_format($car->price) }} {{ $currencyCode }}"
+                                    data-subject-title="{{ __('Schedule Test Drive') }}"
+                                    data-subject-message="{{ __('Hello, I would like to schedule a test drive for this vehicle (:car). Please contact me to coordinate a date and time.', ['car' => $car->name]) }}">
+                                <span class="me-2">{{ __('Schedule Test Drive') }}</span>
                                 <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.5 15L15.5 8L8.5 1M15.5 8L1.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
-                            </a>
-                            <a href="#" class="btn btn-book bg-2">
-                                Make An Offer Price
+                            </button>
+                            <button type="button" 
+                                    class="btn btn-book bg-2 w-100 rounded-3 py-3 d-flex align-items-center justify-content-center" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#leadModal"
+                                    data-car-id="{{ $car->id }}"
+                                    data-car-name="{{ $car->name }}"
+                                    data-car-price="{{ $currencySymbol }}{{ number_format($car->price) }} {{ $currencyCode }}"
+                                    data-subject-title="{{ __('Make An Offer Price') }}"
+                                    data-subject-message="{{ __('Hello, I would like to make an offer for this vehicle (:car). My proposed price is: :symbol', ['car' => $car->name, 'symbol' => $currencySymbol]) }}">
+                                <span class="me-2">{{ __('Make An Offer Price') }}</span>
                                 <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8.5 15L15.5 8L8.5 1M15.5 8L1.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
-                            </a>
+                            </button>
                         </div>
                     </div>
                     <div class="booking-form">
                         <div class="head-booking-form">
-                            <p class="text-xl-bold neutral-1000">Inquire About This Car</p>
+                            <p class="text-xl-bold neutral-1000">{{ __('Inquire About This Car') }}</p>
                         </div>
                         <div class="content-booking-form">
                             @if(session('success'))
@@ -687,24 +657,24 @@
                                 @csrf
                                 <input type="hidden" name="car_id" value="{{ $car->id }}">
                                 <div class="mb-3">
-                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Your Name</label>
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">{{ __('Your Name') }}</label>
                                     <input type="text" name="name" class="form-control" placeholder="John Doe" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Your Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">{{ __('Your Email') }}</label>
+                                    <input type="email" name="email" class="form-control" placeholder="john@example.com">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Phone Number</label>
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">{{ __('Phone Number') }}</label>
                                     <input type="text" name="phone" class="form-control" placeholder="+1 234 567 890" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="text-md-bold neutral-1000 mb-1 d-block">Message</label>
-                                    <textarea name="message" class="form-control" rows="4" placeholder="I'm interested in this car..." required></textarea>
+                                    <label class="text-md-bold neutral-1000 mb-1 d-block">{{ __('Message') }}</label>
+                                    <textarea name="message" class="form-control" rows="4" placeholder="{{ __('I am interested in this vehicle...') }}" required></textarea>
                                 </div>
                                 <div class="box-button-book mt-4">
                                     <button type="submit" class="btn btn-book border-0 w-100">
-                                        Send Inquiry
+                                        {{ __('Send Inquiry') }}
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                         </svg>
@@ -923,3 +893,84 @@
     </section>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+function shareVehicle(btn) {
+    var shareUrl = window.location.href;
+    var shareTitle = document.title;
+
+    if (navigator.share && window.isSecureContext) {
+        navigator.share({
+            title: shareTitle,
+            url: shareUrl
+        }).then(function() {
+            showShareSuccess(btn);
+        }).catch(function(err) {
+            if (!err || err.name !== 'AbortError') {
+                copyUrlToClipboard(shareUrl, btn);
+            }
+        });
+    } else {
+        copyUrlToClipboard(shareUrl, btn);
+    }
+}
+
+function copyUrlToClipboard(text, btn) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function() {
+            showShareSuccess(btn);
+        }).catch(function() {
+            fallbackCopy(text, btn);
+        });
+    } else {
+        fallbackCopy(text, btn);
+    }
+}
+
+function fallbackCopy(text, btn) {
+    try {
+        var tempInput = document.createElement("input");
+        tempInput.type = "text";
+        tempInput.value = text;
+        tempInput.style.position = "fixed";
+        tempInput.style.left = "-9999px";
+        tempInput.style.top = "0";
+        document.body.appendChild(tempInput);
+        tempInput.focus();
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+        var successful = document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        if (successful) {
+            showShareSuccess(btn);
+            return;
+        }
+    } catch (e) {}
+
+    prompt("{{ __('Copy vehicle link:') }}", text);
+}
+
+function showShareSuccess(btn) {
+    if (!btn) return;
+    var span = btn.querySelector('.share-btn-text');
+    var originalText = span ? span.textContent : btn.textContent;
+    
+    if (span) {
+        span.textContent = '{{ __('Copied!') }}';
+    }
+    btn.style.backgroundColor = '#10b981';
+    btn.style.borderColor = '#10b981';
+    btn.style.color = '#ffffff';
+
+    setTimeout(function() {
+        if (span) {
+            span.textContent = originalText;
+        }
+        btn.style.backgroundColor = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+    }, 2200);
+}
+</script>
+@endpush

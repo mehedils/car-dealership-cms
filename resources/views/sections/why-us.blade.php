@@ -1,22 +1,50 @@
-<section class="section-box box-why-book-22 background-body">
+<section class="section-box box-why-book-22 background-body pt-50 pb-40">
 	<div class="container">
-		<div class="text-center wow fadeInUp">
-			<p class="text-xl-medium neutral-500 wow fadeInUp">{{ __(setting('home_why_us_subtitle', 'WHY CHOOSE US')) }}</p>
-			<h3 class="neutral-1000 wow fadeInUp">
+		<div class="text-center wow fadeInUp mb-45">
+			<span class="text-xs-bold bg-brand-2 text-dark px-3 py-2 rounded-12 d-inline-block mb-3 shadow-sm text-uppercase tracking-wider">
+				{{ __(setting('home_why_us_subtitle', 'WHY CHOOSE US')) }}
+			</span>
+			<h3 class="neutral-1000 wow fadeInUp fw-bold">
 				{!! nl2br(e(__(setting('home_why_us_title', "Presenting Your Premier Car\nDealership Experience")))) !!}
 			</h3>
 		</div>
-		<div class="row mt-40">
+		<div class="row g-4">
+			@php
+				$defaultIcons = [
+					0 => 'fi fi-rr-shield-check',
+					1 => 'fi fi-rr-credit-card',
+					2 => 'fi fi-rr-money',
+					3 => 'fi fi-rr-badge',
+				];
+			@endphp
 			@foreach($whyUsFeatures as $index => $feature)
+				@php
+					$iconClass = $defaultIcons[$index % 4];
+					if (!empty($feature->icon)) {
+						if (str_starts_with($feature->icon, 'fi ') || str_starts_with($feature->icon, 'fi-')) {
+							$iconClass = $feature->icon;
+						} elseif (str_contains($feature->icon, 'shield') || str_contains($feature->icon, 'check')) {
+							$iconClass = 'fi fi-rr-shield-check';
+						} elseif (str_contains($feature->icon, 'credit') || str_contains($feature->icon, 'percent') || str_contains($feature->icon, 'bank') || str_contains($feature->icon, 'finance')) {
+							$iconClass = 'fi fi-rr-credit-card';
+						} elseif (str_contains($feature->icon, 'dollar') || str_contains($feature->icon, 'currency') || str_contains($feature->icon, 'money') || str_contains($feature->icon, 'price')) {
+							$iconClass = 'fi fi-rr-money';
+						} elseif (str_contains($feature->icon, 'car')) {
+							$iconClass = 'fi fi-rr-car';
+						} elseif (str_contains($feature->icon, 'award') || str_contains($feature->icon, 'star') || str_contains($feature->icon, 'badge')) {
+							$iconClass = 'fi fi-rr-badge';
+						} elseif (str_contains($feature->icon, 'headset') || str_contains($feature->icon, 'phone') || str_contains($feature->icon, 'support')) {
+							$iconClass = 'fi fi-rr-headset';
+						}
+					}
+				@endphp
 				<div class="col-lg-3 col-sm-6 mb-30">
-					<div class="card-why wow fadeIn" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
-						<div class="card-image d-flex align-items-center justify-content-center bg-light rounded-circle" style="width: 60px; height: 60px; margin: 0 auto 20px;">
-							<span class="text-brand-2 text-xl-bold">{{ $index + 1 }}</span>
+					<div class="card-why-dealership wow fadeIn" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
+						<div class="card-why-icon-wrap">
+							<i class="{{ $iconClass }}"></i>
 						</div>
-						<div class="card-info text-center">
-							<h6 class="text-xl-bold neutral-1000">{{ $feature->title }}</h6>
-							<p class="text-md-medium neutral-500">{{ $feature->description }}</p>
-						</div>
+						<h5 class="card-why-title">{{ __($feature->title) }}</h5>
+						<p class="card-why-desc">{{ __($feature->description) }}</p>
 					</div>
 				</div>
 			@endforeach

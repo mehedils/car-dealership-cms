@@ -372,5 +372,22 @@
   "Please contact me regarding pricing, financing, and a test drive.": "Por favor contáctenme sobre el precio, financiamiento y prueba de manejo.",
   "Monthly Installment (Optional Override)": "Mensualidad Estimada (Opcional)",
   "Included in Price / Warranty": "Incluido en el Precio / Garantía",
-  "Mileage (km)": "Kilometraje (km)"
+  "Mileage (km)": "Kilometraje (km)",
+  "Purchase Price": "Precio de Compra",
+  "Original / MSRP Price": "Precio Original / MSRP",
+  "Display a struck-through original price if discounted": "Muestra un precio original tachado si tiene descuento",
+  "Monthly Installment": "Mensualidad Estimada",
+  "Leave blank to auto-calculate based on price": "Dejar en blanco para calcular automáticamente según el precio",
+  "Financiamiento disponible desde :symbol:amount/mes": "Financiamiento disponible desde :symbol:amount/mes",
+  "Desde :amount/mes": "Desde :amount/mes",
+  "Currency Code": "Código de Moneda",
+  "Share": "Compartir",
+  "Copied!": "¡Copiado!",
+  "Copy vehicle link:": "Copiar enlace del vehículo:",
+  "Get Started": "Comenzar",
+  "Schedule Test Drive": "Agendar Prueba de Manejo",
+  "Make An Offer Price": "Hacer una Oferta de Precio",
+  "Hello, I would like to schedule a test drive for this vehicle (:car). Please contact me to coordinate a date and time.": "Hola, me gustaría agendar una prueba de manejo para este vehículo (:car). Por favor contáctenme para coordinar fecha y hora.",
+  "Hello, I would like to make an offer for this vehicle (:car). My proposed price is: $": "Hola, me gustaría hacer una oferta de precio para este vehículo (:car). Mi precio propuesto es: $",
+  "Hello, I would like to make an offer for this vehicle (:car). My proposed price is: :symbol": "Hola, me gustaría hacer una oferta de precio para este vehículo (:car). Mi precio propuesto es: :symbol"
 }

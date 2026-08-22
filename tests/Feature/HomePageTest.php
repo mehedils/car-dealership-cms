@@ -35,7 +35,6 @@ class HomePageTest extends TestCase
             'latestCars',
             'services',
             'whyUsFeatures',
-            'testimonials',
             'blogPosts',
         ]);
     }

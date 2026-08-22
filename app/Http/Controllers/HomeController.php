@@ -9,7 +9,6 @@ use App\Models\CarType;
 use App\Models\FuelType;
 use App\Models\Location;
 use App\Models\Service;
-use App\Models\Testimonial;
 use App\Models\WhyUsFeature;
 use Illuminate\Http\Request;
 
@@ -27,7 +26,6 @@ class HomeController extends Controller
             'latestCars'    => Car::latest()->with(['media', 'brand', 'carType', 'fuelType', 'location'])->take(8)->get(),
             'services'      => Service::where('is_active', true)->get(),
             'whyUsFeatures' => WhyUsFeature::orderBy('sort_order')->get(),
-            'testimonials'  => Testimonial::all(),
             'blogPosts'     => BlogPost::latest()->take(3)->get(),
         ]);
     }

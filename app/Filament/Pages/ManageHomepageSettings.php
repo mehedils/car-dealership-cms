@@ -44,7 +44,7 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
             'home_show_hero', 'home_show_search', 'home_show_brands',
             'home_show_featured', 'home_show_cta', 'home_show_categories',
             'home_show_why_us', 'home_show_latest', 'home_show_services',
-            'home_show_testimonials', 'home_show_blog',
+            'home_show_blog',
         ];
 
         foreach ($visibilityKeys as $key) {
@@ -97,9 +97,6 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_services')
                                                 ->label(__('Services Section'))
-                                                ->default(true),
-                                            Forms\Components\Toggle::make('home_show_testimonials')
-                                                ->label(__('Testimonials Section'))
                                                 ->default(true),
                                             Forms\Components\Toggle::make('home_show_blog')
                                                 ->label(__('Blog / News Section'))
@@ -215,7 +212,7 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
                                     ->placeholder(__('e.g. Check out the newest additions to our inventory')),
                             ]),
 
-                        Forms\Components\Tabs\Tab::make(__('Services & Reviews'))
+                        Forms\Components\Tabs\Tab::make(__('Services'))
                             ->icon('heroicon-o-wrench-screwdriver')
                             ->schema([
                                 Forms\Components\TextInput::make('home_services_title')
@@ -224,12 +221,6 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
                                 Forms\Components\TextInput::make('home_services_subtitle')
                                     ->label(__('Services Subtitle'))
                                     ->placeholder(__('e.g. Serving You with Quality, Comfort, and Convenience')),
-                                Forms\Components\TextInput::make('home_testimonials_subtitle')
-                                    ->label(__('Testimonials Badge'))
-                                    ->placeholder(__('e.g. Testimonials')),
-                                Forms\Components\TextInput::make('home_testimonials_title')
-                                    ->label(__('Testimonials Title'))
-                                    ->placeholder(__('e.g. What they say about us?')),
                             ]),
 
                         Forms\Components\Tabs\Tab::make(__('Blog & News'))

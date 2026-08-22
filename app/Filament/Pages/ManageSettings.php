@@ -109,10 +109,18 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
                                     ->required(),
                                 Forms\Components\TextInput::make('site_slogan')
                                     ->label(__('Default Site Slogan / Fallback Announcement')),
-                                Forms\Components\TextInput::make('currency_symbol')
-                                    ->label(__('Currency Symbol'))
-                                    ->default('$')
-                                    ->required(),
+                                Forms\Components\Grid::make(2)
+                                    ->schema([
+                                        Forms\Components\TextInput::make('currency_symbol')
+                                            ->label(__('Currency Symbol'))
+                                            ->placeholder('e.g. $ or MXN')
+                                            ->default('$')
+                                            ->required(),
+                                        Forms\Components\TextInput::make('currency_code')
+                                            ->label(__('Currency Code'))
+                                            ->placeholder('e.g. MXN, USD, EUR')
+                                            ->default('MXN'),
+                                    ]),
                             ]),
                         Forms\Components\Tabs\Tab::make(__('Topbar Announcements'))
                             ->icon('heroicon-o-megaphone')

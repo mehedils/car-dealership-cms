@@ -17,6 +17,13 @@ class ReviewResource extends Resource
 {
     protected static ?string $model = Review::class;
 
+    protected static bool $shouldRegisterNavigation = false;
+
+    public static function canViewAny(): bool
+    {
+        return false;
+    }
+
     protected static ?string $navigationIcon = 'heroicon-o-star';
 
     protected static ?int $navigationSort = 2;

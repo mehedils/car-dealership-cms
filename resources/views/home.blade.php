@@ -29,9 +29,6 @@
     @if(setting('home_show_services', true))
         @include('sections.services')
     @endif
-    @if(setting('home_show_testimonials', true))
-        @include('sections.testimonials')
-    @endif
     @if(setting('home_show_blog', true))
         @include('sections.blog')
     @endif

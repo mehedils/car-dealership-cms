@@ -7,22 +7,13 @@
     <!-- Page Header & Hero Section (Editable via CMS) -->
     <div class="page-header-2 pt-30 background-body">
         <div class="custom-container position-relative mx-auto">
-            <div class="bg-overlay rounded-12 overflow-hidden position-relative">
-                @if(setting('inventory_hero_bg_image'))
-                    <img class="w-100 h-100 img-fluid img-banner" src="{{ asset('storage/' . setting('inventory_hero_bg_image')) }}" alt="{{ setting('inventory_hero_title', __('Vehicle Inventory')) }}" style="max-height: 320px; object-fit: cover;">
-                @else
-                    <img class="w-100 h-100 img-fluid img-banner" src="{{ asset('assets/imgs/page-header/banner6.png') }}" alt="{{ setting('inventory_hero_title', __('Vehicle Inventory')) }}" style="max-height: 320px; object-fit: cover;">
-                @endif
-                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(16, 16, 16, 0.55);"></div>
+            <div class="bg-overlay rounded-12 overflow-hidden">
+                <img class="w-100 h-100 img-fluid img-banner" src="{{ setting('inventory_hero_bg_image') ? asset('storage/' . setting('inventory_hero_bg_image')) : asset('assets/imgs/page-header/banner6.png') }}" alt="{{ setting('inventory_hero_title', __('Vehicle Inventory')) }}">
             </div>
-            <div class="container position-absolute z-1 top-50 start-50 translate-middle text-center text-white px-3">
-                <span class="text-xs-bold bg-brand-2 text-dark px-3 py-2 rounded-12 d-inline-block mb-3 shadow-sm">
-                    {{ setting('inventory_hero_badge', __('New & Used Vehicle Inventory')) }}
-                </span>
-                <h1 class="text-white mt-1 heading-2 fw-bold">{{ setting('inventory_hero_title', __('Find Your Next Vehicle')) }}</h1>
-                <p class="text-white text-md-medium mb-0 opacity-80 max-w-650 mx-auto">
-                    {{ setting('inventory_hero_subtitle', __('Verified dealership inventory with multi-point inspection and flexible financing.')) }}
-                </p>
+            <div class="container position-absolute z-1 top-50 start-50 pb-70 translate-middle text-center">
+                <span class="text-sm-bold bg-2 px-4 py-3 rounded-12 d-inline-block">{{ setting('inventory_hero_badge', __('New & Used Vehicle Inventory')) }}</span>
+                <h2 class="text-white mt-4">{{ setting('inventory_hero_title', __('Find Your Next Vehicle')) }}</h2>
+                <span class="text-white text-lg-medium d-block mt-2">{{ setting('inventory_hero_subtitle', __('Verified dealership inventory with multi-point inspection and flexible financing.')) }}</span>
             </div>
         </div>
     </div>
@@ -35,21 +26,21 @@
                     <!-- Condition Filter Tabs -->
                     <div class="box-top-search border-bottom pb-3 mb-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
                         <div class="left-top-search d-flex gap-2 flex-wrap">
-                            <a class="category-link text-sm-bold px-3 py-2 rounded-8 btn-condition-tab {{ $condition === 'all' || empty($condition) ? 'active bg-brand-2 text-dark' : 'text-muted border' }}" 
+                            <a class="btn-condition-tab {{ $condition === 'all' || empty($condition) ? 'active' : '' }}" 
                                href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'all'])) }}">
-                                {{ __('All Vehicles') }} <span class="badge bg-white text-dark ms-1">{{ $conditionCounts['all'] ?? 0 }}</span>
+                                {{ __('All Vehicles') }} <span class="badge">{{ $conditionCounts['all'] ?? 0 }}</span>
                             </a>
-                            <a class="category-link text-sm-bold px-3 py-2 rounded-8 btn-condition-tab {{ $condition === 'new' ? 'active bg-brand-2 text-dark' : 'text-muted border' }}" 
+                            <a class="btn-condition-tab {{ $condition === 'new' ? 'active' : '' }}" 
                                href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'new'])) }}">
-                                {{ __('New') }} <span class="badge bg-white text-dark ms-1">{{ $conditionCounts['new'] ?? 0 }}</span>
+                                {{ __('New') }} <span class="badge">{{ $conditionCounts['new'] ?? 0 }}</span>
                             </a>
-                            <a class="category-link text-sm-bold px-3 py-2 rounded-8 btn-condition-tab {{ $condition === 'used' ? 'active bg-brand-2 text-dark' : 'text-muted border' }}" 
+                            <a class="btn-condition-tab {{ $condition === 'used' ? 'active' : '' }}" 
                                href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'used'])) }}">
-                                {{ __('Used') }} <span class="badge bg-white text-dark ms-1">{{ $conditionCounts['used'] ?? 0 }}</span>
+                                {{ __('Used') }} <span class="badge">{{ $conditionCounts['used'] ?? 0 }}</span>
                             </a>
-                            <a class="category-link text-sm-bold px-3 py-2 rounded-8 btn-condition-tab {{ $condition === 'certified' ? 'active bg-brand-2 text-dark' : 'text-muted border' }}" 
+                            <a class="btn-condition-tab {{ $condition === 'certified' ? 'active' : '' }}" 
                                href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'certified'])) }}">
-                                {{ __('Certified') }} <span class="badge bg-white text-dark ms-1">{{ $conditionCounts['certified'] ?? 0 }}</span>
+                                {{ __('Certified') }} <span class="badge">{{ $conditionCounts['certified'] ?? 0 }}</span>
                             </a>
                         </div>
                         <input type="hidden" name="condition" value="{{ $condition }}">
@@ -146,8 +137,8 @@
                             <div class="col-xl-6 col-md-6 mb-10 text-md-end text-center">
                                 <div class="box-item-sort d-flex align-items-center justify-content-md-end justify-content-center gap-3 flex-wrap">
                                     @if(request()->hasAny(['brand_id', 'model', 'car_type_id', 'fuel_type_id', 'transmission', 'price_min', 'price_max', 'year_min', 'year_max', 'mileage_max']))
-                                        <a class="btn btn-outline-secondary btn-sm py-1 px-3 text-xs-bold rounded-pill" href="{{ route('cars.index') }}">
-                                            <i class="fi fi-rr-cross-small me-1"></i>{{ __('Clear Filters') }}
+                                        <a class="btn-clear-active-filters" href="{{ route('cars.index') }}">
+                                            <i class="fi fi-rr-cross-small"></i>{{ __('Clear Filters') }}
                                         </a>
                                     @endif
                                     <div class="item-sort border rounded-8 px-2 py-1 bg-white">

@@ -100,8 +100,5 @@
     </section>
     @endif
 
-    {{-- Testimonials Section --}}
-    @include('sections.testimonials')
-
 </div>
 @endsection

@@ -252,13 +252,61 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i = 0; $i < 4; $i++) {
-            WhyUsFeature::create([
-                'title' => $faker->words(3, true),
-                'description' => $faker->sentence,
-                'icon' => 'heroicon-o-star',
-                'sort_order' => $i,
-            ]);
+        $this->command->info('Seeding Why Us Features...');
+        $features = env('APP_LOCALE') === 'es' ? [
+            [
+                'title' => 'Inspección Certificada',
+                'description' => 'Cada vehículo pasa por una rigurosa revisión de más de 150 puntos por técnicos calificados.',
+                'icon' => 'fi fi-rr-shield-check',
+                'sort_order' => 0,
+            ],
+            [
+                'title' => 'Financiamiento Flexible',
+                'description' => 'Planes de crédito y arrendamiento a tu medida con tasas de interés altamente competitivas.',
+                'icon' => 'fi fi-rr-badge-percent',
+                'sort_order' => 1,
+            ],
+            [
+                'title' => 'Precios Transparentes',
+                'description' => 'Sin comisiones ocultas y con la mejor valuación garantizada para tomar tu auto a cuenta.',
+                'icon' => 'fi fi-rr-dollar',
+                'sort_order' => 2,
+            ],
+            [
+                'title' => 'Garantía y Asistencia',
+                'description' => 'Conduce con total tranquilidad gracias a nuestra garantía de agencia y soporte 24/7 en carretera.',
+                'icon' => 'fi fi-rr-award',
+                'sort_order' => 3,
+            ],
+        ] : [
+            [
+                'title' => 'Certified Inspection',
+                'description' => 'Every vehicle undergoes a rigorous 150+ point multi-point mechanical inspection.',
+                'icon' => 'fi fi-rr-shield-check',
+                'sort_order' => 0,
+            ],
+            [
+                'title' => 'Flexible Financing',
+                'description' => 'Tailored financing and lease plans with low competitive rates for all credit profiles.',
+                'icon' => 'fi fi-rr-badge-percent',
+                'sort_order' => 1,
+            ],
+            [
+                'title' => 'Transparent Pricing',
+                'description' => 'Zero hidden fees with instant, fair-market valuation for your trade-in vehicle.',
+                'icon' => 'fi fi-rr-dollar',
+                'sort_order' => 2,
+            ],
+            [
+                'title' => 'Warranty & Roadside',
+                'description' => 'Drive with peace of mind backed by dealership warranty and 24/7 roadside assistance.',
+                'icon' => 'fi fi-rr-award',
+                'sort_order' => 3,
+            ],
+        ];
+
+        foreach ($features as $feature) {
+            WhyUsFeature::create($feature);
         }
 
         $this->command->info('Seeding Settings...');

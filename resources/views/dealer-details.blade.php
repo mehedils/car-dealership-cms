@@ -196,8 +196,7 @@
                                             </div>
                                             <div class="endtime">
                                                 <div class="card-price">
-                                                    <h6 class="text-lg-bold neutral-1000">$72.15</h6>
-                                                    <p class="text-md-medium neutral-500">/ day</p>
+                                                    <h6 class="text-lg-bold neutral-1000">$72,150</h6>
                                                 </div>
                                                 <div class="card-button"><a class="btn btn-gray" href="/cars-details-3">Book Now</a></div>
                                             </div>
@@ -230,8 +229,7 @@
                                             </div>
                                             <div class="endtime">
                                                 <div class="card-price">
-                                                    <h6 class="text-lg-bold neutral-1000">$69.56</h6>
-                                                    <p class="text-md-medium neutral-500">/ day</p>
+                                                    <h6 class="text-lg-bold neutral-1000">$69,560</h6>
                                                 </div>
                                                 <div class="card-button"><a class="btn btn-gray" href="/cars-details-3">Book Now</a></div>
                                             </div>
@@ -264,8 +262,7 @@
                                             </div>
                                             <div class="endtime">
                                                 <div class="card-price">
-                                                    <h6 class="text-lg-bold neutral-1000">$253.0</h6>
-                                                    <p class="text-md-medium neutral-500">/ day</p>
+                                                    <h6 class="text-lg-bold neutral-1000">$53,000</h6>
                                                 </div>
                                                 <div class="card-button"><a class="btn btn-gray" href="/cars-details-3">Book Now</a></div>
                                             </div>
@@ -298,8 +295,7 @@
                                             </div>
                                             <div class="endtime">
                                                 <div class="card-price">
-                                                    <h6 class="text-lg-bold neutral-1000">$75.86</h6>
-                                                    <p class="text-md-medium neutral-500">/ day</p>
+                                                    <h6 class="text-lg-bold neutral-1000">$35,860</h6>
                                                 </div>
                                                 <div class="card-button"><a class="btn btn-gray" href="/cars-details-3">Book Now</a></div>
                                             </div>

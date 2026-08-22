@@ -44,3 +44,58 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const leadModalEl = document.getElementById('leadModal');
+    if (leadModalEl) {
+        leadModalEl.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            if (!button) return;
+
+            const carId = button.getAttribute('data-car-id') || '';
+            const carName = button.getAttribute('data-car-name') || '';
+            const carPrice = button.getAttribute('data-car-price') || '';
+            const subjectTitle = button.getAttribute('data-subject-title') || '';
+            const subjectMessage = button.getAttribute('data-subject-message') || '';
+
+            const modalCarId = document.getElementById('modalCarId');
+            const modalVehicleContext = document.getElementById('modalVehicleContext');
+            const modalVehicleName = document.getElementById('modalVehicleName');
+            const modalLeadMessage = document.getElementById('modalLeadMessage');
+            const modalTitle = document.getElementById('leadModalLabel');
+
+            if (modalCarId) {
+                modalCarId.value = carId;
+            }
+
+            if (carName) {
+                if (modalVehicleName) {
+                    modalVehicleName.innerText = carName + (carPrice ? ' (' + carPrice + ')' : '');
+                }
+                if (modalVehicleContext) {
+                    modalVehicleContext.classList.remove('d-none');
+                    modalVehicleContext.classList.add('d-flex');
+                }
+            } else {
+                if (modalVehicleContext) {
+                    modalVehicleContext.classList.add('d-none');
+                    modalVehicleContext.classList.remove('d-flex');
+                }
+            }
+
+            if (modalTitle) {
+                modalTitle.innerText = subjectTitle || "{{ __('Get in Touch') }}";
+            }
+
+            if (modalLeadMessage) {
+                if (subjectMessage) {
+                    modalLeadMessage.value = subjectMessage;
+                } else if (carName) {
+                    modalLeadMessage.value = "{{ __('Hello, I am interested in') }}: " + carName + ". {{ __('Please contact me regarding pricing, financing, and a test drive.') }}";
+                }
+            }
+        });
+    }
+});
+</script>

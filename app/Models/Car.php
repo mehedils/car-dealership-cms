@@ -19,6 +19,7 @@ class Car extends Model implements HasMedia
     protected $casts = [
         'year' => 'integer',
         'price' => 'decimal:2',
+        'original_price' => 'decimal:2',
         'monthly_payment' => 'decimal:2',
         'rating' => 'decimal:1',
         'is_featured' => 'boolean',
