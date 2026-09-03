@@ -221,7 +221,8 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
                             ->schema([
                                 Forms\Components\TextInput::make('footer_copyright')
                                     ->label(__('Copyright Notice'))
-                                    ->default('© 2026 Carento. All rights reserved.'),
+                                    ->placeholder('© {year} {site_name}. ' . __('All rights reserved.'))
+                                    ->helperText(__('Supports {year} and {site_name} placeholders. Leave blank to use defaults automatically.')),
                             ]),
                     ])
                     ->columnSpanFull(),

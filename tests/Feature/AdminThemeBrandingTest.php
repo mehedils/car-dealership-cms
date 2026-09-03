@@ -81,4 +81,19 @@ class AdminThemeBrandingTest extends TestCase
         // Default #70f46d shade (approximate green rgb)
         $this->assertArrayHasKey(500, $colors['primary']);
     }
+
+    public function test_edit_setting_page_mounts_successfully(): void
+    {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+
+        $setting = Setting::create([
+            'key' => 'site_name',
+            'value' => 'Carento Motors',
+        ]);
+
+        \Livewire\Livewire::test(\App\Filament\Resources\SettingResource\Pages\EditSetting::class, [
+            'record' => $setting->getKey(),
+        ])->assertSuccessful();
+    }
 }

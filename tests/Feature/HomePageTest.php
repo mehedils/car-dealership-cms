@@ -53,4 +53,21 @@ class HomePageTest extends TestCase
         $response->assertDontSee('Car Rental Services');
         $response->assertDontSee('Travel Agents');
     }
+
+    public function test_footer_renders_dynamic_copyright_notice(): void
+    {
+        $this->seed();
+
+        app()->setLocale('es');
+        $responseEs = $this->get('/');
+        $responseEs->assertStatus(200);
+        $responseEs->assertSee('© ' . date('Y'));
+        $responseEs->assertSee('Todos los derechos reservados.');
+
+        app()->setLocale('en');
+        $responseEn = $this->get('/');
+        $responseEn->assertStatus(200);
+        $responseEn->assertSee('© ' . date('Y'));
+        $responseEn->assertSee('All rights reserved.');
+    }
 }

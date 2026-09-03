@@ -56,7 +56,7 @@ class SettingResource extends Resource
                 Forms\Components\TextInput::make('key')
                     ->label(__('Setting Key (Fixed)'))
                     ->disabled()
-                    ->degraded()
+                    ->dehydrated()
                     ->required(),
                 Forms\Components\Group::make()
                     ->schema(function (Forms\Get $get, ?Model $record) {

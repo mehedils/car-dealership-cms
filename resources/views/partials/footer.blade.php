@@ -85,7 +85,32 @@
         <div class="footer-bottom mt-30">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-6 text-md-start text-center mb-20">
-                    <p class="text-sm color-white mb-0">{{ __(setting('footer_copyright', '© ' . date('Y') . ' ' . setting('site_name', 'Carento') . '. All rights reserved.')) }}</p>
+                    @php
+                        $siteName = setting('site_name', config('app.name', 'Carento'));
+                        $currentYear = date('Y');
+                        $rawCopyright = setting('footer_copyright');
+
+                        if (empty($rawCopyright) || in_array(trim($rawCopyright), [
+                            '© 2026 Carento. All rights reserved.',
+                            '© 2026 Carento. Todos los derechos reservados.',
+                            '© {year} {site_name}. All rights reserved.',
+                            '© {year} {site_name}. Todos los derechos reservados.',
+                        ])) {
+                            $copyrightText = '© ' . $currentYear . ' ' . $siteName . '. ' . __('All rights reserved.');
+                        } else {
+                            $copyrightText = str_replace(
+                                ['{year}', ':year', '{site_name}', ':site_name'],
+                                [$currentYear, $currentYear, $siteName, $siteName],
+                                $rawCopyright
+                            );
+                            $copyrightText = preg_replace(
+                                '/(All rights reserved|Todos los derechos reservados)\.?/i',
+                                __('All rights reserved.'),
+                                $copyrightText
+                            );
+                        }
+                    @endphp
+                    <p class="text-sm color-white mb-0">{{ $copyrightText }}</p>
                 </div>
                 <div class="col-md-6 text-md-end text-center mb-20">
                     <div class="d-flex align-items-center justify-content-center justify-content-md-end">

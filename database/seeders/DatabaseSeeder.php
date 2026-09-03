@@ -346,7 +346,7 @@ class DatabaseSeeder extends Seeder
             'heading_color' => '#000000',
 
             // Footer
-            'footer_copyright' => env('APP_LOCALE') === 'es' ? '© ' . date('Y') . ' Carento. Todos los derechos reservados.' : '© ' . date('Y') . ' Carento. All rights reserved.',
+            'footer_copyright' => '© {year} {site_name}. ' . (env('APP_LOCALE') === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'),
         ];
 
         foreach ($defaultSettings as $key => $val) {
