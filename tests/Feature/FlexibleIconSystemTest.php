@@ -121,4 +121,63 @@ class FlexibleIconSystemTest extends TestCase
             'record' => $feature->getKey(),
         ])->assertSuccessful();
     }
+
+    public function test_amenity_icon_upload_persists_on_create_and_edit(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $file = \Illuminate\Http\UploadedFile::fake()->create('amenity_test.svg', 10, 'image/svg+xml');
+
+        \Livewire\Livewire::test(\App\Filament\Resources\AmenityResource\Pages\CreateAmenity::class)
+            ->set('data.name', 'Panoramic Sunroof')
+            ->set('data.icon_type', 'upload')
+            ->set('data.icon_file', [$file])
+            ->call('create')
+            ->assertHasNoErrors();
+
+        $amenity = Amenity::where('name', 'Panoramic Sunroof')->first();
+        $this->assertNotNull($amenity);
+        $this->assertEquals('icons/amenity_test.svg', $amenity->icon);
+
+        // Verify edit page fills correctly and preserves value on save
+        $editTest = \Livewire\Livewire::test(\App\Filament\Resources\AmenityResource\Pages\EditAmenity::class, [
+            'record' => $amenity->getKey(),
+        ]);
+        $editTest->assertSet('data.icon_type', 'upload');
+        $editTest->call('save')->assertHasNoErrors();
+
+        $amenity->refresh();
+        $this->assertEquals('icons/amenity_test.svg', $amenity->icon);
+    }
+
+    public function test_service_icon_upload_persists_on_create_and_edit(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $file = \Illuminate\Http\UploadedFile::fake()->create('service_test.svg', 10, 'image/svg+xml');
+
+        \Livewire\Livewire::test(\App\Filament\Resources\ServiceResource\Pages\CreateService::class)
+            ->set('data.title', 'Engine Diagnostics')
+            ->set('data.slug', 'engine-diagnostics')
+            ->set('data.description', 'Advanced computer diagnostics.')
+            ->set('data.icon_type', 'upload')
+            ->set('data.icon_file', [$file])
+            ->call('create')
+            ->assertHasNoErrors();
+
+        $service = Service::where('slug', 'engine-diagnostics')->first();
+        $this->assertNotNull($service);
+        $this->assertEquals('icons/service_test.svg', $service->icon);
+
+        $editTest = \Livewire\Livewire::test(\App\Filament\Resources\ServiceResource\Pages\EditService::class, [
+            'record' => $service->getKey(),
+        ]);
+        $editTest->assertSet('data.icon_type', 'upload');
+        $editTest->call('save')->assertHasNoErrors();
+
+        $service->refresh();
+        $this->assertEquals('icons/service_test.svg', $service->icon);
+    }
 }

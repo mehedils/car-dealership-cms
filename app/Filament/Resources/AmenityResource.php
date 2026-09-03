@@ -51,29 +51,22 @@ class AmenityResource extends Resource
                         'library' => __('Select from Icon Library'),
                         'upload' => __('Upload Custom Icon (SVG / PNG)'),
                     ])
-                    ->default(fn (?Model $record) => ($record && (str_contains($record->icon ?? '', '/') || str_ends_with($record->icon ?? '', '.svg') || str_ends_with($record->icon ?? '', '.png') || str_ends_with($record->icon ?? '', '.webp'))) ? 'upload' : 'library')
-                    ->live()
-                    ->dehydrated(false),
+                    ->default('library')
+                    ->live(),
 
                 \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
                     ->label(__('Icon from Library'))
-                    ->visible(fn (Forms\Get $get) => ($get('icon_type') ?? 'library') === 'library')
-                    ->dehydrateStateUsing(function ($state, Forms\Get $get) {
-                        if ($get('icon_type') === 'upload') {
-                            return $get('icon_file');
-                        }
-                        return $state;
-                    }),
+                    ->visible(fn (Forms\Get $get) => ($get('icon_type') ?? 'library') === 'library'),
 
                 Forms\Components\FileUpload::make('icon_file')
                     ->label(__('Upload Custom Icon File'))
                     ->image()
                     ->acceptedFileTypes(['image/svg+xml', 'image/png', 'image/jpeg', 'image/webp'])
                     ->directory('icons')
+                    ->disk('public')
+                    ->visibility('public')
                     ->preserveFilenames()
                     ->visible(fn (Forms\Get $get) => $get('icon_type') === 'upload')
-                    ->formatStateUsing(fn (?Model $record) => ($record && (str_contains($record->icon ?? '', '/') || str_ends_with($record->icon ?? '', '.svg') || str_ends_with($record->icon ?? '', '.png') || str_ends_with($record->icon ?? '', '.webp'))) ? $record->icon : null)
-                    ->dehydrated(false)
                     ->helperText(__('Upload a custom SVG, PNG, or WebP icon file.')),
             ]);
     }
