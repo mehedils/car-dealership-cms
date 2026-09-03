@@ -230,9 +230,18 @@
                             </button>
                             <div class="collapse" id="collapseItinerary">
                                 <div class="card card-body">
-                                    <ul class="list-checked-green">
+                                    <ul class="list-checked-green" style="list-style: none; padding-left: 0;">
                                         @forelse($car->amenities as $amenity)
-                                            <li>{{ $amenity->name }}</li>
+                                            <li class="d-flex align-items-center gap-2 mb-2">
+                                                @if(!empty($amenity->icon))
+                                                    <span class="text-primary d-inline-flex align-items-center justify-content-center" style="width: 18px; height: 18px; flex-shrink: 0;">
+                                                        <x-app-icon :icon="$amenity->icon" :alt="$amenity->name" style="width: 18px; height: 18px;" />
+                                                    </span>
+                                                @else
+                                                    <i class="fi fi-rr-check text-success" style="font-size: 14px;"></i>
+                                                @endif
+                                                <span>{{ $amenity->name }}</span>
+                                            </li>
                                         @empty
                                             <li>Bluetooth Connectivity</li>
                                             <li>Rear View Camera</li>

@@ -34,7 +34,14 @@
                                         <img src="{{ asset('assets/imgs/services/services-1/img-1.png') }}" alt="{{ $service->title }}" style="height: 220px; object-fit: cover; width: 100%;">
                                     @endif
                                 </div>
-                                <h4 class="text-xl-bold neutral-1000 mb-12">{{ $service->title }}</h4>
+                                <div class="d-flex align-items-center gap-2 mb-12">
+                                    @if(!empty($service->icon))
+                                        <span class="text-primary d-inline-flex align-items-center justify-content-center" style="font-size: 24px; width: 28px; height: 28px;">
+                                            <x-app-icon :icon="$service->icon" :alt="$service->title" style="width: 24px; height: 24px;" />
+                                        </span>
+                                    @endif
+                                    <h4 class="text-xl-bold neutral-1000 mb-0">{{ $service->title }}</h4>
+                                </div>
                                 <p class="text-md-regular neutral-500 mb-20">{{ $service->description }}</p>
                             </div>
                             <div>

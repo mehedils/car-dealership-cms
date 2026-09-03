@@ -44,9 +44,9 @@ class CarDetailsPageTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Toyota Camry 2025 Special Edition');
         $response->assertSee('$32,000');
-        $response->assertSee('Schedule Test Drive');
-        $response->assertSee('Make An Offer Price');
-        $response->assertSee('Inquire About This Car');
+        $response->assertSee(__('Schedule Test Drive'));
+        $response->assertSee(__('Make An Offer Price'));
+        $response->assertSee(__('Inquire About This Car'));
     }
 
     public function test_user_can_submit_an_inquiry_for_a_car(): void

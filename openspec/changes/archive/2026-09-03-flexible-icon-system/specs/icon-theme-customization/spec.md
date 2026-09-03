@@ -1,9 +1,4 @@
-# Icon Theme Customization
-
-## Purpose
-Establishes application-wide icon rendering standards using Flaticon UIcons font classes to support dynamic brand color customization and dark mode styling.
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Icon Font Class Migration
 The application SHALL render car specification icons using Flaticon UIcons CSS font classes (`fi fi-rr-*`) while supporting dynamic multi-format rendering (uploaded custom image assets, Blade vector icons, and font classes) for content models including amenities, services, and why-us highlights.

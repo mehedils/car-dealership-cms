@@ -71,14 +71,14 @@ class AdminDashboardMetricsTest extends TestCase
         ]);
 
         Livewire::test(DealershipStatsOverview::class)
-            ->assertSee('Showroom Inventory')
+            ->assertSee(__('Showroom Inventory'))
             ->assertSee('2')
-            ->assertSee('1 Featured Models')
-            ->assertSee('Showroom Valuation')
+            ->assertSee('1 ' . __('Featured Models'))
+            ->assertSee(__('Showroom Valuation'))
             ->assertSee('$80k')
-            ->assertSee('Buyer Inquiries')
+            ->assertSee(__('Buyer Inquiries'))
             ->assertSee('1')
-            ->assertSee('Avg. Vehicle Price')
+            ->assertSee(__('Avg. Vehicle Price'))
             ->assertSee('$40,000');
     }
 
@@ -92,7 +92,7 @@ class AdminDashboardMetricsTest extends TestCase
         ]);
 
         Livewire::test(InquiriesTrendChart::class)
-            ->assertSee('Buyer Inquiries (Last 6 Months)');
+            ->assertSee(__('Buyer Inquiries (Last 6 Months)'));
     }
 
     public function test_cars_by_category_chart_widget_groups_body_types(): void
@@ -113,7 +113,7 @@ class AdminDashboardMetricsTest extends TestCase
         ]);
 
         Livewire::test(CarsByCategoryChart::class)
-            ->assertSee('Showroom by Body Type');
+            ->assertSee(__('Showroom by Body Type'));
     }
 
     public function test_latest_inquiries_table_widget_renders_leads(): void
@@ -127,7 +127,7 @@ class AdminDashboardMetricsTest extends TestCase
         ]);
 
         Livewire::test(LatestInquiriesTableWidget::class)
-            ->assertSee('Recent Buyer Inquiries')
+            ->assertSee(__('Recent Buyer Inquiries'))
             ->assertSee('Marcus Aurelius')
             ->assertSee('+1 555-0199');
     }

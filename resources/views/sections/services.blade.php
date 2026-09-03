@@ -30,7 +30,12 @@
                             </div>
                             <div class="card-info background-card p-3">
                                 <div class="card-left">
-                                    <div class="card-title">
+                                    <div class="card-title d-flex align-items-center gap-2">
+                                        @if(!empty($service->icon))
+                                            <span class="text-primary d-inline-flex align-items-center justify-content-center" style="font-size: 20px; width: 22px; height: 22px;">
+                                                <x-app-icon :icon="$service->icon" :alt="$service->title" style="width: 20px; height: 20px;" />
+                                            </span>
+                                        @endif
                                         <a class="text-lg-bold neutral-1000" href="{{ url('/services') }}">{{ $service->title }}</a>
                                     </div>
                                     <div class="card-desc">

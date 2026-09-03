@@ -19,29 +19,12 @@
 			@endphp
 			@foreach($whyUsFeatures as $index => $feature)
 				@php
-					$iconClass = $defaultIcons[$index % 4];
-					if (!empty($feature->icon)) {
-						if (str_starts_with($feature->icon, 'fi ') || str_starts_with($feature->icon, 'fi-')) {
-							$iconClass = $feature->icon;
-						} elseif (str_contains($feature->icon, 'shield') || str_contains($feature->icon, 'check')) {
-							$iconClass = 'fi fi-rr-shield-check';
-						} elseif (str_contains($feature->icon, 'credit') || str_contains($feature->icon, 'percent') || str_contains($feature->icon, 'bank') || str_contains($feature->icon, 'finance')) {
-							$iconClass = 'fi fi-rr-credit-card';
-						} elseif (str_contains($feature->icon, 'dollar') || str_contains($feature->icon, 'currency') || str_contains($feature->icon, 'money') || str_contains($feature->icon, 'price')) {
-							$iconClass = 'fi fi-rr-money';
-						} elseif (str_contains($feature->icon, 'car')) {
-							$iconClass = 'fi fi-rr-car';
-						} elseif (str_contains($feature->icon, 'award') || str_contains($feature->icon, 'star') || str_contains($feature->icon, 'badge')) {
-							$iconClass = 'fi fi-rr-badge';
-						} elseif (str_contains($feature->icon, 'headset') || str_contains($feature->icon, 'phone') || str_contains($feature->icon, 'support')) {
-							$iconClass = 'fi fi-rr-headset';
-						}
-					}
+					$iconValue = !empty($feature->icon) ? $feature->icon : $defaultIcons[$index % 4];
 				@endphp
 				<div class="col-lg-3 col-sm-6 mb-30">
 					<div class="card-why-dealership wow fadeIn" data-wow-delay="{{ ($index + 1) * 0.1 }}s">
-						<div class="card-why-icon-wrap">
-							<i class="{{ $iconClass }}"></i>
+						<div class="card-why-icon-wrap d-flex align-items-center justify-content-center">
+							<x-app-icon :icon="$iconValue" :alt="$feature->title" style="font-size: 28px; width: 28px; height: 28px;" />
 						</div>
 						<h5 class="card-why-title">{{ __($feature->title) }}</h5>
 						<p class="card-why-desc">{{ __($feature->description) }}</p>
