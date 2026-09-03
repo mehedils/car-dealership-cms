@@ -51,6 +51,7 @@ class CarResource extends Resource
                                     ->afterStateUpdated(fn (\Filament\Forms\Set $set, ?string $state) => $set('slug', \Illuminate\Support\Str::slug($state))),
                                 Forms\Components\TextInput::make('slug')
                                     ->label(__('Slug'))
+                                    ->helperText(__('Slug Helper'))
                                     ->required(),
                                 Forms\Components\Grid::make(4)->schema([
                                     Forms\Components\TextInput::make('year')
@@ -64,8 +65,9 @@ class CarResource extends Resource
                                         ->label(__('Condition'))
                                         ->options([
                                             'new' => __('New'),
-                                            'used' => __('Used'),
                                             'certified' => __('Certified'),
+                                            'used' => __('Used'),
+                                            'refurbished' => __('Refurbished'),
                                         ])
                                         ->default('used')
                                         ->required(),
@@ -73,8 +75,14 @@ class CarResource extends Resource
                                         ->label(__('Status'))
                                         ->options([
                                             'available' => __('Available'),
-                                            'reserved' => __('Reserved'),
+                                            'reserved' => __('Set Aside / Reserved'),
+                                            'in_negotiation' => __('In Negotiation'),
                                             'sold' => __('Sold'),
+                                            'delivered' => __('Delivered'),
+                                            'not_available' => __('Not Available'),
+                                            'in_maintenance' => __('In Maintenance / Shop'),
+                                            'in_transit' => __('In Transit'),
+                                            'demo' => __('Demo / Test Drive'),
                                         ])
                                         ->default('available')
                                         ->required(),
@@ -164,66 +172,100 @@ class CarResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('brand.name')
+                    ->label(__('Brand'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('year')
+                    ->label(__('Year'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('condition')
+                    ->label(__('Condition'))
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'new' => 'success',
-                        'certified' => 'warning',
-                        default => 'info',
+                        'certified' => 'info',
+                        'refurbished' => 'warning',
+                        default => 'gray',
                     })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'new' => __('New'),
                         'certified' => __('Certified'),
-                        default => __('Used'),
+                        'used' => __('Used'),
+                        'refurbished' => __('Refurbished'),
+                        default => ucfirst($state),
                     }),
                 Tables\Columns\TextColumn::make('status')
+                    ->label(__('Status'))
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'available' => 'success',
                         'reserved' => 'warning',
+                        'in_negotiation' => 'info',
                         'sold' => 'gray',
+                        'delivered' => 'primary',
+                        'not_available' => 'danger',
+                        'in_maintenance' => 'warning',
+                        'in_transit' => 'info',
+                        'demo' => 'purple',
                         default => 'primary',
                     })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'available' => __('Available'),
-                        'reserved' => __('Reserved'),
+                        'reserved' => __('Set Aside / Reserved'),
+                        'in_negotiation' => __('In Negotiation'),
                         'sold' => __('Sold'),
-                        default => $state,
+                        'delivered' => __('Delivered'),
+                        'not_available' => __('Not Available'),
+                        'in_maintenance' => __('In Maintenance / Shop'),
+                        'in_transit' => __('In Transit'),
+                        'demo' => __('Demo / Test Drive'),
+                        default => ucfirst($state),
                     }),
                 Tables\Columns\TextColumn::make('price')
-                    ->money()
+                    ->label(__('Price'))
+                    ->formatStateUsing(fn ($state) => '$' . number_format((float) $state))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('mileage')
+                    ->label(__('Mileage'))
                     ->numeric()
                     ->formatStateUsing(fn ($state) => $state ? number_format($state) . ' km' : '-')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('transmission')
+                    ->label(__('Transmission'))
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_featured')
+                    ->label(__('Featured'))
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('condition')
+                    ->label(__('Condition'))
                     ->options([
                         'new' => __('New'),
-                        'used' => __('Used'),
                         'certified' => __('Certified'),
+                        'used' => __('Used'),
+                        'refurbished' => __('Refurbished'),
                     ]),
                 Tables\Filters\SelectFilter::make('status')
+                    ->label(__('Status'))
                     ->options([
                         'available' => __('Available'),
-                        'reserved' => __('Reserved'),
+                        'reserved' => __('Set Aside / Reserved'),
+                        'in_negotiation' => __('In Negotiation'),
                         'sold' => __('Sold'),
+                        'delivered' => __('Delivered'),
+                        'not_available' => __('Not Available'),
+                        'in_maintenance' => __('In Maintenance / Shop'),
+                        'in_transit' => __('In Transit'),
+                        'demo' => __('Demo / Test Drive'),
                     ]),
                 Tables\Filters\SelectFilter::make('brand_id')
                     ->relationship('brand', 'name')

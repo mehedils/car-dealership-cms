@@ -69,19 +69,25 @@ class TestimonialResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('author_name')
+                    ->label(__('Author'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('author_role')
+                    ->label(__('Role'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('author_avatar')
+                    ->label(__('Photo'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('rating')
+                    ->label(__('Rating'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

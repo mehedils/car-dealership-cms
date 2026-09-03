@@ -51,7 +51,6 @@
                         <div class="d-flex flex-column align-items-lg-end align-items-start gap-2">
                             <div class="d-flex align-items-baseline justify-content-lg-end">
                                 <h2 class="text-3xl-bold neutral-1000 mb-0">{{ $currencySymbol }}{{ number_format($car->price) }}</h2>
-                                <span class="text-sm-bold text-muted ms-1">{{ $currencyCode }}</span>
                             </div>
                             <div class="d-flex align-items-center">
                                 <button type="button" class="btn btn-share btn-sm px-3 py-2 rounded-pill text-xs-bold d-inline-flex align-items-center border bg-white" onclick="shareVehicle(this)" id="btnShareVehicle">
@@ -92,11 +91,11 @@
                                         <path d="M8 8.75C8.4125 8.75 8.75 8.4125 8.75 8V2.75C8.75 2.3375 8.4125 2 8 2H2.75C2.3375 2 2 2.3375 2 2.75V8C2 8.4125 2.3375 8.75 2.75 8.75H8ZM8 0.5C9.245 0.5 10.25 1.505 10.25 2.75V8C10.25 9.245 9.245 10.25 8 10.25H2.75C1.505 10.25 0.5 9.245 0.5 8V2.75C0.5 1.505 1.505 0.5 2.75 0.5H8Z" fill="currentColor"></path>
                                         <path d="M8 20C8.4125 20 8.75 19.6625 8.75 19.25V14C8.75 13.5875 8.4125 13.25 8 13.25H2.75C2.3375 13.25 2 13.5875 2 14V19.25C2 19.6625 2.3375 20 2.75 20H8ZM8 11.75C9.245 11.75 10.25 12.755 10.25 14V19.25C10.25 20.495 9.245 21.5 8 21.5H2.75C1.505 21.5 0.5 20.495 0.5 19.25V14C0.5 12.755 1.505 11.75 2.75 11.75H8Z" fill="currentColor"></path>
                                     </svg>
-                                    See All Photos
+                                    {{ __('See All Photos') }}
                                 </a>
                                  <a class="btn btn-white-md popup-youtube" href="https://www.youtube.com/watch?v=AOg61RB75Ho">
                                     <i class="fi fi-rr-play-alt text-primary fs-5 me-1"></i>
-                                    Video Clips
+                                    {{ __('Video Clips') }}
                                 </a>
                             </div>
                         </div>
@@ -713,7 +712,7 @@
                             </div>
                             <div class="box-link-bottom">
                                 <a class="btn btn-primary py-3 w-100 rounded-3" href="#">
-                                    All items by this dealer
+                                    {{ __('All items by this dealer') }}
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8 15L15 8L8 1M15 8L1 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                     </svg>
@@ -726,7 +725,7 @@
         </div>
         @if(isset($relatedCars) && $relatedCars->isNotEmpty())
         <div class="container mt-5">
-            <h3 class="text-xl-bold neutral-1000 mb-4">Related Cars</h3>
+            <h3 class="text-xl-bold neutral-1000 mb-4">{{ __('Related Cars') }}</h3>
             <div class="row">
                 @foreach($relatedCars as $relatedCar)
                     <div class="col-lg-3 col-md-6 mb-4">

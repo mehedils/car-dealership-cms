@@ -60,15 +60,19 @@ class FaqResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('question')
+                    ->label(__('Question'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sort_order')
+                    ->label(__('Sort Order'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

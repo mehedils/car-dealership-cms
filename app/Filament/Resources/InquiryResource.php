@@ -58,8 +58,16 @@ class InquiryResource extends Resource
                     ->label(__('Message'))
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Select::make('status')
                     ->label(__('Status'))
+                    ->options([
+                        'pending' => __('Pending'),
+                        'received' => __('Received'),
+                        'read' => __('Read'),
+                        'contacted' => __('Contacted'),
+                        'closed' => __('Closed'),
+                    ])
+                    ->default('pending')
                     ->required(),
             ]);
     }
@@ -69,21 +77,47 @@ class InquiryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('car.name')
-                    ->numeric()
+                    ->label(__('Vehicle of Interest'))
+                    ->placeholder(__('General Inquiry'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label(__('Email'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
+                    ->label(__('Phone'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                    ->label(__('Status'))
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'new', 'pending' => 'warning',
+                        'received' => 'primary',
+                        'read', 'seen' => 'info',
+                        'contacted' => 'info',
+                        'closed', 'replied' => 'success',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'new' => __('New'),
+                        'pending' => __('Pending'),
+                        'received' => __('Received'),
+                        'read' => __('Read'),
+                        'seen' => __('Seen'),
+                        'contacted' => __('Contacted'),
+                        'closed' => __('Closed'),
+                        'replied' => __('Replied'),
+                        default => ucfirst($state),
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Received'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

@@ -35,11 +35,25 @@ class LatestInquiriesTableWidget extends BaseWidget
                 Tables\Columns\TextColumn::make('status')
                     ->label(__('Status'))
                     ->badge()
-                    ->colors([
-                        'warning' => 'new',
-                        'info' => 'contacted',
-                        'success' => 'closed',
-                    ]),
+                    ->color(fn (string $state): string => match ($state) {
+                        'new', 'pending' => 'warning',
+                        'received' => 'primary',
+                        'read', 'seen' => 'info',
+                        'contacted' => 'info',
+                        'closed', 'replied' => 'success',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'new' => __('New'),
+                        'pending' => __('Pending'),
+                        'received' => __('Received'),
+                        'read' => __('Read'),
+                        'seen' => __('Seen'),
+                        'contacted' => __('Contacted'),
+                        'closed' => __('Closed'),
+                        'replied' => __('Replied'),
+                        default => ucfirst($state),
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Received'))
                     ->since()

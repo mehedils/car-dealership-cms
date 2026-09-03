@@ -77,22 +77,29 @@ class ReviewResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('car.name')
+                    ->label(__('Car'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user_name')
+                    ->label(__('User Name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('user_email')
+                    ->label(__('Email'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('rating')
+                    ->label(__('Rating'))
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_approved')
+                    ->label(__('Approved'))
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

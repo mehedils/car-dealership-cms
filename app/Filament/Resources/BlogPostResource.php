@@ -47,6 +47,7 @@ class BlogPostResource extends Resource
                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug')
                     ->label(__('Slug'))
+                    ->helperText(__('Slug Helper'))
                     ->required(),
                 Forms\Components\Textarea::make('excerpt')
                     ->label(__('Excerpt'))
@@ -70,18 +71,24 @@ class BlogPostResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->label(__('Title'))
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label(__('Image')),
                 Tables\Columns\TextColumn::make('author_name')
+                    ->label(__('Author'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('published_at')
+                    ->label(__('Published At'))
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

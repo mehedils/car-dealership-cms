@@ -137,8 +137,9 @@ class CarsListController extends Controller
         $conditionCounts = [
             'all' => Car::count(),
             'new' => Car::where('condition', 'new')->count(),
-            'used' => Car::where('condition', 'used')->count(),
             'certified' => Car::where('condition', 'certified')->count(),
+            'used' => Car::where('condition', 'used')->count(),
+            'refurbished' => Car::where('condition', 'refurbished')->count(),
         ];
 
         return view('cars-list', compact(

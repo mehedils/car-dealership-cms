@@ -47,6 +47,7 @@ class ServiceResource extends Resource
                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug')
                     ->label(__('Slug'))
+                    ->helperText(__('Slug Helper'))
                     ->required(),
                 Forms\Components\Textarea::make('description')
                     ->label(__('Description'))
@@ -68,17 +69,23 @@ class ServiceResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->label(__('Title'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('icon')
+                    ->label(__('Icon'))
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label(__('Image')),
                 Tables\Columns\IconColumn::make('is_active')
+                    ->label(__('Active'))
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

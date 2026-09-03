@@ -54,7 +54,7 @@ class SettingResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('key')
-                    ->label('Setting Key (Fixed)')
+                    ->label(__('Setting Key (Fixed)'))
                     ->disabled()
                     ->degraded()
                     ->required(),
@@ -64,20 +64,20 @@ class SettingResource extends Resource
                         if (str_ends_with((string) $key, '_color')) {
                             return [
                                 Forms\Components\ColorPicker::make('value')
-                                    ->label('Value')
+                                    ->label(__('Value'))
                                     ->required(),
                             ];
                         }
                         if (in_array($key, ['contact_address', 'google_map_embed', 'site_slogan'])) {
                             return [
                                 Forms\Components\Textarea::make('value')
-                                    ->label('Value')
+                                    ->label(__('Value'))
                                     ->rows(3),
                             ];
                         }
                         return [
                             Forms\Components\TextInput::make('value')
-                                ->label('Value'),
+                                ->label(__('Value')),
                         ];
                     })
                     ->columnSpanFull(),
@@ -89,14 +89,15 @@ class SettingResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('key')
-                    ->label('Setting Key')
+                    ->label(__('Setting Key'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('value')
-                    ->label('Value')
+                    ->label(__('Value'))
                     ->limit(50)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable(),
             ])

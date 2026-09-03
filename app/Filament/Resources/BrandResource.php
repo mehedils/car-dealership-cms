@@ -47,6 +47,7 @@ class BrandResource extends Resource
                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug')
                     ->label(__('Slug'))
+                    ->helperText(__('Slug Helper'))
                     ->required(),
                 Forms\Components\FileUpload::make('logo')
                     ->label(__('Logo'))
@@ -60,13 +61,17 @@ class BrandResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('logo'),
+                Tables\Columns\ImageColumn::make('logo')
+                    ->label(__('Logo')),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

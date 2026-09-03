@@ -22,7 +22,7 @@ class DealershipStatsOverview extends BaseWidget
         $avgPrice = (float) ($totalCars > 0 ? Car::avg('price') : 0);
 
         $totalInquiries = Inquiry::count();
-        $newInquiries = Inquiry::where('status', 'new')->count();
+        $newInquiries = Inquiry::whereIn('status', ['new', 'pending', 'received'])->count();
 
         $formattedValuation = $this->formatCurrencyCompact($currency, $totalValuation);
         $formattedAvgPrice = $currency . number_format($avgPrice);

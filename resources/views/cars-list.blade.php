@@ -34,13 +34,17 @@
                                href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'new'])) }}">
                                 {{ __('New') }} <span class="badge">{{ $conditionCounts['new'] ?? 0 }}</span>
                             </a>
+                            <a class="btn-condition-tab {{ $condition === 'certified' ? 'active' : '' }}" 
+                               href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'certified'])) }}">
+                                {{ __('Certified') }} <span class="badge">{{ $conditionCounts['certified'] ?? 0 }}</span>
+                            </a>
                             <a class="btn-condition-tab {{ $condition === 'used' ? 'active' : '' }}" 
                                href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'used'])) }}">
                                 {{ __('Used') }} <span class="badge">{{ $conditionCounts['used'] ?? 0 }}</span>
                             </a>
-                            <a class="btn-condition-tab {{ $condition === 'certified' ? 'active' : '' }}" 
-                               href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'certified'])) }}">
-                                {{ __('Certified') }} <span class="badge">{{ $conditionCounts['certified'] ?? 0 }}</span>
+                            <a class="btn-condition-tab {{ $condition === 'refurbished' ? 'active' : '' }}" 
+                               href="{{ url('/cars') }}?{{ http_build_query(array_merge(request()->except(['condition', 'page']), ['condition' => 'refurbished'])) }}">
+                                {{ __('Refurbished') }} <span class="badge">{{ $conditionCounts['refurbished'] ?? 0 }}</span>
                             </a>
                         </div>
                         <input type="hidden" name="condition" value="{{ $condition }}">

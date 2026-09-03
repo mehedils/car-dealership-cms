@@ -66,22 +66,30 @@ class TeamMemberResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label(__('Name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('role')
+                    ->label(__('Role'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->label(__('Title'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->label(__('Email'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
+                    ->label(__('Phone'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('photo_path')
+                    ->label(__('Photo'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Created At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label(__('Updated At'))
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
