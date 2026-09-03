@@ -71,4 +71,54 @@ class FlexibleIconSystemTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Custom Wheel Tuning');
     }
+
+    public function test_filament_amenity_edit_page_mounts_without_exception(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $amenity = Amenity::create([
+            'name' => 'Heated Seats',
+            'icon' => 'fas-temperature-high',
+        ]);
+
+        \Livewire\Livewire::test(\App\Filament\Resources\AmenityResource\Pages\EditAmenity::class, [
+            'record' => $amenity->getKey(),
+        ])->assertSuccessful();
+    }
+
+    public function test_filament_service_edit_page_mounts_without_exception(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $service = Service::create([
+            'title' => 'Tire Rotation',
+            'slug' => 'tire-rotation',
+            'description' => 'Complete tire service.',
+            'icon' => 'fas-wrench',
+            'is_active' => true,
+        ]);
+
+        \Livewire\Livewire::test(\App\Filament\Resources\ServiceResource\Pages\EditService::class, [
+            'record' => $service->getKey(),
+        ])->assertSuccessful();
+    }
+
+    public function test_filament_why_us_feature_edit_page_mounts_without_exception(): void
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $feature = WhyUsFeature::create([
+            'title' => 'Roadside Assistance',
+            'description' => 'Available 24/7.',
+            'icon' => 'fas-car',
+            'sort_order' => 1,
+        ]);
+
+        \Livewire\Livewire::test(\App\Filament\Resources\WhyUsFeatureResource\Pages\EditWhyUsFeature::class, [
+            'record' => $feature->getKey(),
+        ])->assertSuccessful();
+    }
 }

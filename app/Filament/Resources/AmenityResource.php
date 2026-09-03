@@ -58,7 +58,6 @@ class AmenityResource extends Resource
                 \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
                     ->label(__('Icon from Library'))
                     ->visible(fn (Forms\Get $get) => ($get('icon_type') ?? 'library') === 'library')
-                    ->searchable()
                     ->dehydrateStateUsing(function ($state, Forms\Get $get) {
                         if ($get('icon_type') === 'upload') {
                             return $get('icon_file');
