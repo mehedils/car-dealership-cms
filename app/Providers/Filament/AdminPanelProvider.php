@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->passwordReset()
+            ->passwordReset(\App\Filament\Pages\Auth\PasswordReset\RequestPasswordReset::class)
             ->profile(\App\Filament\Pages\Auth\EditProfile::class)
             ->brandName(fn () => (string) setting('site_name', config('app.name', 'Carento')))
             ->brandLogo(fn () => (string) setting('site_logo_dark', asset('assets/imgs/template/logo-d.svg')))
