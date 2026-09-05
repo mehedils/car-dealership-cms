@@ -96,4 +96,16 @@ class AdminThemeBrandingTest extends TestCase
             'record' => $setting->getKey(),
         ])->assertSuccessful();
     }
+
+    public function test_setting_resource_is_not_registered_in_navigation_while_manage_settings_is_active(): void
+    {
+        $this->assertFalse(\App\Filament\Resources\SettingResource::shouldRegisterNavigation());
+
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user);
+
+        \Livewire\Livewire::test(\App\Filament\Pages\ManageSettings::class)
+            ->assertSuccessful()
+            ->assertSee(__('Site Settings'));
+    }
 }
