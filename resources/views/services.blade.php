@@ -28,8 +28,8 @@
                         <div class="card-spot background-card p-4 rounded-16 shadow-sm border h-100 d-flex flex-column justify-content-between">
                             <div>
                                 <div class="card-image mb-20 overflow-hidden rounded-12">
-                                    @if($service->image)
-                                        <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" style="height: 220px; object-fit: cover; width: 100%;">
+                                    @if($service->image_url)
+                                        <img src="{{ $service->image_url }}" alt="{{ $service->title }}" style="height: 220px; object-fit: cover; width: 100%;">
                                     @else
                                         <img src="{{ asset('assets/imgs/services/services-1/img-1.png') }}" alt="{{ $service->title }}" style="height: 220px; object-fit: cover; width: 100%;">
                                     @endif

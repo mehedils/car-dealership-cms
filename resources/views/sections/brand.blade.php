@@ -15,8 +15,8 @@
 						@foreach($brands as $brand)
 							<li class="carouselTicker__item">
 								<a href="{{ url('/cars?brand_id='.$brand->id) }}" class="item-brand title-sm-bold text-center">
-									@if($brand->logo)
-										<img src="{{ asset($brand->logo) }}" alt="{{ $brand->name }}">
+									@if($brand->logo_url)
+										<img src="{{ $brand->logo_url }}" alt="{{ $brand->name }}">
 									@else
 										<span class="text-sm-bold">{{ $brand->name }}</span>
 									@endif

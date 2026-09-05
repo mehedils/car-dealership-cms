@@ -84,8 +84,8 @@
                     <div class="col-lg-3 col-md-6 mb-30">
                         <div class="card-team background-card p-3 rounded-16 border text-center">
                             <div class="card-image mb-15 overflow-hidden rounded-12">
-                                @if($member->image)
-                                    <img class="w-100 rounded-12" src="{{ asset($member->image) }}" alt="{{ $member->name }}" style="height: 240px; object-fit: cover;">
+                                @if($member->image_url)
+                                    <img class="w-100 rounded-12" src="{{ $member->image_url }}" alt="{{ $member->name }}" style="height: 240px; object-fit: cover;">
                                 @else
                                     <img class="w-100 rounded-12" src="/assets/imgs/page/homepage1/author2.png" alt="{{ $member->name }}" style="height: 240px; object-fit: cover;">
                                 @endif

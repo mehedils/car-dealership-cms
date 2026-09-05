@@ -16,4 +16,21 @@ class Brand extends Model
     {
         return $this->hasMany(Car::class);
     }
+
+    public function getLogoUrlAttribute(): ?string
+    {
+        if (empty($this->logo)) {
+            return null;
+        }
+
+        if (str_starts_with($this->logo, 'http') || str_starts_with($this->logo, '/')) {
+            return $this->logo;
+        }
+
+        if (str_starts_with($this->logo, 'assets/')) {
+            return asset($this->logo);
+        }
+
+        return asset('storage/' . $this->logo);
+    }
 }
