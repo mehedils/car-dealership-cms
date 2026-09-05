@@ -57,7 +57,7 @@ async function runVisualTests() {
 
         const startTime = Date.now();
         try {
-            const response = await page.goto(fullUrl, { waitUntil: 'networkidle0', timeout: 20000 });
+            const response = await page.goto(fullUrl, { waitUntil: 'networkidle2', timeout: 25000 });
             loadTime = Date.now() - startTime;
             statusCode = response ? response.status() : 'No Response';
 
@@ -142,12 +142,12 @@ async function runVisualTests() {
 
     // Perform Login
     console.log('Performing Admin Login...');
-    await page.goto(BASE_URL + '/admin/login', { waitUntil: 'networkidle0' });
+    await page.goto(BASE_URL + '/admin/login', { waitUntil: 'networkidle2' });
     await page.waitForSelector('input[type="email"]');
     await page.type('input[type="email"]', 'admin@admin.com');
     await page.type('input[type="password"]', 'password');
     await page.click('button[type="submit"]');
-    await page.waitForNavigation({ waitUntil: 'networkidle0' });
+    await page.waitForNavigation({ waitUntil: 'networkidle2' });
     console.log('Logged in successfully, current URL:', page.url());
 
     // 3. ADMIN PANEL RESOURCE TESTS

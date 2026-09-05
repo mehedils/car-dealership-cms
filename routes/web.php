@@ -4,6 +4,7 @@ use App\Http\Controllers\CarDetailController;
 use App\Http\Controllers\CarsListController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InquiryController;
+use App\Models\Location;
 use App\Models\Service;
 use App\Models\TeamMember;
 use App\Models\WhyUsFeature;
@@ -34,7 +35,8 @@ Route::get('/about', function () {
 Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
 
 Route::get('/contact', function () {
-    return view('contact');
+    $locations = Location::all();
+    return view('contact', compact('locations'));
 })->name('contact');
 
 

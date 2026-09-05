@@ -101,6 +101,44 @@ class ManageSettings extends Page implements Forms\Contracts\HasForms
                                     ->rows(2)
                                     ->placeholder(__('e.g. Inventario verificado con garantía, inspección certificada y opciones de financiamiento.')),
                             ]),
+                        Forms\Components\Tabs\Tab::make(__('About Page'))
+                            ->icon('heroicon-o-user-group')
+                            ->schema([
+                                Forms\Components\Section::make(__('Page Hero Banner'))
+                                    ->schema([
+                                        Forms\Components\FileUpload::make('about_hero_bg_image')
+                                            ->label(__('Hero Banner Image'))
+                                            ->image()
+                                            ->directory('settings')
+                                            ->preserveFilenames()
+                                            ->helperText(__('Custom banner for /about page. Leave empty to use default header image.')),
+                                        Forms\Components\TextInput::make('about_hero_title')
+                                            ->label(__('Hero Title'))
+                                            ->placeholder(__('e.g. About Our Dealership')),
+                                        Forms\Components\TextInput::make('about_hero_subtitle')
+                                            ->label(__('Hero Subtitle'))
+                                            ->placeholder(__('e.g. Your Trusted Partner in Premium Automobile Sales & Service')),
+                                    ]),
+                                Forms\Components\Section::make(__('Company Narrative & Story'))
+                                    ->schema([
+                                        Forms\Components\TextInput::make('about_story_badge')
+                                            ->label(__('Story Small Badge'))
+                                            ->placeholder(__('e.g. WHO WE ARE')),
+                                        Forms\Components\TextInput::make('about_story_title')
+                                            ->label(__('Story Heading'))
+                                            ->placeholder(__('e.g. Dedicated to Excellence in Automotive Solutions')),
+                                        Forms\Components\Textarea::make('about_story_description')
+                                            ->label(__('Story Narrative Copy'))
+                                            ->rows(4)
+                                            ->placeholder(__('Describe your dealership history, values, and customer commitment.')),
+                                        Forms\Components\FileUpload::make('about_story_image')
+                                            ->label(__('Dealership / Founder Photo'))
+                                            ->image()
+                                            ->directory('settings')
+                                            ->preserveFilenames()
+                                            ->helperText(__('High quality photo of your facility or leadership. Leave empty to use default image.')),
+                                    ]),
+                            ]),
                         Forms\Components\Tabs\Tab::make(__('General'))
                             ->icon('heroicon-o-information-circle')
                             ->schema([

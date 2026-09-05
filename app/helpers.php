@@ -26,7 +26,7 @@ if (! function_exists('setting')) {
                 if (is_string($val) && (str_starts_with($val, '[') || str_starts_with($val, '{'))) {
                     $decoded = json_decode($val, true);
                     if (json_last_error() === JSON_ERROR_NONE) {
-                        if (in_array($key, ['site_logo_dark', 'site_logo_light', 'site_favicon', 'inventory_hero_bg_image', 'home_hero_bg_image', 'home_cta_image'])) {
+                        if (in_array($key, ['site_logo_dark', 'site_logo_light', 'site_favicon', 'inventory_hero_bg_image', 'home_hero_bg_image', 'home_cta_image', 'about_hero_bg_image', 'about_story_image'])) {
                             $val = is_array($decoded) ? (reset($decoded) ?: null) : $decoded;
                         }
                     }

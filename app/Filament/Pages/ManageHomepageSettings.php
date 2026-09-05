@@ -136,6 +136,20 @@ class ManageHomepageSettings extends Page implements Forms\Contracts\HasForms
                                 ]),
                             ]),
 
+                        Forms\Components\Tabs\Tab::make(__('Brands Showcase'))
+                            ->icon('heroicon-o-tag')
+                            ->schema([
+                                Forms\Components\TextInput::make('home_brands_title')
+                                    ->label(__('Section Title'))
+                                    ->placeholder(__('e.g. Premium Brands')),
+                                Forms\Components\TextInput::make('home_brands_subtitle')
+                                    ->label(__('Section Subtitle'))
+                                    ->placeholder(__('e.g. Unveil the Finest Selection of High-End Vehicles')),
+                                Forms\Components\TextInput::make('home_brands_button_text')
+                                    ->label(__('Button Text'))
+                                    ->placeholder(__('e.g. Show All Brands')),
+                            ]),
+
                         Forms\Components\Tabs\Tab::make(__('Featured Vehicles'))
                             ->icon('heroicon-o-truck')
                             ->schema([

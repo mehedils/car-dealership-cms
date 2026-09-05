@@ -42,9 +42,22 @@ class LocationResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label(__('Name'))
+                    ->placeholder(__('e.g. Main Showroom / Centro'))
                     ->required(),
+                Forms\Components\Grid::make(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('phone')
+                            ->label(__('Phone'))
+                            ->tel()
+                            ->placeholder(__('Leave blank to use main site phone')),
+                        Forms\Components\TextInput::make('email')
+                            ->label(__('Email'))
+                            ->email()
+                            ->placeholder(__('Leave blank to use main site email')),
+                    ]),
                 Forms\Components\Textarea::make('address')
                     ->label(__('Address'))
+                    ->placeholder(__('Full physical street address, city, and state'))
                     ->columnSpanFull(),
             ]);
     }
@@ -55,6 +68,17 @@ class LocationResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label(__('Name'))
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('address')
+                    ->label(__('Address'))
+                    ->limit(40)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label(__('Phone'))
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->label(__('Email'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('Created At'))
